@@ -105,7 +105,7 @@ public final class Gryphon {
 		try {
 			File jarFile = new File("libs/aml/AgreementMakerLight.jar");
 			String cmd = String.format("cd \"%s\" && java -jar \"%s\" -s \"%s\" -t \"%s\" -o \"%s\" -m", jarFile.getParentFile().getAbsolutePath(), jarFile.getAbsolutePath(), new File(globalOntology.getURI()).getAbsolutePath(), new File(localOntologyURI).getAbsolutePath(), alignFile.getAbsolutePath());
-			ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", cmd);
+			ProcessBuilder processBuilder = createCmdProcessBuilder(cmd);
 			Process process = processBuilder.start();
 			process.waitFor();
 		} catch (Exception e) {
@@ -226,11 +226,18 @@ public final class Gryphon {
 		}
 	}
 
+	private static ProcessBuilder createCmdProcessBuilder(String cmd) {
+		if (GryphonUtil.isWindows()) {
+			return new ProcessBuilder("cmd.exe", "/c", cmd);
+		} else {
+			return new ProcessBuilder("sh", "-c", cmd);
+		}
+	}
 	private static String queryRewrite(String query, File alignFile) {
 		try {
-			File jarFile = new File("libs/mediation/Mediation.jar");
+			File jarFile = new File("libs/mediation/mediation.jar");
 			String cmd = String.format("cd \"%s\" && java -jar \"%s\" \"%s\" \"%s\"", jarFile.getParentFile().getAbsolutePath(), jarFile.getAbsolutePath(), alignFile.getAbsolutePath(), query.replace("\n", " "));
-			ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", cmd);
+			ProcessBuilder processBuilder = createCmdProcessBuilder(cmd);
 			Process process = processBuilder.start();
 			process.waitFor();
 			InputStream is = process.getInputStream();
