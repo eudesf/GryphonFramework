@@ -3,12 +3,12 @@ package br.ufpe.cin.aac3.gryphon;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
-import java.io.InputStream;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
@@ -83,11 +83,24 @@ public final class Gryphon {
 	}
 	
 	public static void align() {
+		align(false);
+	}
+	
+	
+	public static void align(boolean async) {
+		LinkedHashMap<URI, Process> alignmentProcesses = new LinkedHashMap<>();
+		
 		if(!localOntologies.isEmpty()){
 			GryphonUtil.logInfo("Aligning ontologies...");
 			for (Ontology ontology : localOntologies) {
-				alignOntology(ontology.getURI(), ontology.getAlignFile());
-				GryphonUtil.logInfo(String.format("> Ontology %s was aligned", ontology.getName()));
+				Process process = startOntologyAlignment(ontology.getURI(), ontology.getAlignFile());
+				if (async) {
+					alignmentProcesses.put(ontology.getURI(), process);
+					GryphonUtil.logInfo(String.format("> Aligning ontology %s in background...", ontology.getName()));
+				} else {
+					CommandUtil.readCmdResponse(process);
+					GryphonUtil.logInfo(String.format("> Ontology %s was aligned", ontology.getName()));
+				}
 			}
 		}
 		
@@ -95,31 +108,53 @@ public final class Gryphon {
 			GryphonUtil.logInfo("Mapping and aligning databases...");
 			for (Database database : localDatabases) {
 				mapDatabase(database);
-				alignOntology(database.getAlignFile().toURI(), database.getAlignFile());
-				GryphonUtil.logInfo(String.format("> Database %s was mapped and aligned", database.getDbName()));
+				
+				Process process = startOntologyAlignment(database.getAlignFile().toURI(), database.getAlignFile());
+				if (async) {
+					alignmentProcesses.put(database.getAlignFile().toURI(), process);
+					GryphonUtil.logInfo(String.format("> Database %s was mapped, aligning it...", database.getDbName()));
+				} else {
+					CommandUtil.readCmdResponse(process);
+					GryphonUtil.logInfo(String.format("> Database %s was mapped and aligned", database.getDbName()));
+				}
 			}
 		}
+		
+		if (async) {
+			GryphonUtil.logInfo("> Waiting for ontologies alignment...");
+			for (URI uri : alignmentProcesses.keySet()) {
+				String response = CommandUtil.readCmdResponse(alignmentProcesses.get(uri));
+				GryphonUtil.logInfo(String.format("> Alignment of %s completed. Cmd Response: %s", uri, response));
+			}
+		}
+		
 	}
 	
-	private static void alignOntology(URI localOntologyURI, File alignFile) {
-		try {
-			File jarFile = new File("libs/aml/AgreementMakerLight.jar");
-			String cmd = String.format("cd \"%s\" && java -jar \"%s\" -s \"%s\" -t \"%s\" -o \"%s\" -m", jarFile.getParentFile().getAbsolutePath(), jarFile.getAbsolutePath(), new File(globalOntology.getURI()).getAbsolutePath(), new File(localOntologyURI).getAbsolutePath(), alignFile.getAbsolutePath());
-			ProcessBuilder processBuilder = createCmdProcessBuilder(cmd);
-			Process process = processBuilder.start();
-			process.waitFor();
-		} catch (Exception e) {
-			GryphonUtil.logError(e.getMessage());
-		}
+	private static Process startOntologyAlignment(URI localOntologyURI, File alignFile) {
+		File jarFile = new File("libs/aml/AgreementMakerLight.jar");
+		
+		return CommandUtil.executeCommandAsync("cd \"%s\" && java -jar \"%s\" -s \"%s\" -t \"%s\" -o \"%s\" -m", 
+				jarFile.getParentFile().getAbsolutePath(), 
+				jarFile.getAbsolutePath(), 
+				new File(globalOntology.getURI()).getAbsolutePath(), 
+				new File(localOntologyURI).getAbsolutePath(), 
+				alignFile.getAbsolutePath());
 	}
+	
 	
 	private static void mapDatabase(Database db) {
 		String mapping = null;
 		
 		try {
 			File scriptFile = new File("libs/d2rq/generate-mapping" + (GryphonUtil.isWindows() ? ".bat" : ""));
-			Process process = Runtime.getRuntime().exec(String.format("%s \"%s\" -o \"%s\" -u \"%s\" -p \"%s\" \"%s\"", (GryphonUtil.isWindows() ? "" : "bash"), scriptFile.getAbsolutePath(), db.getMapFile().getAbsolutePath(), db.getUsername(), db.getPassword(), db.getJdbcURL()));
-			process.waitFor();
+			
+			CommandUtil.executeCommand("\"%s\" -o \"%s\" -u \"%s\" -p \"%s\" \"%s\"", 
+					scriptFile.getAbsolutePath(), 
+					db.getMapFile().getAbsolutePath(), 
+					db.getUsername(), 
+					db.getPassword(), 
+					db.getJdbcURL());
+			
 			mapping = FileUtils.readFileToString(db.getMapFile(), "utf-8");
 			
 			Files.write(Paths.get(db.getMapFile().toURI()), mapping.getBytes());
@@ -217,38 +252,21 @@ public final class Gryphon {
 	private static void execSQLQuery(String styrQuery, File mapFile, File resultFile) {
 		try {
 			Query query = QueryFactory.create(styrQuery);
-			File batFile = new File("libs\\d2rq\\d2r-query" + (GryphonUtil.isWindows() ? ".bat" : ""));
-			String cmd = String.format("\"%s\" -f json \"%s\" \"%s\" > \"%s\"", batFile.getAbsolutePath(), mapFile.getAbsolutePath(), query.toString(Syntax.syntaxSPARQL_11), resultFile.getAbsoluteFile()); 
-			Process process = Runtime.getRuntime().exec(cmd);
-			process.waitFor();
+			File batFile = new File("libs/d2rq/d2r-query" + (GryphonUtil.isWindows() ? ".bat" : ""));
+			CommandUtil.executeCommand("\"%s\" -f json \"%s\" \"%s\" > \"%s\"", batFile.getAbsolutePath(), mapFile.getAbsolutePath(), query.toString(Syntax.syntaxSPARQL_11), resultFile.getAbsoluteFile());
 		} catch (Exception e) {
 			GryphonUtil.logError(e.getMessage());
 		}
 	}
 
-	private static ProcessBuilder createCmdProcessBuilder(String cmd) {
-		if (GryphonUtil.isWindows()) {
-			return new ProcessBuilder("cmd.exe", "/c", cmd);
-		} else {
-			return new ProcessBuilder("sh", "-c", cmd);
-		}
-	}
 	private static String queryRewrite(String query, File alignFile) {
-		try {
-			File jarFile = new File("libs/mediation/mediation.jar");
-			String cmd = String.format("cd \"%s\" && java -jar \"%s\" \"%s\" \"%s\"", jarFile.getParentFile().getAbsolutePath(), jarFile.getAbsolutePath(), alignFile.getAbsolutePath(), query.replace("\n", " "));
-			ProcessBuilder processBuilder = createCmdProcessBuilder(cmd);
-			Process process = processBuilder.start();
-			process.waitFor();
-			InputStream is = process.getInputStream();
-	        byte b[] = new byte[is.available()];
-	        is.read(b, 0, b.length);
-	        is.close();
-	        return new String(b);
-		} catch (Exception e) {
-			GryphonUtil.logError(e.getMessage());
-			return null;
-		}
+		File jarFile = new File("libs/mediation/mediation.jar");
+		
+		return CommandUtil.executeCommand("cd \"%s\" && java -jar \"%s\" \"%s\" \"%s\"", 
+				jarFile.getParentFile().getAbsolutePath(), 
+				jarFile.getAbsolutePath(), 
+				alignFile.getAbsolutePath(), 
+				query.replace("\n", " "));
 	}
 	
 	private static void unifyQueries(){
