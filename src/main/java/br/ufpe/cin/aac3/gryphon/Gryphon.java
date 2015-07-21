@@ -193,6 +193,7 @@ public final class Gryphon {
 		}
 	}
 
+	
 	public static void query(String strQueryGlobal){
 		String strQueryLocal = null;
 		TupleQuery queryLocal = null;

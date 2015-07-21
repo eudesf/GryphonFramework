@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#' 
+	 xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' 
+	 xmlns:xsd='http://www.w3.org/2001/XMLSchema#' 
+	 xmlns:align='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#' 
+	 xmlns:edoal='http://ns.inria.org/edoal/1.0/#'> 
+<Alignment>
+	<xml>yes</xml>
+	<level>2EDOAL</level>
+	<type>**</type>
+	<method>fr.inrialpes.exmo.align.edoal.EDOALAlignment#toEDOAL</method>
+	<onto1>
+		<Ontology rdf:about="http://aac3.cin.ufpe.br/ns/global_bibtex">
+			<location></location>
+			<formalism>
+				<Formalism align:name="OWL1.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+			</formalism>
+		</Ontology>
+	</onto1>
+	<onto2>
+		<Ontology rdf:about="http://purl.org/net/nknouf/ns/bibtex">
+			<location></location>
+			<formalism>
+				<Formalism align:name="OWL1.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+			</formalism>
+		</Ontology>
+	</onto2>
+	<map>
+		<Cell>
+			<entity1>
+				<edoal:Class rdf:about="http://aac3.cin.ufpe.br/ns/global_bibtex#Article"/>
+			</entity1>
+			<entity2>
+				<edoal:Class rdf:about="http://purl.org/net/nknouf/ns/bibtex#Article"/>
+			</entity2>
+			<relation>=</relation>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.9801</measure>
+		</Cell>
+	</map>
+</Alignment>
+</rdf:RDF>

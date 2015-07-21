@@ -1,0 +1,47 @@
+Prefix: :   <http://www.semanticweb.org/eudes/dota#>
+Prefix: rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+Ontology: <http://www.semanticweb.org/eudes/dota#>
+
+Class: Item
+
+AnnotationProperty: dependsOn
+
+Class: RingOfProtection
+	SubClassOf: Item
+Class: RingOfRegen
+	SubClassOf: Item
+Class: SagesMask
+	SubClassOf: Item
+Class: ShadowAmulet
+	SubClassOf: Item
+Class: Cloak
+	SubClassOf: Item
+Class: MorbidMask
+	SubClassOf: Item
+Class: HelmOfIronWill
+	SubClassOf: Item
+Class: GlovesOfHaste
+	SubClassOf: Item
+Class: BladesOfAttack
+	SubClassOf: Item
+
+
+Class: ArmletOfMordiggian
+	SubClassOf: Item
+	Annotations: dependsOn HelmOfIronWill, dependsOn GlovesOfHaste, dependsOn BladesOfAttack
+	
+Class: HelmOfTheDominator
+	SubClassOf: Item
+	Annotations: dependsOn HelmOfIronWill, dependsOn MorbidMask
+	
+Class: RingOfBasilius
+	SubClassOf: Item
+	Annotations: dependsOn RingOfProtection, dependsOn SagesMask
+	
+Class: GlimmerCape
+	SubClassOf: Item
+	Annotations: dependsOn ShadowAmulet, dependsOn Cloak
+	
+
+	

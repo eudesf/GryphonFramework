@@ -18,18 +18,18 @@ public class Example {
 		GryphonConfig.setShowGryphonLogoOnConsole(true);
 		Gryphon.init();
 		
-		loadExample1();
+//		loadExample1();
 		// or
-		//loadExample2();
+		loadExample2();
 		
 		// 2. Align (and Map) the Sources
 		Gryphon.align(true);
 
 		// 3. Query Using SPARQL
 		String strQuery = 
-				 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
-				+"SELECT ?x ?y "
-				+"WHERE { ?x rdf:type ?y }";
+					 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
+					+"SELECT ?x ?y "
+					+"WHERE { ?x rdf:type ?y }";
 		Gryphon.query(strQuery);
 		
 		
@@ -37,7 +37,7 @@ public class Example {
 	} 
 	
 	// 2 Ontologies, 1 Database
-	private static void loadExample1() {		
+	private static void loadExample1() {
 		try {
 			Ontology globalOntBibtex = new Ontology("globalBibtex", new URI(GryphonUtil.getCurrentURI() + "examples/ex1/global_bibtex.owl"));
 			Ontology localOnt1 = new Ontology("bibtex", new URI(GryphonUtil.getCurrentURI() + "examples/ex1/bibtex.owl"));
@@ -54,7 +54,7 @@ public class Example {
 	}
 	
 	// 3 Ontologies
-	private static void loadExample2() {		
+	private static void loadExample2() {
 		try {
 			Ontology global = new Ontology("globalHuman", new URI(GryphonUtil.getCurrentURI() + "examples/ex2/human.owl"));
 			Ontology localOnt1 = new Ontology("fly", new URI(GryphonUtil.getCurrentURI() + "examples/ex2/fly.owl"));
