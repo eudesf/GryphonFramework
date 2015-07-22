@@ -10,30 +10,14 @@
 	</properties>
 
 	<dependencies>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.openrdf.sesame</groupId> -->
-<!-- 			<artifactId>sesame-queryresultio-sparqljson</artifactId> -->
-<!-- 			<version>${sesame.version}</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.openrdf.sesame</groupId> -->
-<!-- 			<artifactId>sesame-repository-api</artifactId> -->
-<!-- 			<version>${sesame.version}</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.openrdf.sesame</groupId> -->
-<!-- 			<artifactId>sesame-repository-sail</artifactId> -->
-<!-- 			<version>${sesame.version}</version> -->
-<!-- 		</dependency> -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.openrdf.sesame</groupId> -->
-<!-- 			<artifactId>sesame-repository-manager</artifactId> -->
-<!-- 			<version>${sesame.version}</version> -->
-<!-- 		</dependency> -->
-		
 		<dependency>
 			<groupId>org.openrdf.sesame</groupId>
 			<artifactId>sesame-runtime</artifactId>
+			<version>${sesame.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-queryresultio-sparqljson</artifactId>
 			<version>${sesame.version}</version>
 		</dependency>
 		<dependency>
@@ -61,7 +45,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.36</version>
 		</dependency>
-		
 	</dependencies>
 
 	<build>
