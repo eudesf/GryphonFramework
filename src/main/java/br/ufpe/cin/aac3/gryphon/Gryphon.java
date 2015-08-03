@@ -54,7 +54,7 @@ public final class Gryphon {
 	private Gryphon() { }
 
 	public static void init(){
-		PropertyConfigurator.configure("log4j.properties");
+		PropertyConfigurator.configure(Gryphon.class.getResource("/log4j.properties"));
 		
 		if(GryphonConfig.showGryphonLogoOnConsole() && GryphonConfig.isLogEnabled()){
 			System.out.println(
