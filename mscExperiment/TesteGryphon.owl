@@ -1,0 +1,365 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY dc "http://purl.org/dc/elements/1.1/" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <Ontology rdf:about="http://www.cin.ufpe.br/~integrativo">
+        <dc:title>IntegratiO Base Ontology Example</dc:title>
+        <Import>file:///D:/Documentos/Downloads/Mestrado/IntegrativO/sources/chebi_homocysteine.owl</Import>
+        <Import>file:///D:/Documentos/Downloads/Mestrado/IntegrativO/sources/DiseaseList.owl</Import>
+        <Import>file:///D:/Documentos/Downloads/Mestrado/IntegrativO/sources/btl2.owl</Import>
+        <Import>file:///D:/Documentos/Downloads/Mestrado/IntegrativO/sources/PR_protein.owl</Import>
+        <Import>file:///D:/Documentos/Downloads/Mestrado/IntegrativO/sources/ncbitaxon.owl</Import>
+        <Import>file:///D:/Documentos/Downloads/Mestrado/IntegrativO/sources/go_module.owl</Import>
+    </Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/CHEBI_10545 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_10545">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Compound"/>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/CHEBI_17230 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_17230">
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#isGranularPartOf"/>
+                <someValuesFrom rdf:resource="http://www.cin.ufpe.br/~integrativo#AmountOfHomocysteine"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/CHEBI_24431 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_24431">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#MonoMolecularEntity"/>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/CHEBI_33252 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_33252">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Compound"/>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/CHEBI_33253 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_33253">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Compound"/>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/GO_0003674 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/GO_0003674">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Process"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#hasAgent"/>
+                <someValuesFrom rdf:resource="http://purl.org/biotop/btl2.owl#MonoMolecularEntity"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#isIncludedIn"/>
+                <someValuesFrom rdf:resource="http://purl.org/biotop/btl2.owl#Organism"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#hasPatient"/>
+                <someValuesFrom rdf:resource="http://purl.org/biotop/btl2.owl#MonoMolecularEntity"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#isIncludedIn"/>
+                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/GO_0005575"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/GO_0005575 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/GO_0005575">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#StructuredBiologicalEntity"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#includes"/>
+                <someValuesFrom rdf:resource="http://purl.org/biotop/btl2.owl#MonoMolecularEntity"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/GO_0008150 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/GO_0008150">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Process"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#isIncludedIn"/>
+                <someValuesFrom rdf:resource="http://purl.org/biotop/btl2.owl#Organism"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#hasAgent"/>
+                <someValuesFrom rdf:resource="http://purl.org/biotop/btl2.owl#MonoMolecularEntity"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#isIncludedIn"/>
+                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/GO_0005575"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#hasPatient"/>
+                <someValuesFrom rdf:resource="http://purl.org/biotop/btl2.owl#MonoMolecularEntity"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HGNC_1047 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/HGNC_1047">
+        <rdfs:subClassOf rdf:resource="http://www.cin.ufpe.br/~integrativo#GeneMolecule"/>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HGNC_1550 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/HGNC_1550">
+        <rdfs:subClassOf rdf:resource="http://www.cin.ufpe.br/~integrativo#GeneMolecule"/>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HGNC_2501 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/HGNC_2501">
+        <rdfs:subClassOf rdf:resource="http://www.cin.ufpe.br/~integrativo#GeneMolecule"/>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HGNC_7436 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/HGNC_7436">
+        <rdfs:subClassOf rdf:resource="http://www.cin.ufpe.br/~integrativo#GeneMolecule"/>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/HGNC_7468 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/HGNC_7468">
+        <rdfs:subClassOf rdf:resource="http://www.cin.ufpe.br/~integrativo#GeneMolecule"/>
+    </Class>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/PR_000000001 -->
+
+    <Class rdf:about="http://purl.obolibrary.org/obo/PR_000000001">
+        <rdfs:subClassOf rdf:resource="http://purl.obolibrary.org/obo/CHEBI_24431"/>
+    </Class>
+    
+
+
+    <!-- http://purl.org/biotop/btl2.owl#Organism -->
+
+    <rdf:Description rdf:about="http://purl.org/biotop/btl2.owl#Organism">
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#hasPart"/>
+                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/GO_0005575"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#includes"/>
+                <someValuesFrom rdf:resource="http://purl.org/biotop/btl2.owl#MonoMolecularEntity"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+    
+
+
+    <!-- http://purl.org/biotop/btl2.owl#Situation -->
+
+    <rdf:Description rdf:about="http://purl.org/biotop/btl2.owl#Situation">
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#hasPatient"/>
+                <someValuesFrom rdf:resource="http://purl.org/biotop/btl2.owl#Organism"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#hasAgent"/>
+                <someValuesFrom rdf:resource="http://purl.org/biotop/btl2.owl#MonoMolecularEntity"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo#AmountOfHomocysteine -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo#AmountOfHomocysteine">
+        <rdfs:label>amount of homocysteine</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#AmountOfPureSubstance"/>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#hasGranularPart"/>
+                <someValuesFrom rdf:resource="http://purl.obolibrary.org/obo/CHEBI_17230"/>
+            </Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#hasGranularPart"/>
+                <allValuesFrom rdf:resource="http://purl.obolibrary.org/obo/CHEBI_17230"/>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo#DeficiencyQuality -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo#DeficiencyQuality">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#ObjectQuality"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo#ExcessQuality -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo#ExcessQuality">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#ObjectQuality"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo#GeneMolecule -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo#GeneMolecule">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#MonoMolecularEntity"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Homocysteinemia -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Homocysteinemia">
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#hasPatient"/>
+                <someValuesFrom>
+                    <Class>
+                        <intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://purl.org/biotop/btl2.owl#Organism"/>
+                            <Restriction>
+                                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#includes"/>
+                                <someValuesFrom>
+                                    <Class>
+                                        <intersectionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo#AmountOfHomocysteine"/>
+                                            <Restriction>
+                                                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#isBearerOf"/>
+                                                <someValuesFrom rdf:resource="http://www.cin.ufpe.br/~integrativo#ExcessQuality"/>
+                                            </Restriction>
+                                        </intersectionOf>
+                                    </Class>
+                                </someValuesFrom>
+                            </Restriction>
+                        </intersectionOf>
+                    </Class>
+                </someValuesFrom>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Homocystinuria -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Homocystinuria">
+        <rdfs:subClassOf>
+            <Restriction>
+                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#hasPatient"/>
+                <someValuesFrom>
+                    <Class>
+                        <intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://purl.org/biotop/btl2.owl#Organism"/>
+                            <Restriction>
+                                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#includes"/>
+                                <someValuesFrom>
+                                    <Class>
+                                        <intersectionOf rdf:parseType="Collection">
+                                            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo#AmountOfHomocysteine"/>
+                                            <Restriction>
+                                                <onProperty rdf:resource="http://purl.org/biotop/btl2.owl#isBearerOf"/>
+                                                <someValuesFrom rdf:resource="http://www.cin.ufpe.br/~integrativo#DeficiencyQuality"/>
+                                            </Restriction>
+                                        </intersectionOf>
+                                    </Class>
+                                </someValuesFrom>
+                            </Restriction>
+                        </intersectionOf>
+                    </Class>
+                </someValuesFrom>
+            </Restriction>
+        </rdfs:subClassOf>
+    </Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+

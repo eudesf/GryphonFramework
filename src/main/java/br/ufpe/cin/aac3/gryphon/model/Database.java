@@ -9,13 +9,14 @@ import java.util.Properties;
 import br.ufpe.cin.aac3.gryphon.Gryphon;
 import br.ufpe.cin.aac3.gryphon.GryphonUtil;
 
-public class Database {
+public final class Database {
 	public enum DBMS {
 		MySQL,
 		PostgreSQL
 	}
-	
-	protected File mapFile = null;
+
+	protected File mapTTLFile = null;
+	protected File mapRDFFile = null;
 	protected File alignFile = null;
 	protected File resultFile = null;
 	
@@ -28,9 +29,10 @@ public class Database {
 	protected int port = 0;
 	
 	public Database(String host, int port, String username, String password, String dbName, DBMS dbms) {
-		mapFile = new File(Gryphon.getMapFolder().getAbsolutePath(), "db_" + host + "_" + port + "_" + dbName + ".ttl");
+		mapTTLFile = new File(Gryphon.getMapFolder().getAbsolutePath(), "db_" + host + "_" + port + "_" + dbName + ".ttl");
+		mapRDFFile = new File(Gryphon.getMapFolder().getAbsolutePath(), "db_" + host + "_" + port + "_" + dbName + ".rdf");
 		alignFile = new File(Gryphon.getAlignFolder().getAbsolutePath(), "db_" + host + "_" + port + "_" + dbName  + ".rdf");
-		resultFile = new File(Gryphon.getResultFolder().getAbsolutePath(), "db_" + host + "_" + port + "_" + dbName  + ".json");
+		resultFile = new File(Gryphon.getResultFolder().getAbsolutePath(), "db_" + host + "_" + port + "_" + dbName);
 		
 		this.host = host;
 		this.port = port;
@@ -49,13 +51,11 @@ public class Database {
 				break;
 		}
 		
-		GryphonUtil.logInfo("Connecting with database: " + jdbcURL);
+		GryphonUtil.logInfo("Connecting to database: " + jdbcURL);
 		if(!testConnection()){
 			try {
-				throw new SQLException("Can't connect with database: " + jdbcURL); 
-			} catch (Exception e) {
-				GryphonUtil.logError("Can't connect with database: " + jdbcURL);
-			}
+				throw new SQLException("Can't connect to database: " + jdbcURL); 
+			} catch (Exception e) { }
 		}
 	}
 	
@@ -68,7 +68,6 @@ public class Database {
 			Connection connection = DriverManager.getConnection(jdbcURL, props);
 			return connection != null && !connection.isClosed();
 		} catch (SQLException e) {
-			e.printStackTrace();
 			return false;
 		}
 	}
@@ -77,8 +76,12 @@ public class Database {
 		return alignFile;
 	}
 	
-	public File getMapFile() {
-		return mapFile;
+	public File getMapTTLFile() {
+		return mapTTLFile;
+	}
+	
+	public File getMapRDFFile() {
+		return mapRDFFile;
 	}
 	
 	public File getResultFile() {

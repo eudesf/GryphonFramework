@@ -1,0 +1,1092 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.w3.org/2002/07/owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <Ontology rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/biotop/btl2.owl#Situation -->
+
+    <Class rdf:about="http://purl.org/biotop/btl2.owl#Situation"/>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Abdominal_Aortic_Aneurysm -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Abdominal_Aortic_Aneurysm">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Albuminuria -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Albuminuria">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Amino_Acid_Metabolism_errors -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Amino_Acid_Metabolism_errors">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Angle-Closure_Glaucoma -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Angle-Closure_Glaucoma">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Anterior_Wall_Myocardial_Infarction -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Anterior_Wall_Myocardial_Infarction">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Aortic_Coarctation -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Aortic_Coarctation">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Asthma -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Asthma">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Atherosclerosis -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Atherosclerosis">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Cardiovascular_Diseases -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cardiovascular_Diseases">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Carotid_Stenosis -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Carotid_Stenosis">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Cataract -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cataract">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Central_Retinal_Vein_Occlusion -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Central_Retinal_Vein_Occlusion">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Central_nervous_system_tumour -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Central_nervous_system_tumour">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Cerebral_Infarction -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cerebral_Infarction">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Cervical_spina_bifida_aperta -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cervical_spina_bifida_aperta">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Cervical_spina_bifida_cystica -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cervical_spina_bifida_cystica">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Cervicothoracic_spina_bifida_aperta -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cervicothoracic_spina_bifida_aperta">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Cervicothoracic_spina_bifida_cystica -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cervicothoracic_spina_bifida_cystica">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Cholangiocarcinoma -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cholangiocarcinoma">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Chronic_Kidney_Failure -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Chronic_Kidney_Failure">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Chronic_Mesangial_Proliferative_Glomerulonephritis -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Chronic_Mesangial_Proliferative_Glomerulonephritis">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Chronic_Renal_Insufficiency -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Chronic_Renal_Insufficiency">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Clear-cell_metastatic_renal_cell_carcinoma -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Clear-cell_metastatic_renal_cell_carcinoma">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Colorectal_Neoplasms -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Colorectal_Neoplasms">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Congenital_Adrenal_Insufficiency -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Congenital_Adrenal_Insufficiency">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Congenital_Cataracts -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Congenital_Cataracts">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Coronary_Artery_Disease -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Coronary_Artery_Disease">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Cystathininuria -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cystathininuria">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Cystathionine_beta-synthase_deficiency -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cystathionine_beta-synthase_deficiency">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Cystathioninuria -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cystathioninuria">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Diabetic_Nephropathies -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Diabetic_Nephropathies">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Diabetic_Retinopathy -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Diabetic_Retinopathy">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Endometrium_tumour -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Endometrium_tumour">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Eye_Disease -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Eye_Disease">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Fatty_Liver -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Fatty_Liver">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Gamma-cystathionase_deficiency -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Gamma-cystathionase_deficiency">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Gastrointestinal_Stromal_Tumors -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Gastrointestinal_Stromal_Tumors">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Graft_vs_Host_Disease -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Graft_vs_Host_Disease">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Graves_Disease -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Graves_Disease">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Haematopoietic_and_lymphoid_tissue_tumour -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Haematopoietic_and_lymphoid_tissue_tumour">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Hearing_Loss -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Hearing_Loss">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Heat_Stroke -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Heat_Stroke">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Hereditary_Nonpolyposis -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Hereditary_Nonpolyposis">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Homocysteinemia -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Homocysteinemia">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Homocystinuria -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Homocystinuria">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Hyperhomocysteinemia -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Hyperhomocysteinemia">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Hyperthyroidism -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Hyperthyroidism">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Intestinal_Ischemia -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Intestinal_Ischemia">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Ischemic_stroke -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Ischemic_stroke">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Kidney_tumour -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Kidney_tumour">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Large_B-Cell_Diffuse_Lymphoma -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Large_B-Cell_Diffuse_Lymphoma">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Large_intestine_tumour -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Large_intestine_tumour">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Liver_Neoplasms -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Liver_Neoplasms">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Liver_tumour -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Liver_tumour">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Lumbosacral_spina_bifida_aperta -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Lumbosacral_spina_bifida_aperta">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Lumbosacral_spina_bifida_cystica -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Lumbosacral_spina_bifida_cystica">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Lung_tumour -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Lung_tumour">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Megaloblastic_anemia -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Megaloblastic_anemia">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Meniere_Disease -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Meniere_Disease">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Methotrexate_poisoning -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Methotrexate_poisoning">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Methylenetetrahydrofolate_reductase_deficiency -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Methylenetetrahydrofolate_reductase_deficiency">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Microvascular_Angina -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Microvascular_Angina">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Migraine_Disorders -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Migraine_Disorders">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Migraine_with_Aura -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Migraine_with_Aura">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#NONARTERITIC_ANTERIOR_ISCHEMIC_OPTIC_NEUROPATHY -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#NONARTERITIC_ANTERIOR_ISCHEMIC_OPTIC_NEUROPATHY">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Neonatal_Diabetes_Mellitus -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Neonatal_Diabetes_Mellitus">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Nephrosclerosis -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Nephrosclerosis">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Neural_tube_defect -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Neural_tube_defect">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Neurodegeneration -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Neurodegeneration">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Open-Angle_Glaucoma -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Open-Angle_Glaucoma">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Osteosarcoma -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Osteosarcoma">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Ovary_tumour -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Ovary_tumour">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Pancreas_tumour -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Pancreas_tumour">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Pancreatic_Neoplasms -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Pancreatic_Neoplasms">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Peripheral_Arterial_Disease -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Peripheral_Arterial_Disease">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Prostate_tumour -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Prostate_tumour">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Renal_Cell_Carcinoma -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Renal_Cell_Carcinoma">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Retinal_Diseases -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Retinal_Diseases">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Rheumatoid_Arthritis -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Rheumatoid_Arthritis">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Schizophrenia -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Schizophrenia">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Skin_tumour -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Skin_tumour">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Small_Cell_Lung_Carcinoma -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Small_Cell_Lung_Carcinoma">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Squamous_Cell_Carcinoma -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Squamous_Cell_Carcinoma">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Sudden_Hearing_Loss -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Sudden_Hearing_Loss">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Thermolabile_Type_Mthfr_Deficiency -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Thermolabile_Type_Mthfr_Deficiency">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Thoracolumbosacral_spina_bifida_aperta -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Thoracolumbosacral_spina_bifida_aperta">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Thoracolumbosacral_spina_bifida_cystica -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Thoracolumbosacral_spina_bifida_cystica">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Thrombophilia -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Thrombophilia">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Thrombotic_Microangiopathies -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Thrombotic_Microangiopathies">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Total_spina_bifida_aperta -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Total_spina_bifida_aperta">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Total_spina_bifida_cystica -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Total_spina_bifida_cystica">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Transitional_Cell_Carcinoma -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Transitional_Cell_Carcinoma">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Trunk_decreased_thickness -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Trunk_decreased_thickness">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Type_1_Diabetes_Mellitus -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Type_1_Diabetes_Mellitus">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Type_2_Diabetes_Mellitus -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Type_2_Diabetes_Mellitus">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Upper_thoracic_spina_bifida_aperta -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Upper_thoracic_spina_bifida_aperta">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Upper_thoracic_spina_bifida_cystica -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Upper_thoracic_spina_bifida_cystica">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Urinary_Bladder_Neoplasms -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Urinary_Bladder_Neoplasms">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Vascular_Calcification -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Vascular_Calcification">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Venous_Thrombosis -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Venous_Thrombosis">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Wet_Macular_Degeneration -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Wet_Macular_Degeneration">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Wilms_Tumor -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Wilms_Tumor">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#breast_tumour -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#breast_tumour">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#endocrine_pancreas_increased_size -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#endocrine_pancreas_increased_size">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#exocrine_pancreas_decreased_size -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#exocrine_pancreas_decreased_size">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#eye_decreased_size -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#eye_decreased_size">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#head_decreased_size -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#head_decreased_size">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#intestine_decreased_size -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#intestine_decreased_size">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#liver_decreased_size -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#liver_decreased_size">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#methylcobalamin_deficiency -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#methylcobalamin_deficiency">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#notochord_increased_size -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#notochord_increased_size">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#pancreatic_B_cell_present_in_greater_numbers -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#pancreatic_B_cell_present_in_greater_numbers">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#stomach_tumour -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#stomach_tumour">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Homocystinuria-megaloblastic_anemia,_cblG_complementation_type_Homocystinuria-megaloblastic_anemia_cblG_complementation_type_(HMAG)Homocystinuria-megaloblastic_anemia_cblG_complementation_type_(HMAG)Homocystinuria_megaloblastic_anemia_cblG_complementation_type -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Homocystinuria-megaloblastic_anemia,_cblG_complementation_type_Homocystinuria-megaloblastic_anemia_cblG_complementation_type_(HMAG)Homocystinuria-megaloblastic_anemia_cblG_complementation_type_(HMAG)Homocystinuria_megaloblastic_anemia_cblG_complementation_type">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- http://www.cin.ufpe.br/~integrativo/situationlist#Isolated_anencephaly/exencephaly -->
+
+    <Class rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Isolated_anencephaly/exencephaly">
+        <rdfs:subClassOf rdf:resource="http://purl.org/biotop/btl2.owl#Situation"/>
+    </Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Abdominal_Aortic_Aneurysm"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Albuminuria"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Amino_Acid_Metabolism_errors"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Angle-Closure_Glaucoma"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Anterior_Wall_Myocardial_Infarction"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Aortic_Coarctation"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Asthma"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Atherosclerosis"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cardiovascular_Diseases"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Carotid_Stenosis"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cataract"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Central_Retinal_Vein_Occlusion"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Central_nervous_system_tumour"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cerebral_Infarction"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cervical_spina_bifida_aperta"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cervical_spina_bifida_cystica"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cervicothoracic_spina_bifida_aperta"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cervicothoracic_spina_bifida_cystica"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cholangiocarcinoma"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Chronic_Kidney_Failure"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Chronic_Mesangial_Proliferative_Glomerulonephritis"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Chronic_Renal_Insufficiency"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Clear-cell_metastatic_renal_cell_carcinoma"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Colorectal_Neoplasms"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Congenital_Adrenal_Insufficiency"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Congenital_Cataracts"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Coronary_Artery_Disease"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cystathininuria"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cystathionine_beta-synthase_deficiency"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Cystathioninuria"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Diabetic_Nephropathies"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Diabetic_Retinopathy"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Endometrium_tumour"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Eye_Disease"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Fatty_Liver"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Gamma-cystathionase_deficiency"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Gastrointestinal_Stromal_Tumors"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Graft_vs_Host_Disease"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Graves_Disease"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Haematopoietic_and_lymphoid_tissue_tumour"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Hearing_Loss"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Heat_Stroke"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Hereditary_Nonpolyposis"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Homocysteinemia"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Homocystinuria"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Hyperhomocysteinemia"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Hyperthyroidism"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Intestinal_Ischemia"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Ischemic_stroke"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Kidney_tumour"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Large_B-Cell_Diffuse_Lymphoma"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Large_intestine_tumour"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Liver_Neoplasms"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Liver_tumour"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Lumbosacral_spina_bifida_aperta"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Lumbosacral_spina_bifida_cystica"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Lung_tumour"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Megaloblastic_anemia"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Meniere_Disease"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Methotrexate_poisoning"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Methylenetetrahydrofolate_reductase_deficiency"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Microvascular_Angina"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Migraine_Disorders"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Migraine_with_Aura"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#NONARTERITIC_ANTERIOR_ISCHEMIC_OPTIC_NEUROPATHY"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Neonatal_Diabetes_Mellitus"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Nephrosclerosis"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Neural_tube_defect"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Neurodegeneration"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Open-Angle_Glaucoma"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Osteosarcoma"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Ovary_tumour"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Pancreas_tumour"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Pancreatic_Neoplasms"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Peripheral_Arterial_Disease"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Prostate_tumour"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Renal_Cell_Carcinoma"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Retinal_Diseases"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Rheumatoid_Arthritis"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Schizophrenia"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Skin_tumour"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Small_Cell_Lung_Carcinoma"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Squamous_Cell_Carcinoma"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Sudden_Hearing_Loss"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Thermolabile_Type_Mthfr_Deficiency"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Thoracolumbosacral_spina_bifida_aperta"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Thoracolumbosacral_spina_bifida_cystica"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Thrombophilia"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Thrombotic_Microangiopathies"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Total_spina_bifida_aperta"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Total_spina_bifida_cystica"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Transitional_Cell_Carcinoma"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Trunk_decreased_thickness"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Type_1_Diabetes_Mellitus"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Type_2_Diabetes_Mellitus"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Upper_thoracic_spina_bifida_aperta"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Upper_thoracic_spina_bifida_cystica"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Urinary_Bladder_Neoplasms"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Vascular_Calcification"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Venous_Thrombosis"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Wet_Macular_Degeneration"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Wilms_Tumor"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#breast_tumour"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#endocrine_pancreas_increased_size"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#exocrine_pancreas_decreased_size"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#eye_decreased_size"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#head_decreased_size"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#intestine_decreased_size"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#liver_decreased_size"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#methylcobalamin_deficiency"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#notochord_increased_size"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#pancreatic_B_cell_present_in_greater_numbers"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#stomach_tumour"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Homocystinuria-megaloblastic_anemia,_cblG_complementation_type_Homocystinuria-megaloblastic_anemia_cblG_complementation_type_(HMAG)Homocystinuria-megaloblastic_anemia_cblG_complementation_type_(HMAG)Homocystinuria_megaloblastic_anemia_cblG_complementation_type"/>
+            <rdf:Description rdf:about="http://www.cin.ufpe.br/~integrativo/situationlist#Isolated_anencephaly/exencephaly"/>
+        </members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+

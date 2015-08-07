@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1438389405555" name="file:///C:/ontology/STAR_2015_5_20_1434792419876_module.owl" uri="sources/chebi_homocysteine.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1438389405555" name="file:///home/filipe/Documentos/OWL/STAR_2015_5_21_1434880071760_module.owl" uri="sources/go_module.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1438389405555" name="file:///home/filipe/Documentos/OWLSTAR_2015_5_20_1434819553060_module.owl" uri="sources/PR_protein.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1438389405555" name="http://purl.bioontology.org/ontology/NCBITAXON" uri="sources/ncbitaxon.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1438389405555" name="http://purl.bioontology.org/ontology/NCBITAXON/" uri="ncbi.rdf"/>
+        <uri id="Automatically generated entry, Timestamp=1438389405555" name="http://purl.org/biotop/btl2.owl" uri="sources/btl2.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1438389405555" name="http://www.cin.ufpe.br/~integrativo" uri="integrativO.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1438389405555" name="http://www.w3.org/2002/07/owl" uri="sources/DiseaseList.owl"/>
+    </group>
+</catalog>

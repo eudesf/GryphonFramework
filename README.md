@@ -1,64 +1,60 @@
 ![](https://github.com/adrielcafe/GryphonFramework/raw/master/images/gryphon.png)
 
-Gryphon is a lightweight framework for integrating **ontologies** and **relational databases** in *really* simple way.
+Gryphon is a lightweight framework for integrating **ontologies** and **relational databases** in a *very simple* way.
 
 *Paper coming soon...*
-
-Supported ontology formats:
-* OWL
-* RDF
-
-Supported databases: 
-* MySQL
-* PostgreSQL
 
 ## How to Use
 
 ### 1. Configure
 ```java
 // Where the alignments and mappings will be saved? Want to see logs?
-GryphonConfig.setWorkingDirectory(new File("integrationExample"));
+GryphonConfig.setWorkingDirectory(new File("myIntegration"));
 GryphonConfig.setLogEnabled(true);
-GryphonConfig.setShowGryphonLogoOnConsole(true);
+GryphonConfig.setShowLogo(false);
 
 // Init Gryphon
 Gryphon.init();
+```
 
+### 2. Set the global ontology and local sources
+```java
 // Where are the sources?
-Ontology globalOntBibtex = new Ontology("globalOntology", uriToGlobalOntology);
+Ontology globalOnt = new Ontology("globalOntology", uriToGlobalOntology);
 Ontology localOnt1 = new Ontology("localOntology1", uriToLocalOntology1);
 Ontology localOnt2 = new Ontology("localOntology2", uriToLocalOntology2);
-Database localDB1 = new Database("localhost", 3306, "username", "password", "localDatabase1", Database.DBMS.MySQL);
-Database localDB1 = new Database("localhost", 3306, "username", "password", "localDatabase2", Database.DBMS.PostgreSQL);
+Database localDB1 = new Database("localhost", 3306, "username", "password", "db1", Database.DBMS.MySQL);
+Database localDB2 = new Database("localhost", 3306, "username", "password", "db2", Database.DBMS.PostgreSQL);
 
-Gryphon.setGlobalOntology(globalOntBibtex);
+Gryphon.setGlobalOntology(globalOnt);
 Gryphon.addLocalOntology(localOnt1);
 Gryphon.addLocalOntology(localOnt2);
 Gryphon.addLocalDatabase(localDB1);
+Gryphon.addLocalDatabase(localDB2);
 ```
 
-### 2. Align (and Map) the Sources
+### 3. Aligns ontologies and maps databases
 ```java
 // Simple like that (this may take a while)
-Gryphon.align();
+Gryphon.alignAndMap();
 ```
 
-### 3. Query Using [SPARQL](http://www.w3.org/TR/sparql11-query/)
+### 4. Query Using [SPARQL](http://www.w3.org/TR/sparql11-query/)
 ```java
 // Query must be based on *Global Ontology*
 String strQuery = 
 	 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
 	+"SELECT ?x ?y "
-	+"WHERE { ?x rdf:type ?y }";
-Gryphon.query(strQuery);
+	+"WHERE { ?x a ?y }";
+Gryphon.query(strQuery, ResultFormat.JSON);
+
+/*
+	WHERE ARE THE RESULTS?
+    Results will be saved on GryphonConfig.getWorkingDirectory() + "results/"
+    Supported formats: ResultFormat.JSON, ResultFormat.XML and ResultFormat.CSV
+*/
 ```
 
-### 4. Save Result
-```java
-// TODO
-```
-Supported formats:
-* TODO
 
 ## Practical Example
 Check out [Example.java](http://github.com/adrielcafe/GryphonFramework/blob/master/src/br/ufpe/cin/aac3/gryphon/example/Example.java) for a complete example.
@@ -77,7 +73,6 @@ You'll find ontologies and databases used on examples in [examples folder](http:
 This project was founded by [FACEPE](http://www.facepe.br) (IBPG-0342-1.03/13).
 
 Special thanks to:
-* [Jena](http://jena.apache.org)
 * [Sesame](http://rdf4j.org)
 * [AgreementMakerLight](http://somer.fc.ul.pt/aml.php)
 * [D2RQ](http://d2rq.org)

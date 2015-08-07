@@ -1,14 +1,12 @@
 package br.ufpe.cin.aac3.gryphon;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
+import java.io.InputStreamReader;
 import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
@@ -16,6 +14,8 @@ import org.apache.log4j.PropertyConfigurator;
 import org.openrdf.query.QueryLanguage;
 import org.openrdf.query.TupleQuery;
 import org.openrdf.query.resultio.sparqljson.SPARQLResultsJSONWriter;
+import org.openrdf.query.resultio.sparqlxml.SPARQLResultsXMLWriter;
+import org.openrdf.query.resultio.text.csv.SPARQLResultsCSVWriter;
 import org.openrdf.repository.Repository;
 import org.openrdf.repository.RepositoryConnection;
 import org.openrdf.repository.config.RepositoryConfig;
@@ -26,18 +26,6 @@ import org.openrdf.sail.memory.config.MemoryStoreConfig;
 
 import br.ufpe.cin.aac3.gryphon.model.Database;
 import br.ufpe.cin.aac3.gryphon.model.Ontology;
-
-import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.query.Query;
-import com.hp.hpl.jena.query.QueryFactory;
-import com.hp.hpl.jena.query.Syntax;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.Statement;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
-import com.hp.hpl.jena.util.FileManager;
 
 public final class Gryphon {
 	public static final String VERSION = "1.0";
@@ -50,13 +38,20 @@ public final class Gryphon {
 	private static Ontology globalOntology;
 	private static List<Ontology> localOntologies;
 	private static List<Database> localDatabases;
+	
+	public enum ResultFormat {
+		JSON, XML, CSV
+	}
 
 	private Gryphon() { }
 
+	/**
+	 * Initiates Gryphon Framework
+	 */
 	public static void init(){
-		PropertyConfigurator.configure(Gryphon.class.getResource("/log4j.properties"));
+		PropertyConfigurator.configure("log4j.properties");
 		
-		if(GryphonConfig.showGryphonLogoOnConsole() && GryphonConfig.isLogEnabled()){
+		if(GryphonConfig.isShowLogo() && GryphonConfig.isLogEnabled()){
 			System.out.println(
 				   "\n          _          (`-. "
 				 + "\n          \\`----.    ) ^_`)    GRYPHON v" + VERSION
@@ -82,119 +77,109 @@ public final class Gryphon {
 		localDatabases = new ArrayList<>();
 	}
 	
-	public static void align() {
-		align(false);
-	}
-	
-	
-	public static void align(boolean async) {
-		LinkedHashMap<URI, Process> alignmentProcesses = new LinkedHashMap<>();
-		
+	/**
+	 * Aligns ontologies and maps databases
+	 */
+	public static void alignAndMap() {
 		if(!localOntologies.isEmpty()){
 			GryphonUtil.logInfo("Aligning ontologies...");
 			for (Ontology ontology : localOntologies) {
-				Process process = startOntologyAlignment(ontology.getURI(), ontology.getAlignFile());
-				if (async) {
-					alignmentProcesses.put(ontology.getURI(), process);
-					GryphonUtil.logInfo(String.format("> Aligning ontology %s in background...", ontology.getName()));
-				} else {
-					CommandUtil.readCmdResponse(process);
-					GryphonUtil.logInfo(String.format("> Ontology %s was aligned", ontology.getName()));
-				}
+				alignOntology(ontology.getURI(), ontology.getAlignFile());
+				GryphonUtil.logInfo(String.format("> Ontology %s was aligned", ontology.getName()));
 			}
 		}
 		
 		if(!localDatabases.isEmpty()){
-			GryphonUtil.logInfo("Mapping and aligning databases...");
+			GryphonUtil.logInfo("Mapping databases...");
 			for (Database database : localDatabases) {
 				mapDatabase(database);
-				
-				Process process = startOntologyAlignment(database.getAlignFile().toURI(), database.getAlignFile());
-				if (async) {
-					alignmentProcesses.put(database.getAlignFile().toURI(), process);
-					GryphonUtil.logInfo(String.format("> Database %s was mapped, aligning it...", database.getDbName()));
-				} else {
-					CommandUtil.readCmdResponse(process);
-					GryphonUtil.logInfo(String.format("> Database %s was mapped and aligned", database.getDbName()));
-				}
+				// TODO Need improvement
+//				alignOntology(database.getMapRDFFile().toURI(), database.getAlignFile());
+				GryphonUtil.logInfo(String.format("> Database %s was mapped", database.getDbName()));
 			}
 		}
-		
-		if (async) {
-			GryphonUtil.logInfo("> Waiting for ontologies alignment...");
-			for (URI uri : alignmentProcesses.keySet()) {
-				String response = CommandUtil.readCmdResponse(alignmentProcesses.get(uri));
-				GryphonUtil.logInfo(String.format("> Alignment of %s completed. Cmd Response: %s", uri, response));
+	}
+	
+	/**
+	 * Aligns local ontologies with <b>AgreementMakerLight</b> command-line
+	 * @param localOntologyURI The URI of local ontology
+	 * @param alignFile The alignment file 
+	 */
+	private static void alignOntology(URI localOntologyURI, File alignFile) {
+		try {
+			File jarFile = new File("libs/aml/AgreementMakerLight.jar");
+			String cmd = String.format("cd \"%s\" && java -jar \"%s\" -s \"%s\" -t \"%s\" -o \"%s\" -m", jarFile.getParentFile().getAbsolutePath(), jarFile.getAbsolutePath(), new File(globalOntology.getURI()).getAbsolutePath(), new File(localOntologyURI).getAbsolutePath(), alignFile.getAbsolutePath());
+			if(globalOntology.getLocalImports() != null){
+				cmd += " -l " + globalOntology.getLocalImports().getAbsolutePath();
 			}
+			ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", cmd);
+			Process process = processBuilder.start();
+			process.waitFor();
+		} catch (Exception e) {
+			GryphonUtil.logError(e.getMessage());
 		}
-		
 	}
 	
-	private static Process startOntologyAlignment(URI localOntologyURI, File alignFile) {
-		File jarFile = new File("libs/aml/AgreementMakerLight.jar");
-		
-		return CommandUtil.executeCommandAsync("cd \"%s\" && java -jar \"%s\" -s \"%s\" -t \"%s\" -o \"%s\" -m", 
-				jarFile.getParentFile().getAbsolutePath(), 
-				jarFile.getAbsolutePath(), 
-				new File(globalOntology.getURI()).getAbsolutePath(), 
-				new File(localOntologyURI).getAbsolutePath(), 
-				alignFile.getAbsolutePath());
-	}
-	
-	
+	/**
+	 * Maps local databases with <b>D2RQ</b> command-line
+	 * @param db The database to be mapped
+	 */
 	private static void mapDatabase(Database db) {
-		String mapping = null;
-		
 		try {
 			File scriptFile = new File("libs/d2rq/generate-mapping" + (GryphonUtil.isWindows() ? ".bat" : ""));
-			
-			CommandUtil.executeCommand("\"%s\" -o \"%s\" -u \"%s\" -p \"%s\" \"%s\"", 
-					scriptFile.getAbsolutePath(), 
-					db.getMapFile().getAbsolutePath(), 
-					db.getUsername(), 
-					db.getPassword(), 
-					db.getJdbcURL());
-			
-			mapping = FileUtils.readFileToString(db.getMapFile(), "utf-8");
-			
-			Files.write(Paths.get(db.getMapFile().toURI()), mapping.getBytes());
-			String d2rqNS = "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#";
-			String rdfNS = "http://localhost:2020/vocab/";
-			FileWriter fileWriter = new FileWriter(db.getAlignFile());
-			Model ttlModel = FileManager.get().loadModel(db.getMapFile().toURI().toString());
-			OntModel owlModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
-			owlModel.createOntology(rdfNS);
+			String cmd = String.format("%s \"%s\" -o \"%s\" -u \"%s\" -p \"%s\" \"%s\"", (GryphonUtil.isWindows() ? "" : "bash"), scriptFile.getAbsolutePath(), db.getMapTTLFile().getAbsolutePath(), db.getUsername(), db.getPassword(), db.getJdbcURL());
+			ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", cmd);
+			processBuilder.redirectErrorStream(true);
+			Process process = processBuilder.start();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			String line;
+			while ((line = reader.readLine()) != null){}
+			process.waitFor();
 
-			for (StmtIterator i = ttlModel.listStatements(); i.hasNext();) {
-				Statement s = i.nextStatement();
-				if (s.getPredicate().toString().equals(d2rqNS + "class"))
-					owlModel.createClass(rdfNS + s.getSubject().getLocalName());
-			}
-
-			for (StmtIterator i = ttlModel.listStatements(); i.hasNext();) {
-				Statement s = i.nextStatement();
-				Resource r = null;
-				String id = null;
-				
-				if (s.getPredicate().toString().equals(d2rqNS + "property")) {
-					id = s.getSubject().getLocalName();
-					owlModel.createDatatypeProperty(rdfNS + id);					
-				} else if (s.getPredicate().toString().equals(d2rqNS + "belongsToClassMap")) {
-					id = s.getSubject().getLocalName();
-					r = owlModel.getResource(rdfNS + s.getObject().asResource().getLocalName());
-					owlModel.getDatatypeProperty(rdfNS + id).setDomain(r);
-				}
-			}
-
-			owlModel.write(fileWriter, "RDF/XML-ABBREV");
-			owlModel.close();
+			// TODO Need improvement
+//			String mapping = FileUtils.readFileToString(db.getMapTTLFile(), "utf-8");
+//			Files.write(Paths.get(db.getMapTTLFile().toURI()), mapping.getBytes());
+//			String d2rqNS = "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#";
+//			String rdfNS = "http://localhost:2020/vocab/";
+//			FileWriter fileWriter = new FileWriter(db.getMapRDFFile());
+//			Model ttlModel = FileManager.get().loadModel(db.getMapTTLFile().toURI().toString());
+//			OntModel owlModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
+//			owlModel.createOntology(rdfNS);
+//			
+//			for (ResIterator i = ttlModel.listSubjects(); i.hasNext();) {
+//				Resource r = i.nextResource();
+//				if(r.isResource()){
+//					String type = r.getProperty(RDF.type).getObject().toString();
+//					if(type.endsWith("ClassMap")){
+//						OntClass klass = owlModel.createClass(rdfNS + r.getLocalName());
+//						try {
+//							klass.addLabel(r.getProperty(ttlModel.createProperty(d2rqNS + "classDefinitionLabel")).getObject().toString(), null);
+//						} catch(Exception e){ }
+//					} else if(type.endsWith("PropertyBridge")){
+//						String klass = r.getProperty(ttlModel.createProperty(d2rqNS + "belongsToClassMap")).getResource().getLocalName();
+//						DatatypeProperty property = owlModel.createDatatypeProperty(rdfNS + r.getLocalName());
+//						property.setDomain(ttlModel.createResource(rdfNS + klass));
+//						try {
+//							String label = r.getProperty(ttlModel.createProperty(d2rqNS + "propertyDefinitionLabel")).getObject().toString();
+//							property.addLabel(label, null);
+//						} catch(Exception e){ }
+//					}
+//				}
+//			}
+//			
+//			RDFWriter writer = owlModel.getWriter("RDF/XML-ABBREV");
+//			writer.setProperty("xmlbase", rdfNS);
+//			writer.write(owlModel, fileWriter, rdfNS);
 		} catch (Exception e) {
 			GryphonUtil.logError(e.getMessage());
 		}
 	}
 
-	
-	public static void query(String strQueryGlobal){
+	/**
+	 * Rewrites the SPARQL query to each local ontology and local database
+	 * @param strQueryGlobal The query that needs to be rewritten
+	 */
+	public static void query(String strQueryGlobal, ResultFormat resultFormat){
 		String strQueryLocal = null;
 		TupleQuery queryLocal = null;
 
@@ -221,7 +206,7 @@ public final class Gryphon {
 				queryLocal = repositoryConnection.prepareTupleQuery(QueryLanguage.SPARQL, strQueryLocal);
 				if(queryLocal != null){
 					GryphonUtil.logInfo("\nRewritten query for " + ontology.getName() + ":\n" + strQueryLocal);
-					execSPARQLQuery(queryLocal, ontology.getResultFile());
+					execOntologyQuery(queryLocal, ontology.getResultFile(), resultFormat);
 				}
 
 				repositoryConnection.close();
@@ -230,48 +215,90 @@ public final class Gryphon {
 			GryphonUtil.logError(e.getMessage());
 		}
 		
-		for(Database database : localDatabases){			
-			strQueryLocal = queryRewrite(strQueryGlobal, database.getAlignFile());
-			if(strQueryLocal != null){
-				GryphonUtil.logInfo("\nRewritten query for " + database.getDbName() + ":\n" + strQueryLocal);
-				execSQLQuery(strQueryLocal, database.getMapFile(), database.getResultFile());
-			}
+		for(Database database : localDatabases){
+			execDataBaseQuery(strQueryGlobal, database.getMapTTLFile(), database.getResultFile(), resultFormat);
 		}
+	}
 
-		unifyQueries();
+	/**
+	 * Rewrites SPARQL queries using <b>Mediation</b>
+	 * @param query The query that needs to be rewritten
+	 * @param alignFile The alignment file 
+	 * @return The rewritten query
+	 */
+	private static String queryRewrite(String query, File alignFile) {
+		try {
+			File jarFile = new File("libs/mediation/Mediation.jar");
+			String cmd = String.format("cd \"%s\" && java -jar \"%s\" \"%s\" \"%s\"", jarFile.getParentFile().getAbsolutePath(), jarFile.getAbsolutePath(), alignFile.getAbsolutePath(), query.replace("\n", " "));
+			ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", cmd);
+			Process process = processBuilder.start();
+			process.waitFor();
+			return GryphonUtil.getStringFromStream(process.getInputStream());
+		} catch (Exception e) {
+			GryphonUtil.logError(e.getMessage());
+			return null;
+		}
 	}
 	
-	private static void execSPARQLQuery(TupleQuery query, File resultFile) {
+	/**
+	 * Runs a SPARQL query using <b>Sesame</b> on ontology
+	 * @param query The SPARQL query
+	 * @param resultFile The file where the results will be saved
+	 */
+	private static void execOntologyQuery(TupleQuery query, File resultFile, ResultFormat resultFormat) {
 		try {
-			SPARQLResultsJSONWriter sparqlWriter = new SPARQLResultsJSONWriter(new FileOutputStream(resultFile));
-			query.evaluate(sparqlWriter);
+			switch (resultFormat) {
+				case XML: 
+					resultFile = new File(resultFile.getAbsolutePath() + ".xml");
+					SPARQLResultsXMLWriter xmlWriter = new SPARQLResultsXMLWriter(new FileOutputStream(resultFile));
+					query.evaluate(xmlWriter);
+					break;
+				case CSV: 
+					resultFile = new File(resultFile.getAbsolutePath() + ".csv");
+					SPARQLResultsCSVWriter csvWriter = new SPARQLResultsCSVWriter(new FileOutputStream(resultFile));
+					query.evaluate(csvWriter);
+					break;
+				case JSON:
+				default:
+					resultFile = new File(resultFile.getAbsolutePath() + ".json");
+					SPARQLResultsJSONWriter jsonWriter = new SPARQLResultsJSONWriter(new FileOutputStream(resultFile));
+					query.evaluate(jsonWriter);
+			}
 		} catch(Exception e){
 			GryphonUtil.logError(e.getMessage());
 		}
 	}
 
-	private static void execSQLQuery(String styrQuery, File mapFile, File resultFile) {
+	/**
+	 * Runs a SPARQL query using <b>D2RQ</b> on database
+	 * @param strQuery The SPARQL query
+	 * @param mapFile The database mapping file
+	 * @param resultFile The file where the results will be saved
+	 */
+	private static void execDataBaseQuery(String strQuery, File mapFile, File resultFile, ResultFormat resultFormat) {
+		String strResultFormat = null;
+		switch (resultFormat) {
+			case XML: 
+				resultFile = new File(resultFile.getAbsolutePath() + ".xml");
+				strResultFormat = "xml";
+				break;
+			case CSV: 
+				resultFile = new File(resultFile.getAbsolutePath() + ".csv");
+				strResultFormat = "csv";
+				break;
+			case JSON: 
+			default:
+				resultFile = new File(resultFile.getAbsolutePath() + ".json");
+				strResultFormat = "json";
+		}
 		try {
-			Query query = QueryFactory.create(styrQuery);
-			File batFile = new File("libs/d2rq/d2r-query" + (GryphonUtil.isWindows() ? ".bat" : ""));
-			CommandUtil.executeCommand("\"%s\" -f json \"%s\" \"%s\" > \"%s\"", batFile.getAbsolutePath(), mapFile.getAbsolutePath(), query.toString(Syntax.syntaxSPARQL_11), resultFile.getAbsoluteFile());
+			File batFile = new File("libs\\d2rq\\d2r-query" + (GryphonUtil.isWindows() ? ".bat" : ""));
+			String cmd = String.format("\"%s\" -f %s -t 9999 \"%s\" \"%s\" > \"%s\"", batFile.getAbsolutePath(), strResultFormat, mapFile.getAbsolutePath(), strQuery.replaceAll("\n", " "), resultFile.getAbsoluteFile()); 
+			Process process = Runtime.getRuntime().exec(cmd);
+			process.waitFor();
 		} catch (Exception e) {
 			GryphonUtil.logError(e.getMessage());
 		}
-	}
-
-	private static String queryRewrite(String query, File alignFile) {
-		File jarFile = new File("libs/mediation/mediation.jar");
-		
-		return CommandUtil.executeCommand("cd \"%s\" && java -jar \"%s\" \"%s\" \"%s\"", 
-				jarFile.getParentFile().getAbsolutePath(), 
-				jarFile.getAbsolutePath(), 
-				alignFile.getAbsolutePath(), 
-				query.replace("\n", " "));
-	}
-	
-	private static void unifyQueries(){
-		
 	}
 	
 	public static File getAlignFolder() {

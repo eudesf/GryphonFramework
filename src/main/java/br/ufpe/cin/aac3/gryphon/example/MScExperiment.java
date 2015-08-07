@@ -5,121 +5,132 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import br.ufpe.cin.aac3.gryphon.Gryphon;
+import br.ufpe.cin.aac3.gryphon.Gryphon.ResultFormat;
 import br.ufpe.cin.aac3.gryphon.GryphonConfig;
 import br.ufpe.cin.aac3.gryphon.GryphonUtil;
 import br.ufpe.cin.aac3.gryphon.model.Database;
 import br.ufpe.cin.aac3.gryphon.model.Ontology;
 
-public class MScExperiment {
+public final class MScExperiment {
 	public static void main(String[] args) {
 		// 1. Configure
 		GryphonConfig.setWorkingDirectory(new File("integrationMScExperiment"));
 		GryphonConfig.setLogEnabled(true);
-		GryphonConfig.setShowGryphonLogoOnConsole(true);
+		GryphonConfig.setShowLogo(true);
 		Gryphon.init();
 
 		try {
-			Ontology globalOnt = new Ontology("integrativo", new URI(GryphonUtil.getCurrentURI() + "mscExperiment/integrativO.owl"));
-			Ontology localOnt1 = new Ontology("ncbi", new URI(GryphonUtil.getCurrentURI() + "mscExperiment/ncbi.rdf"));
-			Ontology localOnt2 = new Ontology("uniprot", new URI(GryphonUtil.getCurrentURI() + "mscExperiment/uniprot-homocysteine.rdf"));
-			Database localDB1 = new Database("useastdb.ensembl.org", 3306, "anonymous", "", "ensembl_ontology_79", Database.DBMS.MySQL);
+			// 2. Set the global ontology and local sources
+			Ontology globalOnt = new Ontology("integrativo", new URI(GryphonUtil.getCurrentURI() + "mscExperiment/TesteGryphon.owl"), new File("mscExperiment/sources"));
+			//Database localDB1 = new Database("localhost", 3306, "root", "", "ensembl", Database.DBMS.MySQL);
+			Database localDB2 = new Database("localhost", 3306, "root", "", "uniprot", Database.DBMS.MySQL);
 			
 			Gryphon.setGlobalOntology(globalOnt);
-			Gryphon.addLocalOntology(localOnt1);
-			Gryphon.addLocalOntology(localOnt2);
-			Gryphon.addLocalDatabase(localDB1);
+			//Gryphon.addLocalDatabase(localDB1);
+			Gryphon.addLocalDatabase(localDB2);
+
+			// 3. Aligns ontologies and maps databases
+			//Gryphon.alignAndMap();
+
+			// 4. Query Using SPARQL
+			long startTime = System.currentTimeMillis();
+			String query = getQuery1();
+			Gryphon.query(query, ResultFormat.JSON);
+			long endTime = System.currentTimeMillis();
+			System.out.println("Query Duration: " + ((endTime - startTime) / 1000 % 60) + "s");
 		} catch(URISyntaxException e){
 			e.printStackTrace();
 		}
-
-		// 2. Align (and Map) the Sources
-		Gryphon.align();
-
-		// 3. Query Using SPARQL
-		String strQuery = getQuery1();
-		Gryphon.query(strQuery);
-		
 		
 		System.exit(0);
 	} 
 
-	// Q1: Retrieve  metabolic process related to homocysteine
-	// DL Query: MetabolicProcess and (hasParticipant some homocysteine)
+	private static String getTestQuery(){
+		return ""
+				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
+				+ "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
+				+ "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "
+				+ "PREFIX pr: <http://purl.obolibrary.org/obo/pr#> "
+				+ "PREFIX go: <http://purl.obolibrary.org/obo/go.owl#> "
+				+ "PREFIX btl2: <http://purl.org/biotop/btl2.owl#> "
+				+ "PREFIX integrativo: <http://www.cin.ufpe.br/~integrativo#> "
+				+ "PREFIX vocab: <http://localhost:2020/vocab/> "
+				+ "SELECT DISTINCT ?organism ?homocysteine "
+				+ "WHERE { "
+					+ "?org a btl2:organism ;"
+					+ "rdfs:label ?organism ."
+					+ "?hom a btl2:MonoMolecularEntity ;"
+					+ "rdfs:label ?homocysteine ."
+					+ "?org btl2:includes ?hom ."
+					+ "FILTER(?homocysteine = \"homocysteine\") ."
+				+ "}";
+	}
+	
+	// Q1: SELECT ALL ORGANISMS THAT INCLUDES HOMOCYSTEINE
+	// ORGANISM btl2:includes HOMOCYSTEINE
 	private static String getQuery1(){
 		return ""
 			+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
 			+ "PREFIX btl2: <http://purl.org/biotop/btl2.owl#> "
-			+ "SELECT ?metProcess ?homocysteine "
+			+ "SELECT DISTINCT ?organism "
 			+ "WHERE { "
-				+ "?metProcess rdfs:label ?label1 . "
-				+ "?homocysteine rdfs:label ?label2 . "
-				+ "?metProcess btl2:hasParticipant ?homocysteine . "
-				+ "filter(regex(?label1, \"metabolic process\")) . "
-				+ "filter(regex(?label2, \"homocysteine\"))"
-			+ "}";
+				+ "?org a btl2:organism ;"
+				+ "rdfs:label ?organism ."
+				+ "?hom a btl2:MonoMolecularEntity ;"
+				+ "rdfs:label ?homocysteine ."
+				+ "?org btl2:includes ?hom ."
+			+ "} LIMIT 10";
 	}
 	
-	// Q2: Retrieve proteins related to the metabolism of homocysteine in Drosophila melanogaster
-	// DL Query: Protein and (isParticipantIn some (MetabolicProcess and  (hasParticipant some homocysteine)))
+	// Q2: SELECT ALL BIOLOGICAL PROCESS THAT IS INCLUDED IN ORGANISMS
+	// BIOLOGICAL_PROCESS btl2:isIncludedIn ORGANISM
 	private static String getQuery2(){
 		return ""
 			+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
+			+ "PREFIX go: <http://purl.obolibrary.org/obo/go.owl#> "
 			+ "PREFIX btl2: <http://purl.org/biotop/btl2.owl#> "
-			+ "SELECT ?protein ?metProcess ?homocysteine "
+			+ "SELECT DISTINCT ?biologicalProcess "
 			+ "WHERE { "
-				+ "?protein rdfs:label ?label1 . "
-				+ "?metProcess rdfs:label ?label2 . "
-				+ "?homocysteine rdfs:label ?label3 . "
-				+ "?protein btl2:isParticipantIn ?metProcess . "
-				+ "?metProcess btl2:hasParticipant ?homocysteine . "
-				+ "filter(regex(?label1, \"protein\")) . "
-				+ "filter(regex(?label2, \"metabolic process\")) . "
-				+ "filter(regex(?label3, \"homocysteine\")) "
-			+ "}";
+				+ "?bio a go:biological_process ;"
+				+ "rdfs:label ?biologicalProcess ."
+				+ "?org a btl2:organism ;"
+				+ "rdfs:label ?organism ."
+				+ "?bio btl2:isIncludedIn ?org ."
+			+ "} LIMIT 10";
 	}
 	
-	// Q3: Retrieve metabolic processes homocysteine is participant in Bos taurus
-	// DL Query: MetabolicProcess and (hasParticipant some homocysteine) and (isLocatedIn some BosTaurus)
+	// Q3: SELECT ALL BIOLOGICAL_PROCESS AND THE LOCATION THEY HAPPEN (CELLULAR COMPONENT)
+	// BIOLOGICAL PROCESS btl2:isIncludedIn CELLULAR_COMPONENT
 	private static String getQuery3(){
 		return ""
 			+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
+			+ "PREFIX go: <http://purl.obolibrary.org/obo/go.owl#> "
 			+ "PREFIX btl2: <http://purl.org/biotop/btl2.owl#> "
-			+ "SELECT ?metProcess ?homocysteine ?bosTaurus "
+			+ "SELECT DISTINCT ?biologicalProcess ?cellularComponent "
 			+ "WHERE { "
-				+ "?metProcess rdfs:label ?label1 . "
-				+ "?homocysteine rdfs:label ?label2 . "
-				+ "?bosTaurus rdfs:label ?label3 . "
-				+ "?metProcess btl2:hasParticipant ?homocysteine . "
-				+ "?metProcess btl2:isLocatedIn ?bosTaurus . "
-				+ "filter(regex(?label1, \"metabolic process\")) . "
-				+ "filter(regex(?label2, \"homocysteine\")) . "
-				+ "filter(regex(?label3, \"bos taurus\")) "
-			+ "}";
+				+ "?bio a go:biological_process ;"
+				+ "rdfs:label ?biologicalProcess ."
+				+ "?cel a go:cellular_component ;"
+				+ "rdfs:label ?cellularComponent ."
+				+ "?bio btl2:isIncludedIn ?cel ."
+			+ "} LIMIT 10";
 	}
 	
-	// Q4: Retrieve molecules that regulates the disposition on realizing molecular processes that have homocysteine as participant in Arapdopsis haliana
-	// DL Query: MolecularEntity and (regulates some (MolecularActivity and (hasPart some (MetabolicProcess and (hasParticipant some homocysteine) and (isIncludedIn some ArapdopsisThaliana)))))
+	// SELECT BIOLOGICAL PROCESSES PROMOTED BY PROTEINS
+	// BIOLOGICAL PROCESS btl2:hasAgent PROTEIN
 	private static String getQuery4(){
 		return ""
 			+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
+			+ "PREFIX go: <http://purl.obolibrary.org/obo/go.owl#> "
+			+ "PREFIX pr: <http://purl.obolibrary.org/obo/pr#> "
 			+ "PREFIX btl2: <http://purl.org/biotop/btl2.owl#> "
-			+ "PREFIX go: <http://purl.obolibrary.org/obo/go#> "
-			+ "SELECT ?molEntity ?molActivity ?metProcess ?homocysteine ?araThaliana " 
+			+ "SELECT DISTINCT ?biologicalProcess ?proteinName "
 			+ "WHERE { "
-				+ "?molEntity rdfs:label ?label1 . "
-				+ "?molActivity rdfs:label ?label2 . "
-				+ "?metProcess rdfs:label ?label3 . "
-				+ "?homocysteine rdfs:label ?label4 . "
-				+ "?araThaliana rdfs:label ?label5 . "
-				+ "?molEntity go:regulates ?molActivity . "
-				+ "?molActivity btl2:hasPart ?metProcess . "
-				+ "?metProcess btl2:hasParticipant ?homocysteine . "
-				+ "?metProcess btl2:isIncludedIn ?araThaliana . "
-				+ "filter(regex(?label1, \"molecular entity\")) . "
-				+ "filter(regex(?label2, \"molecular activity\")) . " 
-				+ "filter(regex(?label3, \"metabolic process\")) . " 
-				+ "filter(regex(?label4, \"homocysteine\")) . "
-				+ "filter(regex(?label5, \"arapdopsis thaliana\"))"
-			+ "}";
+				+ "?bio a go:biological_process ;"
+				+ "rdfs:label ?biologicalProcess ."
+				+ "?pro a pr:PR_000000001 ;"
+				+ "rdfs:label ?proteinName ."
+				+ "?bio btl2:hasAgent ?pro ."
+			+ "} LIMIT 10";
 	}
 }

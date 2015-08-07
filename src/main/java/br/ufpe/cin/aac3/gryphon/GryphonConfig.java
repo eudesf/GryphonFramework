@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 public final class GryphonConfig {
 	private static File workingDirectory = new File("integration");
 	private static boolean logEnabled = true;
-	private static boolean showGryphonLogoOnConsole = true;
+	private static boolean showLogo = true;
 
 	public static File getWorkingDirectory() {
 		return workingDirectory;
@@ -32,11 +32,11 @@ public final class GryphonConfig {
 		GryphonConfig.logEnabled = logEnabled;
 	}
 	
-	public static boolean showGryphonLogoOnConsole() {
-		return showGryphonLogoOnConsole;
+	public static boolean isShowLogo() {
+		return showLogo;
 	}
 	
-	public static void setShowGryphonLogoOnConsole(boolean showGryphonLogoOnConsole) {
-		GryphonConfig.showGryphonLogoOnConsole = showGryphonLogoOnConsole;
+	public static void setShowLogo(boolean showLogo) {
+		GryphonConfig.showLogo = showLogo;
 	}
 }

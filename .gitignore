@@ -1,7 +1,8 @@
 ### Custom ###
 integrationExample/
-mscExperiment/
-.log
+mscExperiment/ncbi.rdf
+mscExperiment/uniprot-homocysteine.rdf
+.log*
 result.*
 
 ### Eclipse ###
