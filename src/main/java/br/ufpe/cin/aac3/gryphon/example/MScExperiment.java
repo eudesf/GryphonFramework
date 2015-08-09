@@ -30,7 +30,7 @@ public final class MScExperiment {
 			Gryphon.addLocalDatabase(localDB2);
 
 			// 3. Aligns ontologies and maps databases
-			//Gryphon.alignAndMap();
+			Gryphon.alignAndMap();
 
 			// 4. Query Using SPARQL
 			long startTime = System.currentTimeMillis();

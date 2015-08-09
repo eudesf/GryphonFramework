@@ -3,6 +3,8 @@ package br.ufpe.cin.aac3.gryphon;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.ArrayList;
@@ -24,6 +26,7 @@ import org.openrdf.repository.sail.config.SailRepositoryConfig;
 import org.openrdf.rio.RDFFormat;
 import org.openrdf.sail.memory.config.MemoryStoreConfig;
 
+import br.ufpe.cin.aac3.gryphon.exception.CommandExecutionException;
 import br.ufpe.cin.aac3.gryphon.model.Database;
 import br.ufpe.cin.aac3.gryphon.model.Ontology;
 
@@ -112,11 +115,49 @@ public final class Gryphon {
 			if(globalOntology.getLocalImports() != null){
 				cmd += " -l " + globalOntology.getLocalImports().getAbsolutePath();
 			}
-			ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", cmd);
+			ProcessBuilder processBuilder = createCmdProcessBuilder(cmd);
 			Process process = processBuilder.start();
 			process.waitFor();
 		} catch (Exception e) {
-			GryphonUtil.logError(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+	
+	private static ProcessBuilder createCmdProcessBuilder(String cmd) {
+		if (GryphonUtil.isWindows()) {
+			return new ProcessBuilder("cmd.exe", "/c", cmd);
+		} else {
+			return new ProcessBuilder("sh", "-c", cmd);
+		}
+	}
+	
+	private static String readStreamText(InputStream in) {
+		StringBuilder result = new StringBuilder();
+		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+		String line;
+		try {
+			while ((line = reader.readLine()) != null) {
+				if (result.length() > 0) {
+					result.append("\n");
+				}
+				result.append(line);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return result.toString();
+	}
+	
+	public static String readCmdResponse(Process process) {
+		try {
+			process.waitFor();
+			GryphonUtil.logInfo("Command finished.");
+			if (process.getErrorStream().available() > 0) {
+				GryphonUtil.logError("Command ERROR output:\n" + readStreamText(process.getErrorStream()));
+			}
+			return readStreamText(process.getInputStream());
+		} catch (InterruptedException | IOException e) {
+			throw new CommandExecutionException("Exception getting command result.", e);
 		}
 	}
 	
@@ -128,13 +169,11 @@ public final class Gryphon {
 		try {
 			File scriptFile = new File("libs/d2rq/generate-mapping" + (GryphonUtil.isWindows() ? ".bat" : ""));
 			String cmd = String.format("%s \"%s\" -o \"%s\" -u \"%s\" -p \"%s\" \"%s\"", (GryphonUtil.isWindows() ? "" : "bash"), scriptFile.getAbsolutePath(), db.getMapTTLFile().getAbsolutePath(), db.getUsername(), db.getPassword(), db.getJdbcURL());
-			ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", cmd);
+			ProcessBuilder processBuilder = createCmdProcessBuilder(cmd);
 			processBuilder.redirectErrorStream(true);
 			Process process = processBuilder.start();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-			String line;
-			while ((line = reader.readLine()) != null){}
 			process.waitFor();
+			System.out.println(readCmdResponse(process));
 
 			// TODO Need improvement
 //			String mapping = FileUtils.readFileToString(db.getMapTTLFile(), "utf-8");
@@ -171,7 +210,7 @@ public final class Gryphon {
 //			writer.setProperty("xmlbase", rdfNS);
 //			writer.write(owlModel, fileWriter, rdfNS);
 		} catch (Exception e) {
-			GryphonUtil.logError(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
@@ -185,7 +224,9 @@ public final class Gryphon {
 
 		try {
 			FileUtils.cleanDirectory(resultFolder);
-		} catch(Exception e){ }
+		} catch(Exception e){
+			e.printStackTrace();
+		}
 
 		LocalRepositoryManager repositoryManager = new LocalRepositoryManager(GryphonConfig.getWorkingDirectory());
 		RepositoryConfig repConfig = new RepositoryConfig(REPOSITORY_ID, new SailRepositoryConfig(new MemoryStoreConfig()));
@@ -193,7 +234,7 @@ public final class Gryphon {
 			repositoryManager.initialize();
 			repositoryManager.addRepositoryConfig(repConfig);
 		} catch(Exception e){
-			GryphonUtil.logError(e.getMessage());
+			e.printStackTrace();
 		}
 		
 		try {
@@ -212,7 +253,7 @@ public final class Gryphon {
 				repositoryConnection.close();
 			}
 		} catch(Exception e){
-			GryphonUtil.logError(e.getMessage());
+			e.printStackTrace();
 		}
 		
 		for(Database database : localDatabases){
@@ -230,12 +271,13 @@ public final class Gryphon {
 		try {
 			File jarFile = new File("libs/mediation/Mediation.jar");
 			String cmd = String.format("cd \"%s\" && java -jar \"%s\" \"%s\" \"%s\"", jarFile.getParentFile().getAbsolutePath(), jarFile.getAbsolutePath(), alignFile.getAbsolutePath(), query.replace("\n", " "));
-			ProcessBuilder processBuilder = new ProcessBuilder("cmd.exe", "/c", cmd);
+			ProcessBuilder processBuilder = createCmdProcessBuilder(cmd);
 			Process process = processBuilder.start();
 			process.waitFor();
+			System.out.println(readCmdResponse(process));
 			return GryphonUtil.getStringFromStream(process.getInputStream());
 		} catch (Exception e) {
-			GryphonUtil.logError(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -265,7 +307,7 @@ public final class Gryphon {
 					query.evaluate(jsonWriter);
 			}
 		} catch(Exception e){
-			GryphonUtil.logError(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
@@ -292,12 +334,18 @@ public final class Gryphon {
 				strResultFormat = "json";
 		}
 		try {
-			File batFile = new File("libs\\d2rq\\d2r-query" + (GryphonUtil.isWindows() ? ".bat" : ""));
-			String cmd = String.format("\"%s\" -f %s -t 9999 \"%s\" \"%s\" > \"%s\"", batFile.getAbsolutePath(), strResultFormat, mapFile.getAbsolutePath(), strQuery.replaceAll("\n", " "), resultFile.getAbsoluteFile()); 
-			Process process = Runtime.getRuntime().exec(cmd);
+			File batFile = new File("libs/d2rq/d2r-query" + (GryphonUtil.isWindows() ? ".bat" : ""));
+			String batFilePath = batFile.getAbsolutePath();
+			if (GryphonUtil.isWindows()) {
+				batFilePath = "\"" + batFilePath + "\""; 
+			}
+			String cmd = String.format("%s -f %s -t 9999 \"%s\" \"%s\" > \"%s\"", batFilePath, strResultFormat, mapFile.getAbsolutePath(), strQuery.replaceAll("\n", " "), resultFile.getAbsoluteFile()); 
+			ProcessBuilder processBuilder = createCmdProcessBuilder(cmd);
+			Process process = processBuilder.start();
 			process.waitFor();
+			System.out.println(readCmdResponse(process));
 		} catch (Exception e) {
-			GryphonUtil.logError(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 	
