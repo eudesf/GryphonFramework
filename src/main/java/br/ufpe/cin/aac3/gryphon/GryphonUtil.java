@@ -16,9 +16,9 @@ public final class GryphonUtil {
 		}
 	}
 	
-	public static void logError(String error){
+	public static void logError(Exception e){
 		if(GryphonConfig.isLogEnabled()){
-			System.err.println(error);
+			e.printStackTrace();
 		}
 	}
 	

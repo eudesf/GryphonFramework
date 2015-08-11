@@ -22,20 +22,20 @@ public final class MScExperiment {
 		try {
 			// 2. Set the global ontology and local sources
 			Ontology globalOnt = new Ontology("integrativo", new URI(GryphonUtil.getCurrentURI() + "mscExperiment/TesteGryphon.owl"), new File("mscExperiment/sources"));
-			//Database localDB1 = new Database("localhost", 3306, "root", "", "ensembl", Database.DBMS.MySQL);
 			Database localDB2 = new Database("localhost", 3306, "root", "", "uniprot", Database.DBMS.MySQL);
 			
 			Gryphon.setGlobalOntology(globalOnt);
-			//Gryphon.addLocalDatabase(localDB1);
 			Gryphon.addLocalDatabase(localDB2);
 
 			// 3. Aligns ontologies and maps databases
-			Gryphon.alignAndMap();
+			//Gryphon.alignAndMap();
 
 			// 4. Query Using SPARQL
 			long startTime = System.currentTimeMillis();
+			
 			String query = getQuery1();
 			Gryphon.query(query, ResultFormat.JSON);
+			
 			long endTime = System.currentTimeMillis();
 			System.out.println("Query Duration: " + ((endTime - startTime) / 1000 % 60) + "s");
 		} catch(URISyntaxException e){
