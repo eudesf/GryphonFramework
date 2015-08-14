@@ -12,6 +12,10 @@ import br.ufpe.cin.aac3.gryphon.model.Database;
 import br.ufpe.cin.aac3.gryphon.model.Ontology;
 
 public final class MScExperiment {
+	public static void main2(String[] args) {
+		System.out.println(getQueryGen1().replaceAll("\\s{1,}", " "));
+	}
+	
 	public static void main(String[] args) {
 		// 1. Configure
 		GryphonConfig.setWorkingDirectory(new File("integrationMScExperiment"));
@@ -33,11 +37,12 @@ public final class MScExperiment {
 			// 4. Query Using SPARQL
 			long startTime = System.currentTimeMillis();
 			
-			String query = getQuery1();
+			String query = getQueryGen1();
 			Gryphon.query(query, ResultFormat.JSON);
 			
 			long endTime = System.currentTimeMillis();
 			System.out.println("Query Duration: " + ((endTime - startTime) / 1000 % 60) + "s");
+			
 		} catch(URISyntaxException e){
 			e.printStackTrace();
 		}
@@ -80,6 +85,17 @@ public final class MScExperiment {
 				+ "rdfs:label ?homocysteine ."
 				+ "?org btl2:includes ?hom ."
 			+ "} LIMIT 10";
+	}
+	
+	private static String getQueryGen1() {
+		
+		return "SELECT DISTINCT  ?x" +
+			   " WHERE\n" +
+			   " { ?x <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.org/biotop/btl2.owl#Organism> ." + 
+			   " ?x <http://purl.org/biotop/btl2.owl#includes> ?s0 ." +
+			   " ?s0 <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://purl.obolibrary.org/obo/CHEBI_17230>" +
+			   " } ";
+
 	}
 	
 	// Q2: SELECT ALL BIOLOGICAL PROCESS THAT IS INCLUDED IN ORGANISMS
