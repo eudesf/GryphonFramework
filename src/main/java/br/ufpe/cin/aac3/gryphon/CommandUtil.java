@@ -53,7 +53,7 @@ public class CommandUtil {
 				System.err.println("Command ERROR output:\n" + readStreamText(process.getErrorStream()));
 			}
 			return readStreamText(process.getInputStream());
-		} catch (InterruptedException | IOException e) {
+		} catch (Exception e) {
 			throw new CommandExecutionException("Exception getting command result.", e);
 		}
 	}

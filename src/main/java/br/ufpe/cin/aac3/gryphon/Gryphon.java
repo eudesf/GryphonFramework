@@ -75,8 +75,8 @@ public final class Gryphon {
 		mapFolder.mkdirs();
 		resultFolder.mkdirs();
 		
-		localOntologies = new ArrayList<>();
-		localDatabases = new ArrayList<>();
+		localOntologies = new ArrayList<Ontology>();
+		localDatabases = new ArrayList<Database>();
 	}
 	
 	/**
