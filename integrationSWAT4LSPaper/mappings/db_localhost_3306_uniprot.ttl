@@ -1,0 +1,229 @@
+@prefix map: <#> .
+@prefix db: <> .
+@prefix vocab: <vocab/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix btl2: <http://purl.org/biotop/btl2.owl#> .
+@prefix go: <http://purl.obolibrary.org/obo/go.owl#> .
+@prefix pr: <http://purl.obolibrary.org/obo/pr#> .
+@prefix integrativo: <http://www.cin.ufpe.br/~integrativo#> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "com.mysql.jdbc.Driver";
+	d2rq:jdbcDSN "jdbc:mysql://localhost:3306/uniprot";
+	d2rq:username "root";
+	d2rq:password "";
+	jdbc:autoReconnect "true";
+	jdbc:zeroDateTimeBehavior "convertToNull";
+	.
+
+# Table biological_process
+map:biological_process a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "biological_process/@@biological_process.id@@";
+	d2rq:class go:biological_process;
+	d2rq:classDefinitionLabel "biological_process";
+	.
+map:biological_process__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:biological_process;
+	d2rq:property rdfs:label;
+	d2rq:pattern "biological_process #@@biological_process.biological_process@@";
+	.
+map:biological_process_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:biological_process;
+	d2rq:property vocab:biological_process_id;
+	d2rq:propertyDefinitionLabel "biological_process id";
+	d2rq:column "biological_process.id";
+	d2rq:datatype xsd:integer;
+	.
+map:biological_process_biological_process a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:biological_process;
+	d2rq:property vocab:biological_process_biological_process;
+	d2rq:propertyDefinitionLabel "biological_process biological_process";
+	d2rq:column "biological_process.biological_process";
+	.
+
+# Table cellular_component
+map:cellular_component a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "cellular_component/@@cellular_component.id@@";
+	d2rq:class go:cellular_component;
+	d2rq:classDefinitionLabel "cellular_component";
+	.
+map:cellular_component__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:cellular_component;
+	d2rq:property rdfs:label;
+	d2rq:pattern "cellular_component #@@cellular_component.cellular_component@@";
+	.
+map:cellular_component_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:cellular_component;
+	d2rq:property vocab:cellular_component_id;
+	d2rq:propertyDefinitionLabel "cellular_component id";
+	d2rq:column "cellular_component.id";
+	d2rq:datatype xsd:integer;
+	.
+map:cellular_component_cellular_component a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:cellular_component;
+	d2rq:property vocab:cellular_component_cellular_component;
+	d2rq:propertyDefinitionLabel "cellular_component cellular_component";
+	d2rq:column "cellular_component.cellular_component";
+	.
+
+# Table gene_name
+map:gene_name a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "gene_name/@@gene_name.id@@";
+	d2rq:class integrativo:GeneMolecule;
+	d2rq:classDefinitionLabel "gene_name";
+	.
+map:gene_name__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:gene_name;
+	d2rq:property rdfs:label;
+	d2rq:pattern "gene_name #@@gene_name.gene_name@@";
+	.
+map:gene_name_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:gene_name;
+	d2rq:property vocab:gene_name_id;
+	d2rq:propertyDefinitionLabel "gene_name id";
+	d2rq:column "gene_name.id";
+	d2rq:datatype xsd:integer;
+	.
+map:gene_name_gene_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:gene_name;
+	d2rq:property vocab:gene_name_gene_name;
+	d2rq:propertyDefinitionLabel "gene_name gene_name";
+	d2rq:column "gene_name.gene_name";
+	.
+
+# Table molecular_function
+map:molecular_function a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "molecular_function/@@molecular_function.id@@";
+	d2rq:class go:molecular_function;
+	d2rq:classDefinitionLabel "molecular_function";
+	.
+map:molecular_function__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:molecular_function;
+	d2rq:property rdfs:label;
+	d2rq:pattern "molecular_function #@@molecular_function.molecular_function@@";
+	.
+map:molecular_function_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:molecular_function;
+	d2rq:property vocab:molecular_function_id;
+	d2rq:propertyDefinitionLabel "molecular_function id";
+	d2rq:column "molecular_function.id";
+	d2rq:datatype xsd:integer;
+	.
+map:molecular_function_molecular_function a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:molecular_function;
+	d2rq:property vocab:molecular_function_molecular_function;
+	d2rq:propertyDefinitionLabel "molecular_function molecular_function";
+	d2rq:column "molecular_function.molecular_function";
+	.
+
+# Table molecule
+map:molecule a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "molecule/@@molecule.id@@";
+	d2rq:class btl2:MonoMolecularEntity;
+	d2rq:classDefinitionLabel "molecule";
+	.
+map:molecule__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:molecule;
+	d2rq:property rdfs:label;
+	d2rq:pattern "molecule #@@molecule.molecule@@";
+	.
+map:molecule_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:molecule;
+	d2rq:property vocab:molecule_id;
+	d2rq:propertyDefinitionLabel "molecule id";
+	d2rq:column "molecule.id";
+	d2rq:datatype xsd:integer;
+	.
+map:molecule_molecule a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:molecule;
+	d2rq:property vocab:molecule_molecule;
+	d2rq:propertyDefinitionLabel "molecule molecule";
+	d2rq:column "molecule.molecule";
+	.
+
+# Table organism
+map:organism a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "organism/@@organism.id@@";
+	d2rq:class btl2:organism;
+	d2rq:classDefinitionLabel "organism";
+	.
+map:organism__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organism;
+	d2rq:property rdfs:label;
+	d2rq:pattern "organism #@@organism.organism@@";
+	.
+map:organism_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organism;
+	d2rq:property vocab:organism_id;
+	d2rq:propertyDefinitionLabel "organism id";
+	d2rq:column "organism.id";
+	d2rq:datatype xsd:integer;
+	.
+map:organism_organism a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organism;
+	d2rq:property vocab:organism_organism;
+	d2rq:propertyDefinitionLabel "organism organism";
+	d2rq:column "organism.organism";
+	.
+
+# Table protein_name
+map:protein_name a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "protein_name/@@protein_name.id@@";
+	d2rq:class pr:PR_000000001;
+	d2rq:classDefinitionLabel "protein_name";
+	.
+map:protein_name__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:protein_name;
+	d2rq:property rdfs:label;
+	d2rq:pattern "protein_name #@@protein_name.protein_name@@";
+	.
+map:protein_name_id a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:protein_name;
+	d2rq:property vocab:protein_name_id;
+	d2rq:propertyDefinitionLabel "protein_name id";
+	d2rq:column "protein_name.id";
+	d2rq:datatype xsd:integer;
+	.
+map:protein_name_protein_name a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:protein_name;
+	d2rq:property vocab:protein_name_protein_name;
+	d2rq:propertyDefinitionLabel "protein_name protein_name";
+	d2rq:column "protein_name.protein_name";
+	.
+
+# Properties
+map:organism_molecule_includes a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:organism;
+	d2rq:refersToClassMap map:molecule; 
+	d2rq:property btl2:includes;  
+    d2rq:join "organism.id => molecule.id";
+	. 
+map:biological_process_organism_isIncludedIn a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:biological_process;
+	d2rq:refersToClassMap map:organism; 
+	d2rq:property btl2:isIncludedIn;  
+    d2rq:join "biological_process.id => organism.id";
+	. 
+map:biological_process_cellular_component_isIncludedIn a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:biological_process;
+	d2rq:refersToClassMap map:cellular_component; 
+	d2rq:property btl2:isIncludedIn;  
+    d2rq:join "biological_process.id => cellular_component.id";
+	. 
+map:biological_process_protein_name_component_isIncludedIn a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:biological_process;
+	d2rq:refersToClassMap map:protein_name; 
+	d2rq:property btl2:hasAgent;  
+    d2rq:join "biological_process.id => protein_name.id";
+	. 

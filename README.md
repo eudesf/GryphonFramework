@@ -1,6 +1,10 @@
-![](https://github.com/adrielcafe/GryphonFramework/raw/master/images/gryphon.png)
+<p align="center">
+    <img src="https://github.com/adrielcafe/GryphonFramework/raw/master/images/gryphon.png">
+</p>
 
 Gryphon is a lightweight framework for integrating **ontologies** and **relational databases** in a *very simple* way.
+
+See my [Master's Thesis](https://github.com/adrielcafe/DissertacaoDeMestrado) for details (in *portuguese*)
 
 *Paper coming soon...*
 
@@ -11,7 +15,7 @@ Gryphon is a lightweight framework for integrating **ontologies** and **relation
 // Where the alignments and mappings will be saved? Want to see logs?
 GryphonConfig.setWorkingDirectory(new File("myIntegration"));
 GryphonConfig.setLogEnabled(true);
-GryphonConfig.setShowLogo(false);
+GryphonConfig.setShowLogo(true);
 
 // Init Gryphon
 Gryphon.init();
@@ -23,8 +27,8 @@ Gryphon.init();
 Ontology globalOnt = new Ontology("globalOntology", uriToGlobalOntology);
 Ontology localOnt1 = new Ontology("localOntology1", uriToLocalOntology1);
 Ontology localOnt2 = new Ontology("localOntology2", uriToLocalOntology2);
-Database localDB1 = new Database("localhost", 3306, "username", "password", "db1", Database.DBMS.MySQL);
-Database localDB2 = new Database("localhost", 3306, "username", "password", "db2", Database.DBMS.PostgreSQL);
+Database localDB1 = new Database("localhost", 3306, "username", "password", "db1", Gryphon.DBMS.MySQL);
+Database localDB2 = new Database("localhost", 3306, "username", "password", "db2", Gryphon.DBMS.PostgreSQL);
 
 Gryphon.setGlobalOntology(globalOnt);
 Gryphon.addLocalOntology(localOnt1);
@@ -41,20 +45,21 @@ Gryphon.alignAndMap();
 
 ### 4. Query Using [SPARQL](http://www.w3.org/TR/sparql11-query/)
 ```java
-// Query must be based on *Global Ontology*
+// Query must use *Global Ontology* vocabulary
 String strQuery = 
 	 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
 	+"SELECT ?x ?y "
-	+"WHERE { ?x a ?y }";
+	+"WHERE { ?x rdf:type ?y }";
 Gryphon.query(strQuery, ResultFormat.JSON);
-
-/*
-	WHERE ARE THE RESULTS?
-    Results will be saved on GryphonConfig.getWorkingDirectory() + "results/"
-    Supported formats: ResultFormat.JSON, ResultFormat.XML and ResultFormat.CSV
-*/
 ```
+**Where are the results?**
 
+Results will be saved on *GryphonConfig.getWorkingDirectory() + "/results"* folder
+
+Supported formats: 
+* ResultFormat.JSON
+* ResultFormat.XML
+* ResultFormat.CSV
 
 ## Practical Example
 Check out [Example.java](http://github.com/adrielcafe/GryphonFramework/blob/master/src/br/ufpe/cin/aac3/gryphon/example/Example.java) for a complete example.

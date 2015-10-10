@@ -10,11 +10,6 @@ import br.ufpe.cin.aac3.gryphon.Gryphon;
 import br.ufpe.cin.aac3.gryphon.GryphonUtil;
 
 public final class Database {
-	public enum DBMS {
-		MySQL,
-		PostgreSQL
-	}
-
 	protected File mapTTLFile = null;
 	protected File mapRDFFile = null;
 	protected File alignFile = null;
@@ -28,7 +23,7 @@ public final class Database {
 	protected String dbName = null;
 	protected int port = 0;
 	
-	public Database(String host, int port, String username, String password, String dbName, DBMS dbms) {
+	public Database(String host, int port, String username, String password, String dbName, Gryphon.DBMS dbms) {
 		mapTTLFile = new File(Gryphon.getMapFolder().getAbsolutePath(), "db_" + host + "_" + port + "_" + dbName + ".ttl");
 		mapRDFFile = new File(Gryphon.getMapFolder().getAbsolutePath(), "db_" + host + "_" + port + "_" + dbName + ".rdf");
 		alignFile = new File(Gryphon.getAlignFolder().getAbsolutePath(), "db_" + host + "_" + port + "_" + dbName  + ".rdf");

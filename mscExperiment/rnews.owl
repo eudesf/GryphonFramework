@@ -1,0 +1,1498 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rNews "http://iptc.org/std/rNews/2011-10-07#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/owl/owlapi/turtle#"
+     xml:base="http://www.semanticweb.org/owl/owlapi/turtle"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:rNews="http://iptc.org/std/rNews/2011-10-07#">
+    <owl:Ontology rdf:about="http://iptc.org/std/rNews/2011-10-07#">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The IPTC rNews Ontology (draft 3, @agebhard, June 9, 2012)</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#duration -->
+
+    <rdfs:Datatype rdf:about="&xsd;duration"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#about -->
+
+    <owl:ObjectProperty rdf:about="&rNews;about">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">Indicates that the NewsItem is specifically about a concept.</rdfs:comment>
+        <rdfs:range rdf:resource="&rNews;Concept"/>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#accountablePerson -->
+
+    <owl:ObjectProperty rdf:about="&rNews;accountablePerson">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">Specifies the person who is legally accountable for the NewsItem.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range rdf:resource="&rNews;Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#address -->
+
+    <owl:ObjectProperty rdf:about="&rNews;address">
+        <owl:versionInfo xml:lang="en">1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A real-world postal address associated with this entity.</rdfs:comment>
+        <rdfs:range rdf:resource="&rNews;PostalAddress"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&rNews;Organization"/>
+                    <rdf:Description rdf:about="&rNews;Person"/>
+                    <rdf:Description rdf:about="&rNews;Place"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#associatedArticle -->
+
+    <owl:ObjectProperty rdf:about="&rNews;associatedArticle">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">An Article associated with the Media Object.</rdfs:comment>
+        <rdfs:range rdf:resource="&rNews;Article"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&rNews;AudioObject"/>
+                    <rdf:Description rdf:about="&rNews;ImageObject"/>
+                    <rdf:Description rdf:about="&rNews;VideoObject"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#associatedMedia -->
+
+    <owl:ObjectProperty rdf:about="&rNews;associatedMedia">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">An  image or audio or video object associated with a NewsItem.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;Article"/>
+        <owl:inverseOf rdf:resource="&rNews;associatedArticle"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&rNews;AudioObject"/>
+                    <rdf:Description rdf:about="&rNews;ImageObject"/>
+                    <rdf:Description rdf:about="&rNews;VideoObject"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#comment -->
+
+    <owl:ObjectProperty rdf:about="&rNews;comment">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">Comments on this NewsItem, typically from readers/users.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range rdf:resource="&rNews;UserComment"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#contributor -->
+
+    <owl:ObjectProperty rdf:about="&rNews;contributor">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A secondary contributor to the NewsItem, not the primary creator.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&rNews;Organization"/>
+                    <rdf:Description rdf:about="&rNews;Person"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#copyrightHolder -->
+
+    <owl:ObjectProperty rdf:about="&rNews;copyrightHolder">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The entity holding the legal copyright to the NewsItem.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&rNews;Organization"/>
+                    <rdf:Description rdf:about="&rNews;Person"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#creator -->
+
+    <owl:ObjectProperty rdf:about="&rNews;creator">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The author, videographer, photographer etc. (creator) of the NewsItem or Comment.</rdfs:comment>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&rNews;Organization"/>
+                    <rdf:Description rdf:about="&rNews;Person"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&rNews;NewsItem"/>
+                    <rdf:Description rdf:about="&rNews;UserComment"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#discusses -->
+
+    <owl:ObjectProperty rdf:about="&rNews;discusses">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">Specifies the NewsItem associated with this Comment.</rdfs:comment>
+        <rdfs:range rdf:resource="&rNews;NewsItem"/>
+        <rdfs:domain rdf:resource="&rNews;UserComment"/>
+        <owl:inverseOf rdf:resource="&rNews;comment"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#editor -->
+
+    <owl:ObjectProperty rdf:about="&rNews;editor">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">Specifies the person or organization who edited the NewsItem.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&rNews;Organization"/>
+                    <rdf:Description rdf:about="&rNews;Person"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#geoCoordinates -->
+
+    <owl:ObjectProperty rdf:about="&rNews;geoCoordinates">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The geo coordinates of the location.</rdfs:comment>
+        <rdfs:range rdf:resource="&rNews;GeoCoordinates"/>
+        <rdfs:domain rdf:resource="&rNews;Place"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#mentions -->
+
+    <owl:ObjectProperty rdf:about="&rNews;mentions">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">Indicates that the NewsItem contains a reference to, but is not necessarily about a concept.</rdfs:comment>
+        <rdfs:range rdf:resource="&rNews;Concept"/>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#provider -->
+
+    <owl:ObjectProperty rdf:about="&rNews;provider">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">Specifies the person or organization that distributed the NewsItem.  </rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&rNews;Organization"/>
+                    <rdf:Description rdf:about="&rNews;Person"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#sourceOrganization -->
+
+    <owl:ObjectProperty rdf:about="&rNews;sourceOrganization">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The organization on whose behalf the creator was working.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range rdf:resource="&rNews;Organization"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#additionalName -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;additionalName">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The middle name portion of a full name for a person.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#addressCountry -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;addressCountry">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A country, part of the address. Implementors are encouraged (but not required) to use ISO 3166-1 alpha-2 country codes.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;PostalAddress"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#addressLocality -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;addressLocality">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A city/town/village etc. part of the address.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;PostalAddress"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#addressRegion -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;addressRegion">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A subdivision of a country, part of the address.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;PostalAddress"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#alternativeHeadline -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;alternativeHeadline">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A secondary headline or title of a NewsItem.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#articleBody -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;articleBody">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The main text of the article.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;Article"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&rdf;XMLLiteral"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#articleSection -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;articleSection">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The top-level classification of the content by the publishing organization.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;Article"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;anyURI"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#box -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;box">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A box is the area enclosed by the rectangle formed by two points. The first point is the lower corner, the second point is the upper corner. A box is expressed as two points separated by a space character.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;GeoCoordinates"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#circle -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;circle">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A circle is the circular region of a specified radius centered at a specified latitude and longitude. A circle is expressed as a pair followed by a radius in meters.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;GeoCoordinates"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#commentText -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;commentText">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The text of the comment.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;UserComment"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&rdf;XMLLiteral"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#commentTime -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;commentTime">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The date and time at which the comment was left.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;UserComment"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#copyrightNotice -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;copyrightNotice">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">Any necessary copyright notice for claiming the intellectual property for the NewsItem.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;anyURI"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#copyrightYear -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;copyrightYear">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The year during which the claimed copyright was first asserted.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#dateCreated -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;dateCreated">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The date (and optionally time) on which the NewsItem was created.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#dateModified -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;dateModified">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The date (and optionally time) on which the NewsItem was most recently modified.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#datePublished -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;datePublished">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The date (and optionally time) on which the NewsItem was first made available online.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#dateline -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;dateline">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The location where the NewsItem was produced.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#description -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;description">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A free-form textual description of the NewsItem. Publishers may find it helpful to view this as the &quot;caption&quot; for a Media object.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#discussionUrl -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;discussionUrl">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A link to the page containing the comments relating to this NewsItem.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;anyURI"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#duration -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;duration">
+        <rdfs:comment xml:lang="en">The duration of the audio or video object in ISO 8601 date format. (see also http://en.wikipedia.org/wiki/ISO_8601)</rdfs:comment>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&rNews;AudioObject"/>
+                    <rdf:Description rdf:about="&rNews;VideoObject"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;duration"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#elevation -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;elevation">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The elevation is the height above sea level in meters of a specified point. An Elevation attribute must be specified in conjunction with a Point attribute.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;GeoCoordinates"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#email -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;email">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">An email address.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;PostalAddress"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#encodingFormat -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;encodingFormat">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The encoding of a media asset. The encoding must be drawn from the IPTC NewsCodes for Images, Audio codecs or Video codecs available at http://cv.iptc.org/newscodes/format/, http://cv.iptc.org/newscodes/audiocodec/, and http://cv.iptc.org/newscodes/videocodec/ respectively.</rdfs:comment>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;anyURI"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&rNews;AudioObject"/>
+                    <rdf:Description rdf:about="&rNews;ImageObject"/>
+                    <rdf:Description rdf:about="&rNews;VideoObject"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#familyName -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;familyName">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">Family name. In the U.S., this is the last name of an individual.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#faxNumber -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;faxNumber">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">An international fax number.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;PostalAddress"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#featureCode -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;featureCode">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A code indicating the type of the geographic entity specified by a location object. Implementors are encouraged (but not required) to populate this field with values drawn from the controlled vocabulary of feature codes provided by geonames.org.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;Place"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#genre -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;genre">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A term describing the general editorial category of the article. Implementors are encouraged (but not required) to draw values for type of material from the IPTC Genre subject headings at http://cv.iptc.org/newscodes/genre/.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;anyURI"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#givenName -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;givenName">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">Given name. In the U.S., this is the first name of an individual. Also used if the individual has only one name.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#headline -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;headline">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The main (or only) headline or title for a NewsItem</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#height -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;height">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">Height of the media object.</rdfs:comment>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;integer"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&rNews;ImageObject"/>
+                    <rdf:Description rdf:about="&rNews;VideoObject"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#honorificPrefix -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;honorificPrefix">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">An honorific prefix preceding a person&apos;s name such as Dr/Mrs/Mr.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#honorificSuffix -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;honorificSuffix">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">An honorific suffix following a person&apos;s name such as M.D./PhD/MSCSW.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;Person"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#identifier -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;identifier">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">An identifier for a NewsItem. This ID can be generated by the underlying publishing system. No two distinct NewsItems from the same site should be assigned the same id, but a single NewsItem may have multiple ids.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#inLanguage -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;inLanguage">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A language used by the news content specified according to IETF BCP 47 at http://tools.ietf.org/html/bcp47.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#interactionCount -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;interactionCount">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A count of a specific user interactions with this item - for example, 20 UserLikes, 5 UserComments, or 300 UserDownloads. Implementors are encouraged (but not required) to use the interaction type from the controlled vocabulary provided by schema.org at: http://schema.org/UserInteraction</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;anyURI"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#line -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;line">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A line is a point-to-point path consisting of two or more points. A line is expressed as a series of two or more point objects separated by space.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;GeoCoordinates"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#name -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;name">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The natural language name for a concept.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;Concept"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#point -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;point">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A point is a physical location on Earth. A point is expressed as a latitude and longitude separated by a space character.  Points should be expressed in decimal as laid out in the WGS84 specification (see also http://en.wikipedia.org/wiki/World_Geodetic_System).</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;GeoCoordinates"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#polygon -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;polygon">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A polygon is the area enclosed by a point-to-point path for which the starting and ending points are the same. A polygon is expressed as a series of four or more space-delimited points where the first and final points are identical.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;GeoCoordinates"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#postOfficeBoxNumber -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;postOfficeBoxNumber">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A post office box associated with this postal address [optional].</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;PostalAddress"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#postalCode -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;postalCode">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A postal code, part of the address.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;PostalAddress"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#printColumn -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;printColumn">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The number of the column in which the article appears in the print edition.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;Article"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#printEdition -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;printEdition">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The edition of the print product in which the article appears. Implementors wishing to link to their own controlled vocabularies for this property may wish to specify this property as a URI.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;Article"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;anyURI"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#printPage -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;printPage">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">If this article appears in print, this property indicates the name of the page on which the article is found. Please note that this field is intended for the exact page name (e.g. &quot;A5&quot;, &quot;B18&quot;).</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;Article"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#printSection -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;printSection">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">If this article appears in print, this property indicates the print section in which the article appeared. Implementors wishing to link to their own controlled vocabularies for this property may wish to specify this property as a URI.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;Article"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;anyURI"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#publishingPrinciples -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;publishingPrinciples">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">Link to page describing the editorial principles of the organization primarily responsible for the creation or publication of the NewsItem.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;anyURI"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#replyToUrl -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;replyToUrl">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The URL at which a reply may be posted to the specified comment.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;UserComment"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;anyURI"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#streetAddress -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;streetAddress">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A line of address information, in the format expected by a recipient postal service. City, country area, country and postal code are expressed separately.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;PostalAddress"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#telephone -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;telephone">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">An international phone number.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;PostalAddress"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#thumbnailUrl -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;thumbnailUrl">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A thumbnail image relevant to the content.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#tickerSymbol -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;tickerSymbol">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The exchange traded instrument associated with an Organization object. The tickerSymbol is expressed as an exchange and an instrument name separated by a space character. The IPTC suggests (but does not require) that implementors of rNews select the value for the exchange component of the tickerSymbol attribute from the controlled vocabulary of Market Identifier Codes (MIC) specified in ISO 15022.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;Organization"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#transcript -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;transcript">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The transcript of this Video or Audio object</rdfs:comment>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;anyURI"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&rNews;AudioObject"/>
+                    <rdf:Description rdf:about="&rNews;VideoObject"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#url -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;url">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A reference to a web resource as part of an address, often the homepage of an individual or organization.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;PostalAddress"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;anyURI"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#usageTerms -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;usageTerms">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A human- or machine-readable statement about the usage terms pertaining to the NewsItem. Implementors can use this property to link to IPTC RightsML (or other Rights Expression Language) resources.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;anyURI"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#version -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;version">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The version of the NewsItem.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;NewsItem"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#width -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;width">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">Width of the media object.</rdfs:comment>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&xsd;integer"/>
+                    <rdf:Description rdf:about="&xsd;string"/>
+                </owl:unionOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="&rNews;ImageObject"/>
+                    <rdf:Description rdf:about="&rNews;VideoObject"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#wordCount -->
+
+    <owl:DatatypeProperty rdf:about="&rNews;wordCount">
+        <owl:versionInfo>1.0</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The number of words in the article.</rdfs:comment>
+        <rdfs:domain rdf:resource="&rNews;Article"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#Article -->
+
+    <owl:Class rdf:about="&rNews;Article">
+        <rdfs:subClassOf rdf:resource="&rNews;NewsItem"/>
+        <rdfs:isDefinedBy>http://iptc.org/std/rNews/2011-10-07#</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#AudioObject -->
+
+    <owl:Class rdf:about="&rNews;AudioObject">
+        <rdfs:subClassOf rdf:resource="&rNews;NewsItem"/>
+        <rdfs:isDefinedBy>http://iptc.org/std/rNews/2011-10-07#</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#Concept -->
+
+    <owl:Class rdf:about="&rNews;Concept">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:isDefinedBy>http://iptc.org/std/rNews/2011-10-07#</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#GeoCoordinates -->
+
+    <owl:Class rdf:about="&rNews;GeoCoordinates">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:isDefinedBy>http://iptc.org/std/rNews/2011-10-07#</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#ImageObject -->
+
+    <owl:Class rdf:about="&rNews;ImageObject">
+        <rdfs:subClassOf rdf:resource="&rNews;NewsItem"/>
+        <rdfs:isDefinedBy>http://iptc.org/std/rNews/2011-10-07#</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#NewsItem -->
+
+    <owl:Class rdf:about="&rNews;NewsItem">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:isDefinedBy>http://iptc.org/std/rNews/2011-10-07#</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#Organization -->
+
+    <owl:Class rdf:about="&rNews;Organization">
+        <rdfs:subClassOf rdf:resource="&rNews;Concept"/>
+        <owl:disjointWith rdf:resource="&rNews;Person"/>
+        <rdfs:isDefinedBy>http://iptc.org/std/rNews/2011-10-07#</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#Person -->
+
+    <owl:Class rdf:about="&rNews;Person">
+        <rdfs:subClassOf rdf:resource="&rNews;Concept"/>
+        <rdfs:isDefinedBy>http://iptc.org/std/rNews/2011-10-07#</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#Place -->
+
+    <owl:Class rdf:about="&rNews;Place">
+        <rdfs:subClassOf rdf:resource="&rNews;Concept"/>
+        <rdfs:isDefinedBy>http://iptc.org/std/rNews/2011-10-07#</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#PostalAddress -->
+
+    <owl:Class rdf:about="&rNews;PostalAddress">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:isDefinedBy>http://iptc.org/std/rNews/2011-10-07#</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#UserComment -->
+
+    <owl:Class rdf:about="&rNews;UserComment">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+        <rdfs:isDefinedBy>http://iptc.org/std/rNews/2011-10-07#</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#VideoObject -->
+
+    <owl:Class rdf:about="&rNews;VideoObject">
+        <rdfs:subClassOf rdf:resource="&rNews;NewsItem"/>
+        <rdfs:isDefinedBy>http://iptc.org/std/rNews/2011-10-07#</rdfs:isDefinedBy>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#Article1 -->
+
+    <owl:NamedIndividual rdf:about="&rNews;Article1">
+        <rdf:type rdf:resource="&rNews;Article"/>
+        <rNews:dateCreated rdf:datatype="&xsd;dateTime">2015-08-15</rNews:dateCreated>
+        <rNews:headline rdf:datatype="&xsd;string">Online course teaches kids to program while having fun</rNews:headline>
+        <rNews:articleSection rdf:datatype="&xsd;string">Tech</rNews:articleSection>
+        <rNews:articleBody rdf:datatype="&xsd;string">With technology skills becoming as important as readin’, ritin’ and ’rithmetic in today&apos;s digital world, many parents want to ensure that their children develop the right skills for the future. But many don’t know where to begin and how to make learning tech skills fun for their kids.
+
+A new online course, “Server design 1,” is using one of the most popular video games ever – Minecraft, which has more than 100 million registered users and has been a hit among younger players – to teach code to children between 8 and 14. The course teaches kids how to create a Minecraft world that they develop and design themselves using Java code. 
+
+This is the latest online course designed by Youth Digital, a technology education organization whose mission is to “create creators” by teaching children how to code, develop apps and design 3D modeling in a fun but challenging manner. 
+
+“What’s so great about tech ed is that it really has the ability to shift the way kids see the world and change the way they interact with technology, which is obviously a huge part of their world and will continue to be as they grow up,” says Justin Richards, Youth Digital’s founder and CEO. 
+
+He said his approach is to get kids motivated by “learning how to make something that they are actually excited about.” But while young people want to make apps and videogames, the resources often aren’t there, he said.
+
+“If you ask children, ‘Hey, wouldn’t it be awesome to make an app this summer? Or create a videogame? Or a fashion collection? Or a Minecraft mod?’ almost across the board kids would say ‘yes.’”
+
+“Server design 1” allows players to design servers that will let them define the rules of their Minecraft experience from the ground up. It provides students with other motivators, like course badges, coins and funny videos that reward learning, but “ultimately it’s that intrinsic motivation around wanting to create their own video game that motivates them,” Richards said.
+
+Just ask Ronan Boyarski, a 10-year-old student from Virginia who is enrolled in the course.
+
+“I loved learning about how to code in Minecraft,” Ronan said. “It opened up all sorts of new possibilities for me … Youth Digital really showed me what I wanted to do with my life. I really wanted to become a game designer, because once I started coding, I loved it.”
+
+For $250 a year, students can expect to learn coding in Java and basic programming concepts. If students get stuck, they can type in a message to teachers who are ready to assist. The course includes access to a Java server, curriculum, tools and hosting with Youth Digital.
+
+Youth Digital’s other online courses include 3D Animation, App Design and even Fashion Design. It also has summer camp programs in cities across the East Coast.
+
+“We don’t just teach them how to do one thing and how to use the product,” Richards says. “We are really trying as a product to teach them how they can explore and how this is just the start of years potentially of digital creation before they get to college.”</rNews:articleBody>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#Article10 -->
+
+    <owl:NamedIndividual rdf:about="&rNews;Article10">
+        <rdf:type rdf:resource="&rNews;Article"/>
+        <rNews:dateCreated rdf:datatype="&xsd;dateTime">2015-08-16</rNews:dateCreated>
+        <rNews:articleBody rdf:datatype="&xsd;string">Boston Dynamics, the robot company owned by Google, has released footage of Atlas, its six-foot humanoid robot stomping through woodland.
+
+Like a scene from a sci-fi movie, Atlas is shown making its mechanical way through nature in footage featured in a YouTube video.
+
+Unlike famous movie robots such as C-3PO, Atlas is shown connected to a power tether during its walk in the woods, although Boston Dynamics says that it is working on a untethered version of the bot.
+
+One of a number of innovative robots created by Boston Dynamics, Atlas has been designed to walk bipedally, leaving his upper limbs free to lift, carry and manipulate objects. “In extremely challenging terrain, Atlas is strong and coordinated enough to climb using hands and feet, to pick its way through congested spaces,” explains Boston Dynamics, on its website.
+
+Outdoor testing plays a key role in the robot’s development, hence its stroll in the woods.
+
+This is not the first time that Atlas has generated buzz. The robot grabbed plenty of attention thanks to its strong performance at the DARPA robotics challenge earlier this year.</rNews:articleBody>
+        <rNews:headline rdf:datatype="&xsd;string">Life-size humanoid robot takes a walk in the woods</rNews:headline>
+        <rNews:articleSection rdf:datatype="&xsd;string">Tech</rNews:articleSection>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#Article2 -->
+
+    <owl:NamedIndividual rdf:about="&rNews;Article2">
+        <rdf:type rdf:resource="&rNews;Article"/>
+        <rNews:dateCreated rdf:datatype="&xsd;dateTime">2015-08-17</rNews:dateCreated>
+        <rNews:headline rdf:datatype="&xsd;string">Facebook updates Notes in move to get you blogging again</rNews:headline>
+        <rNews:articleBody rdf:datatype="&xsd;string">Facebook&apos;s Notes feature was an early addition to the social networking site, though over the years it&apos;s received little attention from developers, and for most users has simply slipped from view.
+
+In recent days, however, it seems the company has blown the dust off the blogging feature and given it a much-needed makeover. The new design is currently being put through its paces by a number of Facebook users, though it probably won&apos;t be too long before it&apos;s rolled out more widely.
+
+Spotted by blogging pioneer Dave Winer, the new look appears to be heavily influenced by one of the more popular publishing platforms available today: Medium, a service launched by Twitter co-founders Evan Williams and Biz Stone three years ago.
+
+Just like Medium, Notes looks set to arrive with a clean, uncluttered design, one that makes publishing simple and reading easy.</rNews:articleBody>
+        <rNews:articleSection rdf:datatype="&xsd;string">Tech</rNews:articleSection>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#Article3 -->
+
+    <owl:NamedIndividual rdf:about="&rNews;Article3">
+        <rdf:type rdf:resource="&rNews;Article"/>
+        <rNews:dateCreated rdf:datatype="&xsd;dateTime">2015-08-18</rNews:dateCreated>
+        <rNews:articleBody rdf:datatype="&xsd;string">Despite being generally well-received, Windows 10 has been confronted with some bitter criticism concerning a series of alleged privacy obstructions. The latest of these stems from Microsoft&apos;s End User License Agreement, or EULA, with WinBeta reporting that Microsoft has reserved the right to check your system for &quot;playing counterfeit games, or using unauthorized hardware peripheral devices.&quot;
+
+For an operating system that runs an array of utilities which, mind you, can also be pirated, it&apos;s bizarre to think that Microsoft would only be targeting games in its analyses. One might wonder why the company would not also check for ubiquitously pirated productivity suites such as Adobe Creative Cloud and Microsoft Office.
+
+Of course, it may (also) be a case of Microsoft cracking down on the modification of its Xbox game consoles, a popular trend seen in the days of the original Xbox and its successor, the Xbox 360.
+
+To accomplish this, gamers download software to their PCs, deploying it to their consoles via an external media device. Microsoft thus may be taking these steps in an attempt to prevent similar instances with the Xbox One as a means of suppressing hacking tool possession.
+
+This would make sense since online communities have been trying to exploit the console since its launch in 2013. However, the language used in the agreement is reportedly too vague to discern Microsoft&apos;s likely intent, and we can be sure the firm&apos;s top-notch lawyers chose that ambiguous language knowingly.
+
+Also ambiguous is whether Microsoft intends to share with law enforcement the information they obtain concerning users downloading &quot;counterfeit games,&quot; or if they simply plan to disable the stolen software.
+
+Likewise, now that Windows 10 is used more liberally across platforms including PC, mobile, Xbox, HoloLens, and Surface Hub, EULAs are assembled more broadly. They must now include written safeguards against stolen phones, Xbox mods, enterprise security, and required updates.
+
+The pervasiveness of Windows 10 is bringing with it not only technical challenges, but also legal challenges in producing a single, intelligible agreement.
+
+Returning to the basics with Windows 10, Microsoft has pleased its customers, new and old. But with that out of the way, it&apos;s now time to transparently acknowledge our concerns. Enough silence, Microsoft, what are you doing with our data?</rNews:articleBody>
+        <rNews:headline rdf:datatype="&xsd;string">Microsoft is allowing itself to detect pirated games on your Windows 10 PC</rNews:headline>
+        <rNews:articleSection rdf:datatype="&xsd;string">Tech</rNews:articleSection>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#Article4 -->
+
+    <owl:NamedIndividual rdf:about="&rNews;Article4">
+        <rdf:type rdf:resource="&rNews;Article"/>
+        <rNews:dateCreated rdf:datatype="&xsd;dateTime">2015-08-15</rNews:dateCreated>
+        <rNews:articleSection rdf:datatype="&xsd;string">Science</rNews:articleSection>
+        <rNews:articleBody rdf:datatype="&xsd;string">The Gemini Planet Imager — a special planet-hunting instrument mounted on the Gemini South Telescope in Chile — has captured an image of its very first exoplanet, or a planet outside our Solar System. The details are published this week in the journal Science, marking one of the few times an exoplanet has been directly imaged from the surface of Earth. Dubbed 51 Eri B, the space rock is a large gas giant about twice the mass of Jupiter, with lots of water vapor and methane swirling around in its atmosphere. Learning more about this gassy planet could provide researchers with clues about how planets form throughout the Universe.
+
+Imaging an exoplanet directly like this is incredibly difficult; a planet&apos;s host star is usually so luminous that it often washes out all nearby objects. That&apos;s why most exoplanet imagers, such as NASA&apos;s Kepler spacecraft, use indirect methods for locating planets outside our Solar System. These include measuring things like a star&apos;s periodic dimming — when a star temporarily dims as a planet passes in front of it.
+
+Yet indirect imaging provides very limited information about an exoplanet, only revealing things like size, mass, and location. Direct imaging allows scientists to get a much more comprehensive view. &quot;We actually see the planet as a distinct dot and measure its properties, like its atmospheric spectrum, or its temperature,&quot; study author Bruce Macintosh, a professor of physics at Stanford University, tells The Verge. &quot;It doesn’t let us count dozens of planets like Kepler, but we can study smaller planets in great detail.&quot;
+
+The Gemini Planet Imager was specifically designed to image large gas giants like 51 Eri B straight on. It works by using a combination of corrective optics and specialized mirrors. The optics help to filter out the various lights in Earth&apos;s atmosphere that might interfere with the data. The researchers then focus the light from a far away star onto a mirror with a hole in it. The star&apos;s light goes through the hole, allowing the researchers to see any large planets that might be nearby. &quot;The planet is a little off to the side of the star. It&apos;s just off to the side so it doesn’t fall down that hole, and its light bounces off the mirror,&quot; says Macintosh.
+
+Despite all this special hardware, the exoplanets still have to be big and hot so that they give off enough infrared light to be seen. Macintosh says 51 Eri B is the perfect example of the kind of gas giants the research team is looking for. The exoplanet orbits a star that&apos;s relatively close — only 100 light-years from Earth — and fairly young — just 20 million years old; our Solar System dates back to 4.5 billion years ago.
+
+This star&apos;s youth means Gemini captured images of the exoplanet in the first stages of its formation. Additionally, its size and chemical properties make it the most Jupiter-like planet that&apos;s ever been discovered elsewhere in the galaxy.
+
+&quot;51 Eri B, with a mass only slightly larger than Jupiter’s, gives humanity a view of our own Jupiter when it was just 20 million years old,&quot; says Geoff Marcy, an astronomer at the University of California-Berkeley, who was not involved in the study. &quot;What did Jupiter look like when it was being born? For the first time, we have direct pictures and spectra to tell us.&quot;
+
+Macintosh says studying this early formation of a gas giant can give us details about the types of conditions that are needed for different planets to form. &quot;As we study that more, we can try to say this is how you form giant planets, and in turn, this is how you could form an Earth-like planet,&quot; says Macintosh. 51 Eri B could help tell us if our planet is rare or more common than we thought.</rNews:articleBody>
+        <rNews:headline rdf:datatype="&xsd;string">This Jupiter-like gas giant could show us how planets form in the universe</rNews:headline>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#Article5 -->
+
+    <owl:NamedIndividual rdf:about="&rNews;Article5">
+        <rdf:type rdf:resource="&rNews;Article"/>
+        <rNews:dateCreated rdf:datatype="&xsd;dateTime">2015-08-16</rNews:dateCreated>
+        <rNews:articleBody rdf:datatype="&xsd;string">NASA wants to send humans to Mars one day, and it&apos;s building a gigantic rocket called the Space Launch System to get them there. Today, the space agency will test one of the rocket&apos;s engines — the RS-25, which the agency calls &quot;the Ferrari of rocket engines&quot; — monitoring its performance and looking for problems along the way. It&apos;s the sixth of seven planned tests for the engine, and it&apos;s scheduled to last for 535 seconds. (That&apos;s the amount of time the engine would burn during a regular launch). NASA will live stream the whole test at 5PM ET, and coverage starts at 4:30PM ET.
+
+If the RS-25 looks familiar, that&apos;s because it&apos;s the same engine that was used by NASA&apos;s Space Shuttle program. But while the Space Shuttle famously used three of these RS-25 engines, the SLS will use four to push it to a top speed of more than 22,000 miles per hour (about 35,000 kilometers per hour). In its SLS configuration, the engine is more powerful than the Shuttle version — it generates 512,000 pounds of thrust and can handle temperatures as low as -400 degrees Fahrenheit (-250 degrees Celsius) and as high as to 6,000 degrees Fahrenheit (3,300 degrees Celsius). Unfortunately, we won&apos;t see a full test flight until at least 2018, and the first crewed flight isn&apos;t scheduled until the 2020s.</rNews:articleBody>
+        <rNews:articleSection rdf:datatype="&xsd;string">Science</rNews:articleSection>
+        <rNews:headline rdf:datatype="&xsd;string">Watch NASA test &apos;the Ferrari of rocket engines&apos; at 5PM ET</rNews:headline>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#Article6 -->
+
+    <owl:NamedIndividual rdf:about="&rNews;Article6">
+        <rdf:type rdf:resource="&rNews;Article"/>
+        <rNews:dateCreated rdf:datatype="&xsd;dateTime">2015-08-17</rNews:dateCreated>
+        <rNews:headline rdf:datatype="&xsd;string">NASA is asking the public to design smartwatch apps for its astronauts</rNews:headline>
+        <rNews:articleBody rdf:datatype="&xsd;string">NASA is looking to capitalize on the growing smartwatch trend, and it needs your help to do so. The space agency is hosting a contest with Freelancer.com, challenging participants to design the best smartwatch app that could be used by astronauts on the International Space Station. The best app designer will receive $1,500.
+
+Overall, NASA wants an app that will help keep the astronauts a little more organized — as well as one that will keep them safe. The app needs a timer and a way to easily display the crew&apos;s calendars and agendas for each day; it also needs to send them warnings or alerts in case they are in danger, perhaps if they need to find shelter from orbital debris. Additionally the app should let astronauts know when the ISS is in a position to communicate with ground control.
+
+Those interested in designing the app should make it compatible with the Samsung Gear 2 (sorry Apple Watch) and present their ideas as pictures &quot;highlighting the unique design’s navigation, interaction, layout, look, feel, etc.&quot; There are less than four weeks remaining in the contest, and only six people have joined so far, so the competition is still thin. But with 16 million users registered at Freelancer.com, that pool probably will grow.
+
+NASA is turning more to crowdsourcing methods to help come up with innovative designs and engineering ideas for its space missions. In May NASA announced its &quot;Journey to Mars Challenge,&quot; which asked the general public to come up with ways to keep Martian astronauts safe while needing limited resupplies from Earth. The space agency also teamed up with Freelancer.com in July, asking for new tool designs to be used by Robonaut 2 — the humanoid robot on the ISS.</rNews:articleBody>
+        <rNews:articleSection rdf:datatype="&xsd;string">Science</rNews:articleSection>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#Article7 -->
+
+    <owl:NamedIndividual rdf:about="&rNews;Article7">
+        <rdf:type rdf:resource="&rNews;Article"/>
+        <rNews:dateCreated rdf:datatype="&xsd;dateTime">2015-08-15</rNews:dateCreated>
+        <rNews:articleSection rdf:datatype="&xsd;string">Business</rNews:articleSection>
+        <rNews:headline rdf:datatype="&xsd;string">Cairn Energy cleared to start Senegal drilling operations</rNews:headline>
+        <rNews:articleBody rdf:datatype="&xsd;string">Oil and gas explorer Cairn Energy has been given the green light to press ahead with a major drilling programme off Senegal in West Africa.
+
+The company said it had been cleared by government officials in Senegal to launch an evaluation plan.
+
+Cairn, which made two discoveries in the area last year, estimated fields there could contain more than a billion barrels of oil.
+
+Its evaluation plan will start shortly with a 3D seismic survey.
+
+Later this year it aims to launch a multi-well exploration and appraisal programme.
+
+Edinburgh-based Cairn has a 40% interest in three blocks offshore Senegal (Sangomar Deep, Sangomar Offshore, Rufisque Offshore).
+
+Its partners include ConocoPhillips (35%) and FAR Ltd (15%), with Petrosen, the Senegal National Oil Company, retaining a 10% interest in the exploration phase.
+
+In its latest half-yearly report, Cairn also said that it had started international arbitration proceedings with the government of India over a tax row.
+
+Cairn has been prevented by Indian authorities from accessing the value of its 10% residual shareholding in Cairn India Limited (CIL).
+
+In March, the company received a tax bill for $1.6bn plus interest and penalties, covering the tax year 2006-07, when it was preparing to float Cairn India on the Mumbai stock exchange.
+
+Cairn has contested the bill and plans to seek restitution for losses resulting from the falling value of its stake in CIL.
+
+Due to the lower oil price, its value has dropped from $1bn in December 2013 to $526m, as at 30 June this year.
+
+The lower valuation saw Cairn book a $177.1m impairment loss in its first half, as it reported a post-tax loss of $230m - up from $62m a year ago.
+
+The company generates no revenue because its focus is exploration work.
+
+However, at the end of the first half, Cairn reported a cash balance of $725m.
+Cairn&apos;s share price was down by about 5% on Tuesday morning.</rNews:articleBody>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#Article8 -->
+
+    <owl:NamedIndividual rdf:about="&rNews;Article8">
+        <rdf:type rdf:resource="&rNews;Article"/>
+        <rNews:dateCreated rdf:datatype="&xsd;dateTime">2015-08-16</rNews:dateCreated>
+        <rNews:articleSection rdf:datatype="&xsd;string">Business</rNews:articleSection>
+        <rNews:headline rdf:datatype="&xsd;string">Longannet power station to close in March</rNews:headline>
+        <rNews:articleBody rdf:datatype="&xsd;string">Scotland&apos;s last coal-fired power station, Longannet in Fife, is to close on 31 March next year.
+
+Its owner, Scottish Power, said the high cost of connecting to the grid was to blame.
+
+The company has also announced it is abandoning plans to build a new gas-fired power station at Cockenzie in East Lothian.
+
+Longannet, which opened in 1972, is one of the biggest coal-fired power stations in Europe.
+
+The power station employs more than 230 staff but Scottish Power said it hoped to avoid compulsory redundancies.
+
+The news will leave Scotland heavily dependant on SSE&apos;s gas-fired power station at Peterhead and EDF&apos;s two ageing nuclear stations at Hunterston and Torness.
+
+It is likely to lead to renewed debate about our growing reliance on renewables and generating capacity elsewhere in the UK.
+
+Energy Minister Fergus Ewing said: &quot;Scottish Power&apos;s decision to close Longannet in March 2016 is deeply regrettable and has far-reaching consequences for Scotland.
+
+&quot;This is a worrying time for Longannet workers and the Scottish government and its agencies will do everything possible to support the 230 directly employed staff who will be affected by this announcement.&quot;
+
+Trade union Prospect said the news was a &quot;body blow&quot; to staff and the Fife economy.</rNews:articleBody>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://iptc.org/std/rNews/2011-10-07#Article9 -->
+
+    <owl:NamedIndividual rdf:about="&rNews;Article9">
+        <rdf:type rdf:resource="&rNews;Article"/>
+        <rNews:dateCreated rdf:datatype="&xsd;dateTime">2015-08-17</rNews:dateCreated>
+        <rNews:articleSection rdf:datatype="&xsd;string">Business</rNews:articleSection>
+        <rNews:articleBody rdf:datatype="&xsd;string">Interest rates will rise &quot;pretty soon&quot;, Bank of England policymaker Prof David Miles has predicted - as he prepares to leave his role on the committee that takes the decision each month.
+
+Prof Miles told BBC Newsnight that the time to raise the bank rate from its current historic low was &quot;coming&quot;.
+
+&quot;I don&apos;t think it&apos;s anything to worry about, it&apos;s a sign of health,&quot; he said.
+
+Mr Miles voted to keep rates on hold this month - his last vote on the Bank&apos;s Monetary Policy Committee.
+
+He has been on the nine-strong MPC, which votes monthly on interest rates, since June 2009.
+
+He said he was now more optimistic about the UK economy than at any time since he had joined the Bank.
+
+&quot;Within the UK economy consumer confidence is strong, corporate confidence is pretty strong and the financial system is operating near normal now,&quot; he added.
+
+But he said he expected the &quot;new normal&quot; for interest rates to be between 2.5% and 3%, and &quot;materially lower&quot; than historically.
+
+His comments come just days after fellow MPC member Prof Kristin Forbes warned that waiting too long to raise interest rates risked undermining the UK&apos;s recovery.</rNews:articleBody>
+        <rNews:headline rdf:datatype="&xsd;string">Rates to rise soon, says Bank of England policymaker</rNews:headline>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="&rNews;AudioObject"/>
+            <rdf:Description rdf:about="&rNews;ImageObject"/>
+            <rdf:Description rdf:about="&rNews;VideoObject"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+

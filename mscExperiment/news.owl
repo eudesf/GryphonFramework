@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY cc "http://web.resource.org/cc/#" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://ebiquity.umbc.edu/ontology/news.owl#"
+     xml:base="http://ebiquity.umbc.edu/ontology/news.owl"
+     xmlns:cc="http://web.resource.org/cc/#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://ebiquity.umbc.edu/ontology/news.owl">
+        <rdfs:label>eBiquity News Ontology</rdfs:label>
+        <owl:versionInfo>0.1</owl:versionInfo>
+        <cc:License rdf:resource="http://creativecommons.org/licenses/by/2.0/"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ebiquity.umbc.edu/ontology/news.owl#description -->
+
+    <owl:DatatypeProperty rdf:about="http://ebiquity.umbc.edu/ontology/news.owl#description">
+        <rdfs:label>News Description</rdfs:label>
+        <rdfs:domain rdf:resource="http://ebiquity.umbc.edu/ontology/news.owl#News"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ebiquity.umbc.edu/ontology/news.owl#publishedOn -->
+
+    <owl:DatatypeProperty rdf:about="http://ebiquity.umbc.edu/ontology/news.owl#publishedOn">
+        <rdfs:label>News Published On Date and Time</rdfs:label>
+        <rdfs:domain rdf:resource="http://ebiquity.umbc.edu/ontology/news.owl#News"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ebiquity.umbc.edu/ontology/news.owl#title -->
+
+    <owl:DatatypeProperty rdf:about="http://ebiquity.umbc.edu/ontology/news.owl#title">
+        <rdfs:label>News Title</rdfs:label>
+        <rdfs:domain rdf:resource="http://ebiquity.umbc.edu/ontology/news.owl#News"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+
+
+    <!-- http://ebiquity.umbc.edu/ontology/news.owl#category -->
+
+    <owl:DatatypeProperty rdf:about="http://ebiquity.umbc.edu/ontology/news.owl#category">
+        <rdfs:label>News Category</rdfs:label>
+        <rdfs:domain rdf:resource="http://ebiquity.umbc.edu/ontology/news.owl#News"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://ebiquity.umbc.edu/ontology/news.owl#uri -->
+
+    <owl:DatatypeProperty rdf:about="http://ebiquity.umbc.edu/ontology/news.owl#uri">
+        <rdfs:label>News URI</rdfs:label>
+        <rdfs:domain rdf:resource="http://ebiquity.umbc.edu/ontology/news.owl#News"/>
+        <rdfs:range rdf:resource="&xsd;anyURI"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://ebiquity.umbc.edu/ontology/news.owl#News -->
+
+    <owl:Class rdf:about="http://ebiquity.umbc.edu/ontology/news.owl#News">
+        <rdfs:label>News </rdfs:label>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ebiquity.umbc.edu/ontology/news.owl#title"/>
+                <owl:cardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:cardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ebiquity.umbc.edu/ontology/news.owl#uri"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ebiquity.umbc.edu/ontology/news.owl#publishedOn"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ebiquity.umbc.edu/ontology/news.owl#description"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://ebiquity.umbc.edu/ontology/news.owl#category"/>
+                <owl:maxCardinality rdf:datatype="&xsd;nonNegativeInteger">1</owl:maxCardinality>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+

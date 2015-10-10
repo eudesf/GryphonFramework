@@ -1,0 +1,64 @@
+@prefix map: <#> .
+@prefix db: <> .
+@prefix vocab: <vocab/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix news: <http://ebiquity.umbc.edu/ontology/news.owl#> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "com.mysql.jdbc.Driver";
+	d2rq:jdbcDSN "jdbc:mysql://localhost:3306/wordpress";
+	d2rq:username "root";
+	d2rq:password "";
+	jdbc:autoReconnect "true";
+	jdbc:zeroDateTimeBehavior "convertToNull";
+	.
+
+map:wp_posts a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "wp_posts/@@wp_posts.ID@@";
+	d2rq:class news:News;
+	d2rq:classDefinitionLabel "wp_posts";
+	.
+map:wp_posts__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:wp_posts;
+	d2rq:property rdfs:label;
+	d2rq:pattern "wp_posts #@@wp_posts.post_title@@";
+	.
+map:wp_posts_post_title a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:wp_posts;
+	d2rq:property news:title;
+	d2rq:propertyDefinitionLabel "wp_posts post_title";
+	d2rq:column "wp_posts.post_title";
+	d2rq:condition "wp_posts.post_status = 'publish'";
+	d2rq:condition "wp_posts.post_type = 'post'";
+	.
+map:wp_posts_post_content a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:wp_posts;
+	d2rq:property news:description;
+	d2rq:propertyDefinitionLabel "wp_posts post_content";
+	d2rq:column "wp_posts.post_content";
+	d2rq:condition "wp_posts.post_status = 'publish'";
+	d2rq:condition "wp_posts.post_type = 'post'";
+	.
+map:wp_posts_post_date a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:wp_posts;
+	d2rq:property news:publishedOn;
+	d2rq:propertyDefinitionLabel "wp_posts post_date";
+	d2rq:column "wp_posts.post_date";
+	d2rq:datatype xsd:dateTime;
+	d2rq:condition "wp_posts.post_status = 'publish'";
+	d2rq:condition "wp_posts.post_type = 'post'";
+	.
+map:post_terms a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:wp_posts;
+	d2rq:property news:category;
+	d2rq:column "wp_terms.name";
+	d2rq:condition "wp_posts.post_status = 'publish'";
+	d2rq:condition "wp_posts.post_type = 'post'";
+	d2rq:join "wp_posts.ID <= wp_term_relationships.object_id";
+	d2rq:join "wp_term_relationships.term_taxonomy_id => wp_terms.term_id";
+	.

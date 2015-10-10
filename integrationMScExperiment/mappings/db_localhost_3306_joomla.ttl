@@ -1,0 +1,56 @@
+@prefix map: <#> .
+@prefix db: <> .
+@prefix vocab: <vocab/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix jdbc: <http://d2rq.org/terms/jdbc/> .
+@prefix news: <http://ebiquity.umbc.edu/ontology/news.owl#> .
+
+map:database a d2rq:Database;
+	d2rq:jdbcDriver "com.mysql.jdbc.Driver";
+	d2rq:jdbcDSN "jdbc:mysql://localhost:3306/joomla";
+	d2rq:username "root";
+	d2rq:password "";
+	jdbc:autoReconnect "true";
+	jdbc:zeroDateTimeBehavior "convertToNull";
+	.
+
+map:j_content a d2rq:ClassMap;
+	d2rq:dataStorage map:database;
+	d2rq:uriPattern "j_content/@@j_content.id@@";
+	d2rq:class news:News;
+	d2rq:classDefinitionLabel "j_content";
+	.
+map:j_content__label a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:j_content;
+	d2rq:property rdfs:label;
+	d2rq:pattern "j_content #@@j_content.title@@";
+	.
+map:j_content_title a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:j_content;
+	d2rq:property news:title;
+	d2rq:propertyDefinitionLabel "j_content title";
+	d2rq:column "j_content.title";
+	.
+map:j_content_introtext a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:j_content;
+	d2rq:property news:description;
+	d2rq:propertyDefinitionLabel "j_content introtext";
+	d2rq:column "j_content.introtext";
+	.
+map:j_content_publish_up a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:j_content;
+	d2rq:property news:publishedOn;
+	d2rq:propertyDefinitionLabel "j_content publish_up";
+	d2rq:column "j_content.publish_up";
+	d2rq:datatype xsd:dateTime;
+	.
+map:j_content_catid a d2rq:PropertyBridge;
+	d2rq:belongsToClassMap map:j_content;
+	d2rq:property news:category;
+	d2rq:propertyDefinitionLabel "j_content catid";
+	d2rq:column "j_categories.title";
+    d2rq:join "j_content.catid => j_categories.id";
+	.

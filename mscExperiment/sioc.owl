@@ -1,0 +1,1652 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY sioc "http://rdfs.org/sioc/ns#" >
+    <!ENTITY dcterms "http://purl.org/dc/terms/" >
+    <!ENTITY wot "http://xmlns.com/wot/0.1/" >
+    <!ENTITY foaf "http://xmlns.com/foaf/0.1/" >
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY vs "http://www.w3.org/2003/06/sw-vocab-status/ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://rdfs.org/sioc/ns#"
+     xml:base="http://rdfs.org/sioc/ns"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:dcterms="http://purl.org/dc/terms/"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#"
+     xmlns:wot="http://xmlns.com/wot/0.1/"
+     xmlns:foaf="http://xmlns.com/foaf/0.1/"
+     xmlns:sioc="http://rdfs.org/sioc/ns#">
+    <owl:Ontology rdf:about="http://rdfs.org/sioc/ns#">
+        <owl:versionInfo>Revision: 1.35</owl:versionInfo>
+        <rdfs:seeAlso rdf:resource="http://rdfs.org/sioc/spec"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/terms/references -->
+
+    <owl:ObjectProperty rdf:about="&dcterms;references"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/subject -->
+
+    <owl:ObjectProperty rdf:about="&dcterms;subject"/>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#about -->
+
+    <owl:ObjectProperty rdf:about="&sioc;about">
+        <rdfs:label xml:lang="en">about</rdfs:label>
+        <rdfs:comment xml:lang="en">Specifies that this Item is about a particular resource, e.g. a Post describing a book, hotel, etc.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#account_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;account_of">
+        <rdfs:label xml:lang="en">account of</rdfs:label>
+        <rdfs:comment xml:lang="en">Refers to the foaf:Agent or foaf:Person who owns this sioc:UserAccount.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;UserAccount"/>
+        <rdfs:range rdf:resource="&foaf;Agent"/>
+        <owl:inverseOf rdf:resource="&foaf;account"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#addressed_to -->
+
+    <owl:ObjectProperty rdf:about="&sioc;addressed_to">
+        <rdfs:label xml:lang="en">addressed to</rdfs:label>
+        <rdfs:comment xml:lang="en">Refers to who (e.g. a UserAccount, e-mail address, etc.) a particular Item is addressed to.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#administrator_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;administrator_of">
+        <rdfs:label xml:lang="en">administrator of</rdfs:label>
+        <rdfs:comment xml:lang="en">A Site that the UserAccount is an administrator of.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Site"/>
+        <rdfs:domain rdf:resource="&sioc;UserAccount"/>
+        <owl:inverseOf rdf:resource="&sioc;has_administrator"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#attachment -->
+
+    <owl:ObjectProperty rdf:about="&sioc;attachment">
+        <rdfs:label xml:lang="en">attachment</rdfs:label>
+        <rdfs:comment xml:lang="en">The URI of a file attached to an Item.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#avatar -->
+
+    <owl:ObjectProperty rdf:about="&sioc;avatar">
+        <rdfs:label xml:lang="en">avatar</rdfs:label>
+        <rdfs:comment xml:lang="en">An image or depiction used to represent this UserAccount.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;UserAccount"/>
+        <rdfs:subPropertyOf rdf:resource="&foaf;depiction"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#container_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;container_of">
+        <rdfs:label xml:lang="en">container of</rdfs:label>
+        <rdfs:comment xml:lang="en">An Item that this Container contains.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Container"/>
+        <rdfs:range rdf:resource="&sioc;Item"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#creator_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;creator_of">
+        <rdfs:label xml:lang="en">creator of</rdfs:label>
+        <rdfs:comment xml:lang="en">A resource that the UserAccount is a creator of.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;UserAccount"/>
+        <owl:inverseOf rdf:resource="&sioc;has_creator"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#earlier_version -->
+
+    <owl:ObjectProperty rdf:about="&sioc;earlier_version">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:label xml:lang="en">earlier version</rdfs:label>
+        <rdfs:comment xml:lang="en">Links to a previous (older) revision of this Item or Post.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+        <rdfs:range rdf:resource="&sioc;Item"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#email -->
+
+    <owl:ObjectProperty rdf:about="&sioc;email">
+        <rdfs:label xml:lang="en">email</rdfs:label>
+        <rdfs:comment xml:lang="en">An electronic mail address of the UserAccount.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;UserAccount"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#embeds_knowledge -->
+
+    <owl:ObjectProperty rdf:about="&sioc;embeds_knowledge">
+        <rdfs:label xml:lang="en">embeds knowledge</rdfs:label>
+        <rdfs:comment xml:lang="en">This links Items to embedded statements, facts and structured content.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2004/03/trix/rdfg-1/Graph"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#feed -->
+
+    <owl:ObjectProperty rdf:about="&sioc;feed">
+        <rdfs:label xml:lang="en">feed</rdfs:label>
+        <rdfs:comment xml:lang="en">A feed (e.g. RSS, Atom, etc.) pertaining to this resource (e.g. for a Forum, Site, UserAccount, etc.).</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#follows -->
+
+    <owl:ObjectProperty rdf:about="&sioc;follows">
+        <rdfs:label xml:lang="en">follows</rdfs:label>
+        <rdfs:comment xml:lang="en">Indicates that one UserAccount follows another UserAccount (e.g. for microblog posts or other content item updates).</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;UserAccount"/>
+        <rdfs:range rdf:resource="&sioc;UserAccount"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#function_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;function_of">
+        <rdfs:label xml:lang="en">function of</rdfs:label>
+        <rdfs:comment xml:lang="en">A UserAccount that has this Role.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Role"/>
+        <owl:inverseOf rdf:resource="&sioc;has_function"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#group_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;group_of">
+        <rdfs:label xml:lang="en">group of</rdfs:label>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <owl:versionInfo>This property has been renamed. Use sioc:usergroup_of instead.</owl:versionInfo>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_administrator -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_administrator">
+        <rdfs:label xml:lang="en">has administrator</rdfs:label>
+        <rdfs:comment xml:lang="en">A UserAccount that is an administrator of this Site.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Site"/>
+        <rdfs:range rdf:resource="&sioc;UserAccount"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_container -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_container">
+        <rdfs:label xml:lang="en">has container</rdfs:label>
+        <rdfs:comment xml:lang="en">The Container to which this Item belongs.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Container"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+        <owl:inverseOf rdf:resource="&sioc;container_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_creator -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_creator">
+        <rdfs:label xml:lang="en">has creator</rdfs:label>
+        <rdfs:comment xml:lang="en">This is the UserAccount that made this resource.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;UserAccount"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_discussion -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_discussion">
+        <rdfs:label xml:lang="en">has discussion</rdfs:label>
+        <rdfs:comment xml:lang="en">The discussion that is related to this Item.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_function -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_function">
+        <rdfs:label xml:lang="en">has function</rdfs:label>
+        <rdfs:comment xml:lang="en">A Role that this UserAccount has.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Role"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_group -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_group">
+        <rdfs:label xml:lang="en">has group</rdfs:label>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <owl:versionInfo>This property has been renamed. Use sioc:has_usergroup instead.</owl:versionInfo>
+        <owl:inverseOf rdf:resource="&sioc;group_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_host -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_host">
+        <rdfs:label xml:lang="en">has host</rdfs:label>
+        <rdfs:comment xml:lang="en">The Site that hosts this Forum.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Forum"/>
+        <rdfs:range rdf:resource="&sioc;Site"/>
+        <owl:inverseOf rdf:resource="&sioc;host_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_member -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_member">
+        <rdfs:label xml:lang="en">has member</rdfs:label>
+        <rdfs:comment xml:lang="en">A UserAccount that is a member of this Usergroup.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;UserAccount"/>
+        <rdfs:domain rdf:resource="&sioc;Usergroup"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_moderator -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_moderator">
+        <rdfs:label xml:lang="en">has moderator</rdfs:label>
+        <rdfs:comment xml:lang="en">A UserAccount that is a moderator of this Forum.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Forum"/>
+        <rdfs:range rdf:resource="&sioc;UserAccount"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_modifier -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_modifier">
+        <rdfs:label xml:lang="en">has modifier</rdfs:label>
+        <rdfs:comment xml:lang="en">A UserAccount that modified this Item.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+        <rdfs:range rdf:resource="&sioc;UserAccount"/>
+        <owl:inverseOf rdf:resource="&sioc;modifier_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_owner -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_owner">
+        <rdfs:label xml:lang="en">has owner</rdfs:label>
+        <rdfs:comment xml:lang="en">A UserAccount that this resource is owned by.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;UserAccount"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_parent -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_parent">
+        <rdfs:label xml:lang="en">has parent</rdfs:label>
+        <rdfs:comment xml:lang="en">A Container or Forum that this Container or Forum is a child of.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Container"/>
+        <rdfs:domain rdf:resource="&sioc;Container"/>
+        <owl:inverseOf rdf:resource="&sioc;parent_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_part -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_part">
+        <rdfs:label xml:lang="en">has part</rdfs:label>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <rdfs:comment xml:lang="en">An resource that is a part of this subject.</rdfs:comment>
+        <owl:versionInfo>This property is deprecated. Use dcterms:hasPart from the Dublin Core ontology instead.</owl:versionInfo>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_reply -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_reply">
+        <rdfs:label xml:lang="en">has reply</rdfs:label>
+        <rdfs:comment xml:lang="en">Points to an Item or Post that is a reply or response to this Item or Post.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Item"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+        <rdfs:subPropertyOf rdf:resource="&sioc;related_to"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_scope -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_scope">
+        <rdfs:label xml:lang="en">has scope</rdfs:label>
+        <rdfs:comment xml:lang="en">A resource that this Role applies to.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Role"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_space -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_space">
+        <rdfs:label xml:lang="en">has space</rdfs:label>
+        <rdfs:comment xml:lang="en">A data Space which this resource is a part of.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Space"/>
+        <owl:inverseOf rdf:resource="&sioc;space_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_subscriber -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_subscriber">
+        <rdfs:label xml:lang="en">has subscriber</rdfs:label>
+        <rdfs:comment xml:lang="en">A UserAccount that is subscribed to this Container.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Container"/>
+        <rdfs:range rdf:resource="&sioc;UserAccount"/>
+        <rdfs:seeAlso rdf:resource="&sioc;feed"/>
+        <owl:inverseOf rdf:resource="&sioc;subscriber_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#has_usergroup -->
+
+    <owl:ObjectProperty rdf:about="&sioc;has_usergroup">
+        <rdfs:label xml:lang="en">has usergroup</rdfs:label>
+        <rdfs:comment xml:lang="en">Points to a Usergroup that has certain access to this Space.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Space"/>
+        <rdfs:range rdf:resource="&sioc;Usergroup"/>
+        <owl:inverseOf rdf:resource="&sioc;usergroup_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#host_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;host_of">
+        <rdfs:label xml:lang="en">host of</rdfs:label>
+        <rdfs:comment xml:lang="en">A Forum that is hosted on this Site.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Forum"/>
+        <rdfs:domain rdf:resource="&sioc;Site"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#later_version -->
+
+    <owl:ObjectProperty rdf:about="&sioc;later_version">
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+        <rdfs:label xml:lang="en">later version</rdfs:label>
+        <rdfs:comment xml:lang="en">Links to a later (newer) revision of this Item or Post.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Item"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+        <owl:inverseOf rdf:resource="&sioc;earlier_version"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#latest_version -->
+
+    <owl:ObjectProperty rdf:about="&sioc;latest_version">
+        <rdfs:label xml:lang="en">latest version</rdfs:label>
+        <rdfs:comment xml:lang="en">Links to the latest revision of this Item or Post.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+        <rdfs:range rdf:resource="&sioc;Item"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#link -->
+
+    <owl:ObjectProperty rdf:about="&sioc;link">
+        <rdfs:label xml:lang="en">link</rdfs:label>
+        <rdfs:comment xml:lang="en">A URI of a document which contains this SIOC object.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#links_to -->
+
+    <owl:ObjectProperty rdf:about="&sioc;links_to">
+        <rdfs:label xml:lang="en">links to</rdfs:label>
+        <rdfs:comment xml:lang="en">Links extracted from hyperlinks within a SIOC concept, e.g. Post or Site.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&dcterms;references"/>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#member_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;member_of">
+        <rdfs:label xml:lang="en">member of</rdfs:label>
+        <rdfs:comment xml:lang="en">A Usergroup that this UserAccount is a member of.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;UserAccount"/>
+        <rdfs:range rdf:resource="&sioc;Usergroup"/>
+        <owl:inverseOf rdf:resource="&sioc;has_member"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#moderator_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;moderator_of">
+        <rdfs:label xml:lang="en">moderator of</rdfs:label>
+        <rdfs:comment xml:lang="en">A Forum that a UserAccount is a moderator of.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Forum"/>
+        <rdfs:domain rdf:resource="&sioc;UserAccount"/>
+        <owl:inverseOf rdf:resource="&sioc;has_moderator"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#modifier_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;modifier_of">
+        <rdfs:label xml:lang="en">modifier of</rdfs:label>
+        <rdfs:comment xml:lang="en">An Item that this UserAccount has modified.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Item"/>
+        <rdfs:domain rdf:resource="&sioc;UserAccount"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#next_by_date -->
+
+    <owl:ObjectProperty rdf:about="&sioc;next_by_date">
+        <rdfs:label xml:lang="en">next by date</rdfs:label>
+        <rdfs:comment xml:lang="en">Next Item or Post in a given Container sorted by date.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+        <rdfs:range rdf:resource="&sioc;Item"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#next_version -->
+
+    <owl:ObjectProperty rdf:about="&sioc;next_version">
+        <rdfs:label xml:lang="en">next version</rdfs:label>
+        <rdfs:comment xml:lang="en">Links to the next revision of this Item or Post.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+        <rdfs:range rdf:resource="&sioc;Item"/>
+        <rdfs:subPropertyOf rdf:resource="&sioc;later_version"/>
+        <owl:inverseOf rdf:resource="&sioc;previous_version"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#owner_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;owner_of">
+        <rdfs:label xml:lang="en">owner of</rdfs:label>
+        <rdfs:comment xml:lang="en">A resource owned by a particular UserAccount, for example, a weblog or image gallery.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;UserAccount"/>
+        <owl:inverseOf rdf:resource="&sioc;has_owner"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#parent_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;parent_of">
+        <rdfs:label xml:lang="en">parent of</rdfs:label>
+        <rdfs:comment xml:lang="en">A child Container or Forum that this Container or Forum is a parent of.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Container"/>
+        <rdfs:domain rdf:resource="&sioc;Container"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#part_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;part_of">
+        <rdfs:label xml:lang="en">part of</rdfs:label>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <owl:versionInfo>This property is deprecated. Use dcterms:isPartOf from the Dublin Core ontology instead.</owl:versionInfo>
+        <rdfs:comment xml:lang="en">A resource that the subject is a part of.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <owl:inverseOf rdf:resource="&sioc;has_part"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#previous_by_date -->
+
+    <owl:ObjectProperty rdf:about="&sioc;previous_by_date">
+        <rdfs:label xml:lang="en">previous by date</rdfs:label>
+        <rdfs:comment xml:lang="en">Previous Item or Post in a given Container sorted by date.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Item"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+        <owl:inverseOf rdf:resource="&sioc;next_by_date"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#previous_version -->
+
+    <owl:ObjectProperty rdf:about="&sioc;previous_version">
+        <rdfs:label xml:lang="en">previous version</rdfs:label>
+        <rdfs:comment xml:lang="en">Links to the previous revision of this Item or Post.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Item"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+        <rdfs:subPropertyOf rdf:resource="&sioc;earlier_version"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#reference -->
+
+    <owl:ObjectProperty rdf:about="&sioc;reference">
+        <rdfs:label xml:lang="en">reference</rdfs:label>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <rdfs:comment xml:lang="en">Links either created explicitly or extracted implicitly on the HTML level from the Post.</rdfs:comment>
+        <owl:versionInfo>Renamed to sioc:links_to.</owl:versionInfo>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Post"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#related_to -->
+
+    <owl:ObjectProperty rdf:about="&sioc;related_to">
+        <rdfs:label xml:lang="en">related to</rdfs:label>
+        <rdfs:comment xml:lang="en">Related Posts for this Post, perhaps determined implicitly from topics or references.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#reply_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;reply_of">
+        <rdfs:label xml:lang="en">reply of</rdfs:label>
+        <rdfs:comment xml:lang="en">Links to an Item or Post which this Item or Post is a reply to.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Item"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+        <owl:inverseOf rdf:resource="&sioc;has_reply"/>
+        <rdfs:subPropertyOf rdf:resource="&sioc;related_to"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#scope_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;scope_of">
+        <rdfs:label xml:lang="en">scope of</rdfs:label>
+        <rdfs:comment xml:lang="en">A Role that has a scope of this resource.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Role"/>
+        <owl:inverseOf rdf:resource="&sioc;has_scope"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#sibling -->
+
+    <owl:ObjectProperty rdf:about="&sioc;sibling">
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
+        <rdfs:label xml:lang="en">sibling</rdfs:label>
+        <rdfs:comment xml:lang="en">An Item may have a sibling or a twin that exists in a different Container, but the siblings may differ in some small way (for example, language, category, etc.). The sibling of this Item should be self-describing (that is, it should contain all available information).</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Item"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#space_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;space_of">
+        <rdfs:label xml:lang="en">space of</rdfs:label>
+        <rdfs:comment xml:lang="en">A resource which belongs to this data Space.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Space"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#subscriber_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;subscriber_of">
+        <rdfs:label xml:lang="en">subscriber of</rdfs:label>
+        <rdfs:comment xml:lang="en">A Container that a UserAccount is subscribed to.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Container"/>
+        <rdfs:domain rdf:resource="&sioc;UserAccount"/>
+        <rdfs:seeAlso rdf:resource="&sioc;feed"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#topic -->
+
+    <owl:ObjectProperty rdf:about="&sioc;topic">
+        <rdfs:label xml:lang="en">topic</rdfs:label>
+        <rdfs:comment xml:lang="en">A topic of interest, linking to the appropriate URI, e.g. in the Open Directory Project or of a SKOS category.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&dcterms;subject"/>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#usergroup_of -->
+
+    <owl:ObjectProperty rdf:about="&sioc;usergroup_of">
+        <rdfs:label xml:lang="en">usergroup of</rdfs:label>
+        <rdfs:comment xml:lang="en">A Space that the Usergroup has access to.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&sioc;Space"/>
+        <rdfs:domain rdf:resource="&sioc;Usergroup"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/account -->
+
+    <owl:ObjectProperty rdf:about="&foaf;account"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/depiction -->
+
+    <owl:ObjectProperty rdf:about="&foaf;depiction"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.org/dc/terms/category -->
+
+    <owl:DatatypeProperty rdf:about="&dcterms;category"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/date -->
+
+    <owl:DatatypeProperty rdf:about="&dcterms;date"/>
+    
+
+
+    <!-- http://purl.org/dc/terms/title -->
+
+    <owl:DatatypeProperty rdf:about="&dcterms;title"/>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#content -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;content">
+        <rdfs:label xml:lang="en">content</rdfs:label>
+        <rdfs:comment xml:lang="en">The content of the Item in plain text format.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#content_encoded -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;content_encoded">
+        <rdfs:label xml:lang="en">content encoded</rdfs:label>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <owl:versionInfo>This property is deprecated. Use content:encoded from the RSS 1.0 content module instead.</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The encoded content of the Post, contained in CDATA areas.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Post"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#created_at -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;created_at">
+        <rdfs:label xml:lang="en">created at</rdfs:label>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <owl:versionInfo>This property is deprecated. Use dcterms:created from the Dublin Core ontology instead.</owl:versionInfo>
+        <rdfs:comment xml:lang="en">When this was created, in ISO 8601 format.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Post"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#description -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;description">
+        <rdfs:label xml:lang="en">description</rdfs:label>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <owl:versionInfo>This property is deprecated. Use sioc:content or other methods (AtomOwl, content:encoded from RSS 1.0, etc.) instead.</owl:versionInfo>
+        <rdfs:comment xml:lang="en">The content of the Post.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Post"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#email_sha1 -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;email_sha1">
+        <rdfs:label xml:lang="en">email sha1</rdfs:label>
+        <rdfs:comment xml:lang="en">An electronic mail address of the UserAccount, encoded using SHA1.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;UserAccount"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#first_name -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;first_name">
+        <rdfs:label xml:lang="en">first name</rdfs:label>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <rdfs:comment xml:lang="en">First (real) name of this User. Synonyms include given name or christian name.</rdfs:comment>
+        <owl:versionInfo>This property is deprecated. Use foaf:name or foaf:firstName from the FOAF vocabulary instead.</owl:versionInfo>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;UserAccount"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#id -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;id">
+        <rdfs:label xml:lang="en">id</rdfs:label>
+        <rdfs:comment xml:lang="en">An identifier of a SIOC concept instance. For example, a user ID. Must be unique for instances of each type of SIOC concept within the same site.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#ip_address -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;ip_address">
+        <rdfs:label xml:lang="en">ip address</rdfs:label>
+        <rdfs:comment xml:lang="en">The IP address used when creating this Item. This can be associated with a creator. Some wiki articles list the IP addresses for the creator or modifiers when the usernames are absent.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Item"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#last_activity_date -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;last_activity_date">
+        <rdfs:label xml:lang="en">last activity date</rdfs:label>
+        <rdfs:comment xml:lang="en">The date and time of the last activity associated with a SIOC concept instance, and expressed in ISO 8601 format. This could be due to a reply Post or Comment, a modification to an Item, etc.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&dcterms;date"/>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#last_item_date -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;last_item_date">
+        <rdfs:label xml:lang="en">last item date</rdfs:label>
+        <rdfs:comment xml:lang="en">The date and time of the last Post (or Item) in a Forum (or a Container), in ISO 8601 format.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&dcterms;date"/>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Container"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#last_name -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;last_name">
+        <rdfs:label xml:lang="en">last name</rdfs:label>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <owl:versionInfo>This property is deprecated. Use foaf:name or foaf:surname from the FOAF vocabulary instead.</owl:versionInfo>
+        <rdfs:comment xml:lang="en">Last (real) name of this user. Synonyms include surname or family name.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;UserAccount"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#last_reply_date -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;last_reply_date">
+        <rdfs:label xml:lang="en">last reply date</rdfs:label>
+        <rdfs:comment xml:lang="en">The date and time of the last reply Post or Comment, which could be associated with a starter Item or Post or with a Thread, and expressed in ISO 8601 format.</rdfs:comment>
+        <rdfs:subPropertyOf rdf:resource="&dcterms;date"/>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#modified_at -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;modified_at">
+        <rdfs:label xml:lang="en">modified at</rdfs:label>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <owl:versionInfo>This property is deprecated. Use dcterms:modified from the Dublin Core ontology instead.</owl:versionInfo>
+        <rdfs:comment xml:lang="en">When this was modified, in ISO 8601 format.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Post"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#name -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;name">
+        <rdfs:label xml:lang="en">name</rdfs:label>
+        <rdfs:comment xml:lang="en">The name of a SIOC concept instance, e.g. a username for a UserAccount, group name for a Usergroup, etc.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#note -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;note">
+        <rdfs:label xml:lang="en">note</rdfs:label>
+        <rdfs:comment xml:lang="en">A note associated with this resource, for example, if it has been edited by a UserAccount.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#num_authors -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;num_authors">
+        <rdfs:label xml:lang="en">num authors</rdfs:label>
+        <rdfs:comment xml:lang="en">The number of unique authors (UserAccounts and unregistered posters) who have contributed to this Item, Thread, Post, etc.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&xsd;nonNegativeInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#num_items -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;num_items">
+        <rdfs:label xml:lang="en">num items</rdfs:label>
+        <rdfs:comment xml:lang="en">The number of Posts (or Items) in a Forum (or a Container).</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Container"/>
+        <rdfs:range rdf:resource="&xsd;nonNegativeInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#num_replies -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;num_replies">
+        <rdfs:label xml:lang="en">num replies</rdfs:label>
+        <rdfs:comment xml:lang="en">The number of replies that this Item, Thread, Post, etc. has. Useful for when the reply structure is absent.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&xsd;nonNegativeInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#num_threads -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;num_threads">
+        <rdfs:label xml:lang="en">num threads</rdfs:label>
+        <rdfs:comment xml:lang="en">The number of Threads (AKA discussion topics) in a Forum.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Forum"/>
+        <rdfs:range rdf:resource="&xsd;nonNegativeInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#num_views -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;num_views">
+        <rdfs:label xml:lang="en">num views</rdfs:label>
+        <rdfs:comment xml:lang="en">The number of times this Item, Thread, UserAccount profile, etc. has been viewed.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:range rdf:resource="&xsd;nonNegativeInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#subject -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;subject">
+        <rdfs:label xml:lang="en">subject</rdfs:label>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <rdfs:comment xml:lang="en">Keyword(s) describing subject of the Post.</rdfs:comment>
+        <owl:versionInfo>This property is deprecated. Use dcterms:subject from the Dublin Core ontology for text keywords and sioc:topic if the subject can be represented by a URI instead.</owl:versionInfo>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Post"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#title -->
+
+    <owl:DatatypeProperty rdf:about="&sioc;title">
+        <rdfs:label xml:lang="en">title</rdfs:label>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <owl:versionInfo>This property is deprecated. Use dcterms:title from the Dublin Core ontology instead.</owl:versionInfo>
+        <rdfs:comment xml:lang="en">This is the title (subject line) of the Post. Note that for a Post within a threaded discussion that has no parents, it would detail the topic thread.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+        <rdfs:domain rdf:resource="&sioc;Post"/>
+        <rdfs:range rdf:resource="&rdfs;Literal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Community -->
+
+    <owl:Class rdf:about="&sioc;Community">
+        <rdfs:label xml:lang="en">Community</rdfs:label>
+        <owl:disjointWith rdf:resource="&sioc;Item"/>
+        <owl:disjointWith rdf:resource="&sioc;Role"/>
+        <owl:disjointWith rdf:resource="&sioc;UserAccount"/>
+        <rdfs:comment xml:lang="en">Community is a high-level concept that defines an online community and what it consists of.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:Class>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Container -->
+
+    <owl:Class rdf:about="&sioc;Container">
+        <rdfs:label xml:lang="en">Container</rdfs:label>
+        <owl:disjointWith rdf:resource="&sioc;Item"/>
+        <owl:disjointWith rdf:resource="&sioc;Role"/>
+        <owl:disjointWith rdf:resource="&sioc;User"/>
+        <owl:disjointWith rdf:resource="&sioc;UserAccount"/>
+        <owl:disjointWith rdf:resource="&sioc;Usergroup"/>
+        <rdfs:comment xml:lang="en">An area in which content Items are contained.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:Class>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Forum -->
+
+    <owl:Class rdf:about="&sioc;Forum">
+        <rdfs:label xml:lang="en">Forum</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sioc;Container"/>
+        <rdfs:comment xml:lang="en">A discussion area on which Posts or entries are made.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:Class>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Item -->
+
+    <owl:Class rdf:about="&sioc;Item">
+        <rdfs:label xml:lang="en">Item</rdfs:label>
+        <owl:disjointWith rdf:resource="&sioc;Role"/>
+        <owl:disjointWith rdf:resource="&sioc;Space"/>
+        <owl:disjointWith rdf:resource="&sioc;User"/>
+        <owl:disjointWith rdf:resource="&sioc;UserAccount"/>
+        <owl:disjointWith rdf:resource="&sioc;Usergroup"/>
+        <rdfs:comment xml:lang="en">An Item is something which can be in a Container.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:Class>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Post -->
+
+    <owl:Class rdf:about="&sioc;Post">
+        <rdfs:label xml:lang="en">Post</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sioc;Item"/>
+        <rdfs:subClassOf rdf:resource="&foaf;Document"/>
+        <rdfs:comment xml:lang="en">An article or message that can be posted to a Forum.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:Class>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Role -->
+
+    <owl:Class rdf:about="&sioc;Role">
+        <rdfs:label xml:lang="en">Role</rdfs:label>
+        <owl:disjointWith rdf:resource="&sioc;Space"/>
+        <owl:disjointWith rdf:resource="&sioc;User"/>
+        <owl:disjointWith rdf:resource="&sioc;UserAccount"/>
+        <owl:disjointWith rdf:resource="&sioc;Usergroup"/>
+        <rdfs:comment xml:lang="en">A Role is a function of a UserAccount within a scope of a particular Forum, Site, etc.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:Class>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Site -->
+
+    <owl:Class rdf:about="&sioc;Site">
+        <rdfs:label xml:lang="en">Site</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sioc;Space"/>
+        <rdfs:comment xml:lang="en">A Site can be the location of an online community or set of communities, with UserAccounts and Usergroups creating Items in a set of Containers. It can be thought of as a web-accessible data Space.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:Class>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Space -->
+
+    <owl:Class rdf:about="&sioc;Space">
+        <rdfs:label xml:lang="en">Space</rdfs:label>
+        <owl:disjointWith rdf:resource="&sioc;User"/>
+        <owl:disjointWith rdf:resource="&sioc;UserAccount"/>
+        <owl:disjointWith rdf:resource="&sioc;Usergroup"/>
+        <rdfs:comment xml:lang="en">A Space is a place where data resides, e.g. on a website, desktop, fileshare, etc.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:Class>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Thread -->
+
+    <owl:Class rdf:about="&sioc;Thread">
+        <rdfs:label xml:lang="en">Thread</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&sioc;Container"/>
+        <rdfs:comment xml:lang="en">A container for a series of threaded discussion Posts or Items.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:Class>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#User -->
+
+    <owl:Class rdf:about="&sioc;User">
+        <rdfs:label xml:lang="en">User</rdfs:label>
+        <owl:equivalentClass rdf:resource="&sioc;UserAccount"/>
+        <rdfs:subClassOf rdf:resource="&foaf;OnlineAccount"/>
+        <owl:disjointWith rdf:resource="&sioc;Usergroup"/>
+        <owl:deprecated rdf:datatype="&xsd;boolean">true</owl:deprecated>
+        <owl:versionInfo>This class is deprecated. Use sioc:UserAccount from the SIOC ontology instead.</owl:versionInfo>
+        <rdfs:comment xml:lang="en">UserAccount is now preferred. This is a deprecated class for a User in an online community site.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:Class>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#UserAccount -->
+
+    <owl:Class rdf:about="&sioc;UserAccount">
+        <rdfs:label xml:lang="en">User Account</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&foaf;OnlineAccount"/>
+        <owl:disjointWith rdf:resource="&sioc;Usergroup"/>
+        <rdfs:comment xml:lang="en">A user account in an online community site.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:Class>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Usergroup -->
+
+    <owl:Class rdf:about="&sioc;Usergroup">
+        <rdfs:label xml:lang="en">Usergroup</rdfs:label>
+        <rdfs:comment xml:lang="en">A set of UserAccounts whose owners have a common purpose or interest. Can be used for access control purposes.</rdfs:comment>
+        <rdfs:isDefinedBy rdf:resource="http://rdfs.org/sioc/ns#"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.w3.org/2004/03/trix/rdfg-1/Graph -->
+
+    <owl:Class rdf:about="http://www.w3.org/2004/03/trix/rdfg-1/Graph"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Agent -->
+
+    <owl:Class rdf:about="&foaf;Agent"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/Document -->
+
+    <owl:Class rdf:about="&foaf;Document"/>
+    
+
+
+    <!-- http://xmlns.com/foaf/0.1/OnlineAccount -->
+
+    <owl:Class rdf:about="&foaf;OnlineAccount"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://rdfs.org/sioc/ns# -->
+
+    <owl:Thing rdf:about="http://rdfs.org/sioc/ns#">
+        <rdf:type rdf:resource="&owl;NamedIndividual"/>
+        <dcterms:category xml:lang="en">SIOC (Semantically-Interlinked Online Communities) is an ontology for describing the information in online communities. 
+This information can be used to export information from online communities and to link them together. The scope of the application areas that SIOC can be used for includes (and is not limited to) weblogs, message boards, mailing lists and chat channels.</dcterms:category>
+        <dcterms:title xml:lang="en">SIOC Core Ontology Namespace</dcterms:title>
+    </owl:Thing>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Post1 -->
+
+    <owl:NamedIndividual rdf:about="&sioc;Post1">
+        <rdf:type rdf:resource="&sioc;Post"/>
+        <rdfs:label rdf:datatype="&xsd;string">Brompton Bicycle gears up for growth with bigger factory</rdfs:label>
+        <dcterms:date rdf:datatype="&xsd;dateTime">2015-08-15</dcterms:date>
+        <dcterms:title rdf:datatype="&xsd;string">Brompton Bicycle gears up for growth with bigger factory</dcterms:title>
+        <content rdf:datatype="&xsd;string">Brompton Bicycle is doubling the size of its factory floor space to meet growing international demand for its folding bikes.
+
+The British manufacturer aims to make 100,000 bikes a year by 2021, so is moving to an 86,000 sq ft plant in Greenford, west London, which is nearly twice the size of its current base in nearby Brentford. 
+
+Although Brompton is only moving a few miles down the road, it marks a shift in gear for the company that began life in its inventor’s west London flat in 1975.
+
+The company said staying in the capital was essential to its identity: “We are committed to London. Brompton was born from a need of city living, our staff are Londoners and the city continues to to inform how Brompton develops.”
+
+Its chief financial officer, Lorne Vary, said Brompton had spent a couple of years looking for the right site, but was prepared to pay the London property premium to retain its skilled workforce.
+
+The manufacturer invests 18 months in training its brazers, the craftsmen who put the steel frame of the bike together. “We’ve got a highly skilled workforce … and we really wanted to take our staff with us,” Vary said.
+
+“Additionally in the overseas market Made in London is very strong; British manufacturing is held in high esteem, so to a lesser degree that was important.
+
+“By keeping manufacturing in London we have got better control over it rather than it being outsourced.”
+
+Overseas buyers bought 80% of the 45,000 bikes Brompton sold last year, with demand growing strongly among urbanites in Asia and the US.
+
+Vary said of the target to make 100,000 bikes a year by 2021: “It’s a huge goal to hit. We would love to hit it five years from now ... but realistically [it is] probably six years from now.”
+
+The growth of Brompton into the UK’s largest bicycle manufacturer marks a transformation since Andrew Ritchie began designing its first bike in 1975 from his flat in South Kensington, west London. The name was borrowed from the Brompton Oratory, the imposing Roman Catholic church next to Ritchie’s flat.
+
+In the early years, Brompton attracted a niche market of enthusiasts, but production took off after 2002 when the company reorganised its production line and began taking on more skilled staff.
+
+It made £3.4m profit on a turnover of £28m last year and employs 240 staff, more than half of which have skilled manufacturing jobs.
+
+Brompton exports its bikes to 44 countries, and has stores in cities in the Netherlands, Italy, Germany, Thailand and China.
+
+The move to Greenford is already under way and is expected to be completed by January 2016.</content>
+        <dcterms:category rdf:datatype="&xsd;string">Business</dcterms:category>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Post10 -->
+
+    <owl:NamedIndividual rdf:about="&sioc;Post10">
+        <rdf:type rdf:resource="&sioc;Post"/>
+        <rdfs:label rdf:datatype="&xsd;string">Freaky &apos;Sea Monster&apos; Recovered From Centuries-Old Shipwreck</rdfs:label>
+        <dcterms:date rdf:datatype="&xsd;dateTime">2015-08-16</dcterms:date>
+        <dcterms:title rdf:datatype="&xsd;string">Freaky &apos;Sea Monster&apos; Recovered From Centuries-Old Shipwreck</dcterms:title>
+        <dcterms:category rdf:datatype="&xsd;string">Science</dcterms:category>
+        <content rdf:datatype="&xsd;string">The fearsome-looking figurehead of a warship that went down in the Baltic Sea more than 500 years ago has been raised from the seafloor to the surface--and the recovery of the artifact is stirring great excitement among archaeologists.
+
+&quot;Last time it looked at the world, Leonardo da Vinci and Christopher Columbus were still living,&quot; Dr. Johan Rönnby, professor of marine archaeology at Sweden&apos;s Södertörn University and a member of the team that salvaged the figurehead, told Reuters.
+
+The carved wooden artifact is about 3.5 meters long and weighs about 300 kilograms, according to a written statement issued by the university. It depicts an animal with ears like a lion&apos;s and a crocodile-like mouth--and it appears to be gobbling up or spitting out a person.
+
+It&apos;s not the sort of thing you come across every day.
+
+“No similar item from the 15th Century has ever been found anywhere in the world,” Marcus Sandekjer, head of the Blekinge Museum in Karlskrona, Sweden, told Discovery News. The museum was involved in the salvage effort, along with the university.
+
+The figurehead belonged to the Gribshunden, a Danish vessel that sank in 1495 after catching fire, according to the university&apos;s statement. The flagship of King Hans, the vessel now lies on the bottom of the sea at a depth of about 10 meters along Sweden&apos;s southeastern coast, not far from the town of Ronneby.
+
+The ship is considered one of the best-preserved wrecks of its era--and, like the figurehead that adorned its prow, is beyond rare.
+
+&quot;The ship is absolutely unique,&quot; Rönnby said in a written statement last month after the completion of a detailed survey of the wreck. &quot;It is an archaeological example of large carvel-built sailing ships and is the same age as Columbus&apos; Santa Maria, but bigger.&quot;
+
+The shipwreck had been known to recreational divers since the 1980s, Rönnby told The Huffington Post in an email, but not until 2013 did it become clear that it was something very special--and very old.
+
+Rönnby said a more extensive investigation of the shipwreck is planned for next summer, though it is unlikely that the entire ship will be raised to the surface.
+
+The efforts are expected to bring a better understanding of 15th Century ships, including those sailed by Columbus and other early explorers.
+
+&quot;This is the same period, and we can learn very much about how the ships were made, how they were constructed, since there are no ships left from this time,&quot; Sandekjer told Reuters.</content>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Post2 -->
+
+    <owl:NamedIndividual rdf:about="&sioc;Post2">
+        <rdf:type rdf:resource="&sioc;Post"/>
+        <rdfs:label rdf:datatype="&xsd;string">Airbus finalises $26.6bn plane deal with Indian airline IndiGo</rdfs:label>
+        <dcterms:date rdf:datatype="&xsd;dateTime">2015-08-17</dcterms:date>
+        <dcterms:title rdf:datatype="&xsd;string">Airbus finalises $26.6bn plane deal with Indian airline IndiGo</dcterms:title>
+        <content rdf:datatype="&xsd;string">Airbus has finalised a record $26.6bn (£17bn) deal to sell 250 A320neo planes to an Indian budget airline in a boost for engineers working for the European aerospace group in the UK.
+
+The deal with no-frills carrier IndiGo, which confirms an earlier provisional order for the planes, is the single-largest order for Airbus.
+
+The wings for Airbus’s A320 planes will be made at Broughton in north Wales, before being sent on to aircraft production lines in Hamburg, Toulouse or China.
+
+The company employs 16,000 people in the UK and produces 1,000 aircraft wings a year at the Broughton plant. The aerospace industry is worth about £24bn a year to the UK economy and it is seen by the government – along with the automotive sector – as a poster child for British manufacturing.
+
+However, Airbus has warned recently that a British exit from the EU could threaten the presence of the Franco-German group in the UK. Speaking in May, the UK head of Airbus, Paul Kahn, said: “If, after an exit from the European Union, economic conditions in Britain were less favourable for business than in other parts of Europe, or beyond, would Airbus reconsider future investment in the UK? Yes, absolutely.”
+
+The latest deal extends the lead of Airbus in the most lucrative market in commercial aerospace, for narrow-body planes, where it is pitched against US rival Boeing. The A320 family of planes, which includes the A320neo, the latest, most fuel-efficient model, are the most popular single-aisle aircraft in the world, with more than 11,800 orders to date and 6,600 aircraft delivered to 400 different airlines.
+
+The plane competes against Boeing’s 737 and upgraded 737Max.
+
+The US company has had 2,831 orders for is 737 Max plane, while Airbus has received more than 4,100 orders for the A320neo, including the latest IndiGo deal.
+
+“It fills us with pride that IndiGo, India’s largest airline and one of the early launch customers for the A320neo, is coming back for more of our benchmark aircraft,” said John Leahy, Airbus’s chief operating officer.
+
+IndiGo is India’s largest airline by market share and was founded in 2006 by entrepreneur Rahul Bhatia and former US Airways chief executive Rakesh Gangwal. The airline is growing rapidly on the back of demand for air travel in India, as millions take to the skies for the first time.
+
+India’s air travel market is forecast by the International Air Transport Association to become the third largest in the world by 2031, as well-established air travel markets in the US and Europe give way to the Middle East and Asia. Manufacturing plans at Airbus have reflected that shift in demand, with Airbus signing a deal for its second factory in China last month. It already operates an A320 assembly line in the city of Tianjin.
+
+IndiGo’s A320neo planes will take off from 2018, with Airbus expected to deliver the planes between 2018-2026. The deal makes IndiGo the largest customer for the A320 family of aircraft.</content>
+        <dcterms:category rdf:datatype="&xsd;string">Business</dcterms:category>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Post3 -->
+
+    <owl:NamedIndividual rdf:about="&sioc;Post3">
+        <rdf:type rdf:resource="&sioc;Post"/>
+        <rdfs:label rdf:datatype="&xsd;string">Jeff Bezos defends Amazon after NYT exposé of working practices</rdfs:label>
+        <dcterms:date rdf:datatype="&xsd;dateTime">2015-08-18</dcterms:date>
+        <content rdf:datatype="&xsd;string">Amazon founder and chief executive Jeff Bezos has defended his company after allegations of employee cruelty made by the New York Times.
+
+In a rare communication from the 51-year-old, Bezos told staff to carefully read the “very long” article and compared it with a “very different take by a current Amazonian” in an internal all-staff email.
+
+Bezos said: “The article doesn’t describe the Amazon I know or the caring Amazonians I work with every day. But if you know of any stories like those reported, I want you to escalate to HR.”
+
+The company’s founder, who is worth $49.5bn, told staff that they could email him directly and that “even if it’s rare or isolated, our tolerance for any such lack of empathy needs to be zero”.
+
+Over 100 former and current Amazon employees were interviewed for the New York Times’s 5,400-word expose, describing working conditions devoid of empathy and which push employees to their limits in the name of productivity and efficiency.
+
+Bo Olson, a former employee from the company’s book marketing department, described Amazon as a place where “you walk out of a conference room and you’ll see a grown man covering his face” and where “nearly every person I worked with, I saw cry at their desk”.
+
+“Amazon is where overachievers go to feel bad about themselves,” said Noelle Barnes who worked in marketing for Amazon for nine years.
+
+The article paints a picture where every part of employees’ working and personal lives are tracked and quantified, where their movements, productivity and successes or failures are measured to the nth degree while managers are forced to rate their employees and fire their lowest-scoring workers.
+
+Instant replies to emails are expected, even if sent in the middle of the night or the weekends, and employees are apparently actively encouraged to secretly funnel their back-stabbing or praise through Amazon’s “Anytime Feedback Tool”. Some employees felt it necessary to secretly form pacts of negative feedback to edge out others and prevent themselves from being fired, according to the article.
+
+The interviews describe Amazon’s atmosphere as one that sees employees actively competing against each other, where the fully committed who are prepared to sacrifice to get ahead thrive and while others are stamped on.
+
+“You can work long, hard or smart, but at Amazon.com you can’t choose two out of three,” Bezos said in a letter he wrote to shareholders in 1997.
+
+Even the company’s guidelines “conjure an empire of elite workers” according to the article, which describes rules such as “hire and develop the best”, exhibit “ownership” over your patch of the business and conduct everything transparently to see “who is really achieving and who is not”.
+
+Unlike other US technology firms, Amazon’s competitive nature can see high-performing staff see significant bonuses, often in stock, but without the free food and other perks the likes of Google and Facebook offer.
+
+Meanwhile the company embraces “frugality”, another one of its guidelines, often forcing workers to pay for their own travel expenses and mobile phones, while exerting extreme pressure that sees employees work day and night.
+
+One woman interviewed said she had paid a freelancer in India to enter data out of her own pocket to get more done: “these businesses were my babies, and I did whatever I could to make them successful”, she said.
+
+“Hopefully, you’re having fun working with a bunch of brilliant teammates, helping invent the future, and laughing along the way,” wrote Bezos in his memo, who is infamous for his big, loud laugh which has been described as maniacal by some, grating by others.
+
+The article illustrated the alleged poor welfare with anecdotes from employees. One female employee with breast cancer was allegedly put on a “performance improvement plan” while another was sent on a business trip the day after suffering a miscarriage. A thyroid cancer sufferer was also allegedly marked with low performance on returning to work and told that Amazon was more productive without her.
+
+Bezos said: “[The article] claims that our intentional approach is to create a soulless, dystopian workplace where no fun is had and no laughter heard. I don’t recognise this Amazon and I very much hope you don’t, either.”
+
+“I strongly believe that anyone working in a company that really is like the one described in the NYT would be crazy to stay. I know I would leave such a company.”
+
+A spokesperson for Amazon said: “While we generally do not comment on individual news stories, we quickly saw current Amazon employees react,” referencing a blogpost by Amazon’s head of infrastructure development, Nick Ciubotariu.</content>
+        <dcterms:category rdf:datatype="&xsd;string">Business</dcterms:category>
+        <dcterms:title rdf:datatype="&xsd;string">Jeff Bezos defends Amazon after NYT exposé of working practices</dcterms:title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Post4 -->
+
+    <owl:NamedIndividual rdf:about="&sioc;Post4">
+        <rdf:type rdf:resource="&sioc;Post"/>
+        <rdfs:label rdf:datatype="&xsd;string">Bitcoin&apos;s forked: chief scientist launches alternative proposal for the currency</rdfs:label>
+        <dcterms:date rdf:datatype="&xsd;dateTime">2015-08-18</dcterms:date>
+        <dcterms:title rdf:datatype="&xsd;string">Bitcoin&apos;s forked: chief scientist launches alternative proposal for the currency</dcterms:title>
+        <content rdf:datatype="&xsd;string">Cryptocurrency bitcoin is facing civil war, with two high-profile developers announcing plans to split the code that underpins the network.
+
+Known as a “fork”, the new version of bitcoin (dubbed Bitcoin XT) would support more transactions per hour, at the cost of increasing the amount of memory required to hold a full database of all the bitcoin transactions throughout history, known as the blockchain.
+
+It is backed by Mike Hearn and Gavin Andresen, two of the most senior developers involved in the bitcoin project. Both are involved in the Bitcoin Foundation, the non-profit group that oversees the currency’s development: Hearn is the former chair of the foundation’s law and policy committee, while Andresen is the chief scientist of the foundation.
+
+In a post on the bitcoin developer mailing list, Hearn said that he felt a fork was the only option for solving the deadlock within the community: “I feel sad that it’s come to this, but there is no other way. The Bitcoin Core project has drifted so far from the principles myself and many others feel are important, that a fork is the only way to fix things.”
+
+The key difference between Bitcoin XT and the other version of bitcoin, known as Bitcoin Core, is size of the blocks into which transactions get grouped every 10 minutes. Core supports a maximum block size of 1mb, which XT increases to 8mb. Hearn, and the other supporters of XT, argue that that increase is necessary if the currency is to continue growing.
+
+“As Bitcoin spreads via word of mouth, we will reach the limit of the current system some time next year, or by 2017 at the absolute latest,” Hearn writes. “So it is now time to raise the limit, or remove it entirely.”
+
+Those who oppose the change do so for a variety of reasons. Some argue that it’s a simple sticking-plaster solution, and that the actual fix should be far more wide-ranging (one such proposal being the “lightning network” upgrade); they worry that removing the most pressing need for an upgrade will also lessen he chance of that wide-ranging fix.
+
+Others simply oppose changing anything from the initial bitcoin proposal presented by Satoshi Nakamoto in 2009, and argue that any major change should come in the form of a whole new currency, or “alt coin”, rather than an update to bitcoin itself.
+
+One opponent, posting to the bitcoin-dev mailing list, even claimed to be Nakamoto himself.
+
+“The developers of this pretender-Bitcoin claim to be following my original vision, but nothing could be further from the truth,” they wrote. “When I designed Bitcoin, I designed it in such a way as to make future modifications to the consensus rules difficult without near unanimous agreement. Bitcoin was designed to be protected from the influence of charismatic leaders, even if their name is Gavin Andresen, Barack Obama, or Satoshi Nakamoto. Nearly everyone has to agree on a change, and they have to do it without being forced or pressured into it. By doing a fork in this way, these developers are violating the ‘original vision’ they claim to honour.”
+
+The poster’s claim to be Nakamoto was widely derided, since the message wasn’t cryptographically signed, and so could have come from anyone. Nonetheless, Hearn – who says that the message “could be from anyone” – argues the fake Nakamoto’s input proves a point.
+
+“There’s an interesting thing here – what if Satoshi did come back and weigh in? Let’s imagine he turned up and said he’d rethought, and Bitcoin was a bad idea. Should everyone just give up and walk away? Or accept that people’s ideas do change. My article quotes Satoshi a lot, but that’s not to imply he’s some sort of god or absent dictator.
+
+Tech Weekly The future of Bitcoin – Tech Weekly podcast
+Bitcoin was heralded as the future of money, but it&apos;s not yet broken through to the mainstream. Will it ever?
+
+“I find the current upset over Jeremy Corbyn to be an interesting parallel. Labour is splitting apart because obviously a lot of people feel it abandoned its original left-wing principles. I don’t pass judgment on whether this is good or bad for Labour: it’s just fascinating timing that’s there’s a fork happening in another big quasi-political project simultaneously.”
+
+In the short term, Hearn argues that most bitcoin users can safely ignore the debate. Unless they are “mining” – running the software that verifies bitcoin transactions – bitcoin users effectively have no vote in which one of the competing proposals becomes the future of bitcoin, while the software they use to make payments in the currency will likely support the biggest of the two networks.
+
+“Almost all users run wallets that will just automatically follow whatever the final decision is. It’s not something they need worry about,” he says.
+
+“Except, of course, in a high-level sense: if they bought bitcoins in the hope that it one day takes off and becomes really big, then they should keep an eye on things. If the big-blocks side doesn’t win out then the chances of going mainstream look much worse, and they may wish to rethink their investment.”
+
+The worst-case scenario for the currency is that both Bitcoin XT and Bitcoin core continue to exist alongside each other for a long period of time, with neither fully seizing the mantle of the true heir to Nakamoto’s vision. In such a situation, the currency’s uncertain future could prove permanently damaging to its prospects.
+
+But even if the change goes through relatively quickly, some inattentive users could find themselves out of pocket. Once the block sizes increase (which won’t happen until January 2016, and then only if 75% of the miners have switched to Bitcoin XT), the two versions of bitcoin will be incompatible. Transactions made on one version of bitcoin would not be reflected on the other, essentially rendering null any attempts to spend bitcoin on the “losing” fork after that date.</content>
+        <dcterms:category rdf:datatype="&xsd;string">Tech</dcterms:category>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Post5 -->
+
+    <owl:NamedIndividual rdf:about="&sioc;Post5">
+        <rdf:type rdf:resource="&sioc;Post"/>
+        <rdfs:label rdf:datatype="&xsd;string">Software upgrade grounds hundreds of flights over US east coast</rdfs:label>
+        <dcterms:date rdf:datatype="&xsd;dateTime">2015-08-15</dcterms:date>
+        <content rdf:datatype="&xsd;string">Hundreds of flights across the east coast of the US were delayed or cancelled at the weekend due to a software upgrade, the US Federal Aviation Administration has said.
+
+“Technical issues” with a Virginia air traffic control centre caused 492 flight delays and 476 cancellations, the FAA said. Saturday air traffic at the Baltimore-Washington International Airport was reduced by 30%, by 28% at Ronald Reagan Washington National Airport and 12% at Dulles International Airport.
+
+Part of the backlog was the result of a decision to reduce arrival and departure rates in the Washington area between 11am and 4pm on Saturday for safety reasons, affecting flights from New Jersey and New York that flew over the Washington area.
+
+By mid-afternoon, 50% of inbound flights and 42% of outbound flights had been canceled at Reagan National and delays were averaging about three hours, according to data from FlightRadar24. In Baltimore, 58% of inbound flights and 36% of outbound flights had been canceled, and delays were averaging more than an hour.
+
+The FAA said the upgrade was designed to provide more tools for controllers, but that the new features have been disabled while the systems contractor completes an assessment of the malfunction. The technical issues were resolved at approximately 4pm.
+
+The FAA suggested the problem was with the En Route Automation Modernisation computer system, known as Eram, at the Leesburg Center on Saturday. On Sunday, the agency confirmed that the software upgrade causing the issues was performed on the Eram computer system, but that there was “no indication that the problem is related to any inherent problems with the En Route Automation Modernisation system, which has had a greater than 99.99 availability rate since it was completed nationwide earlier this year”.</content>
+        <dcterms:title rdf:datatype="&xsd;string">Software upgrade grounds hundreds of flights over US east coast</dcterms:title>
+        <dcterms:category rdf:datatype="&xsd;string">Tech</dcterms:category>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Post6 -->
+
+    <owl:NamedIndividual rdf:about="&sioc;Post6">
+        <rdf:type rdf:resource="&sioc;Post"/>
+        <rdfs:label rdf:datatype="&xsd;string">Amazon boss says Jeremy Clarkson&apos;s Top Gear follow-on show &apos;expensive but worth it&apos;</rdfs:label>
+        <dcterms:date rdf:datatype="&xsd;dateTime">2015-08-16</dcterms:date>
+        <dcterms:title rdf:datatype="&xsd;string">Amazon boss says Jeremy Clarkson&apos;s Top Gear follow-on show &apos;expensive but worth it&apos;</dcterms:title>
+        <dcterms:category rdf:datatype="&xsd;string">Tech</dcterms:category>
+        <content rdf:datatype="&xsd;string">The Amazon founder, Jeff Bezos, has admitted it will be “very, very, very expensive” to launch a new motoring show with Jeremy Clarkson and his Top Gear co-stars after signing up the controversial trio in a multimillion-pound deal following their departure from the BBC.
+
+The billionaire tech entrepreneur said viewers were enjoying a golden era of television and that the new Clarkson series would be a global success.
+
+“We have a lot of things in the pipeline which I think viewers in the UK and around the world are going to love. And I think Clarkson’s new show is going to be one of those,” he told the Sunday Telegraph.
+
+Bezos, who is worth an estimated $50bn , told the newspaper he was very excited about Clarkson’s move, but did not confirm if he had met him or his fellow presenters or how much they were being paid.
+
+Top Gear&apos;s Clarkson, Hammond and May sign Amazon deal
+ Read more
+“They’re worth a lot, and they know it,” he said. The Financial Times has put the total cost to Amazon at $250m (£160m).
+
+The company announced in July that it had signed up Clarkson, James May and Richard Hammond for a new show to be broadcast via its on-demand TV service.
+
+The team, along with Top Gear’s former executive producer Andy Wilman, have signed a three-series deal, with the first broadcast due at some point in 2016.
+
+Bezos said it was one of a number of new shows commissioned for viewers of Prime, who pay £79 a year in the UK to access programmes and get next-day delivery on orders.
+
+“I think we’re in a golden age of television, so if you go back in time even just five years, you couldn’t get A-list talent to do TV serials, or if you could, it was a rare thing,” Bezos said. “But that’s flipped completely.” 
+
+Top Gear was a global hit for the BBC, generating an estimated £50m a year, and Amazon will be hoping that its new show will replicate that success.
+
+In the same interview, Bezos hinted that UK shoppers could be among the first to receive their Amazon deliveries by drone. One of the research centres working on the Prime Air project is in Cambridge, and he said the UK’s regulatory conditions were promising.
+
+“In the scheme of things the UK regulatory agencies have been very advanced,” he said. “The FAA [the US aviation regulator] is catching up a little here in the US, but the UK has been, I’d say, a very encouraging example of good regulation. I think we like what we see there.”
+
+He refused, however, to be drawn on when the first parcels may be dropped off to consumers, saying “months sounds way too aggressive to me”.
+
+The Guardian revealed in March that the company was testing its new delivery service at a secret site in Canada, after failing to persuade US regulators to allow it to launch drones in its home state of Washington. It is also rumoured to be launching a grocery delivery service in the UK as soon as next month, and has leased a warehouse in Surrey previously used by Tesco.
+
+A New York Times article published on Saturday described Amazon as having a “singular way of working”, saying that employees were “held to standards that the company boasts are ‘unreasonably high’.”
+
+A former employee told the newspaper: “Nearly every person I worked with, I saw cry at their desk.”</content>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Post7 -->
+
+    <owl:NamedIndividual rdf:about="&sioc;Post7">
+        <rdf:type rdf:resource="&sioc;Post"/>
+        <rdfs:label rdf:datatype="&xsd;string">ISS Astronaut Shares Another Dazzling Northern Lights Video</rdfs:label>
+        <dcterms:date rdf:datatype="&xsd;dateTime">2015-08-17</dcterms:date>
+        <dcterms:title rdf:datatype="&xsd;string">ISS Astronaut Shares Another Dazzling Northern Lights Video</dcterms:title>
+        <content rdf:datatype="&xsd;string">If you think the Northern Lights look beautiful from Earth, take a look at this dazzling new video (above) from Scott Kelly.
+
+The NASA astronaut shot the video of a shimmering aurora borealis from his perch aboard the International Space Station -- and then shared it on his Twitter account on Saturday. 
+
+Kelly, who is almost five months into his one-year mission aboard the International Space Station, shared another video of aurora borealis from space in June. He has also shared stills of auroras, including the dramatic photo (below) that he posted a couple of hours before the latest video.</content>
+        <dcterms:category rdf:datatype="&xsd;string">Science</dcterms:category>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Post8 -->
+
+    <owl:NamedIndividual rdf:about="&sioc;Post8">
+        <rdf:type rdf:resource="&sioc;Post"/>
+        <rdfs:label rdf:datatype="&xsd;string">This Simple Technique Can Instantly Reverse Negative Thoughts</rdfs:label>
+        <dcterms:date rdf:datatype="&xsd;dateTime">2015-08-18</dcterms:date>
+        <content rdf:datatype="&xsd;string">Depression is often described as feeling like you&apos;re stuck in a fog of negative thoughts and beliefs -- but new research suggests that a simple technique borrowed from cognitive behavioral therapy, also known as CBT, can help to clear away the mental haze. 
+
+A small study published in the journal Behaviour Research and Therapy found that Socratic questioning can help people with depression to improve their mood by challenging self-destructive thoughts. 
+
+Socratic questioning gets its name from the Greek philosopher Socrates, who used series of questions to help his students exercise critical thinking to come to a conclusion on their own, rather than being handed the answer. 
+
+Within the context of CBT, the method consists of the therapist asking a series of guided questions that help a patient to reconsider harmful perceptions of themselves and the world.
+
+&quot;Using Socratic questioning ... therapists teach clients how to ask themselves questions in order to develop new perspectives and solutions on their own, as opposed to therapists simply providing these solutions directly to the client,&quot; Justin Braun, a doctoral student at Ohio State University and the study&apos;s lead author, told The Huffington Post. &quot;The therapist models the behavior and skills that we want the clients to learn and develop more fully.&quot;
+
+Socratic questioning doesn&apos;t have to be done by a therapist -- anyone looking for relief from negative thoughts can try the technique on themselves. 
+
+A therapist might, for example, use the following line of questioning with a depressed patient who is struggling with feelings of failure in the wake of a divorce: Is everyone who experiences divorce a failure? Can you think of anyone for whom that is not true? What evidence is there that you have succeeded, and thus have not been a &quot;total failure&quot;?
+
+To examine the effects of Socratic questioning, the researchers studied 55 people with depression as they underwent a 16-week course of cognitive therapy. At the beginning and end of each session, the participants answered questions about their mood and mental state.  
+
+Researchers found that after sessions in which the therapist used more Socratic questioning, the patients reported feeling greater relief from depressive symptoms. 
+
+CBT operates on the basic principle that a person&apos;s moods and sense of self are intimately linked with their thoughts, and that recognizing dysfunctional thought patterns and replacing them with healthier ones can lead to improvements in mood.
+
+Techniques like Socratic questioning are designed for patients to be able to perform them on themselves. Ohio State University psychologist Dr. Daniel Strunk told Nature that CBT trains patients in the skills they need to &quot;become their own therapists.&quot; 
+
+This training in self-inquiry may be one of the reasons why CBT is so successful. While it&apos;s not a blanket solution, research has shown it to be one of the most effective methods for treating depression, with up to 66 percent of patients no longer meeting diagnostic criteria for depression after a single course of treatment. 
+
+&quot;Patients are learning this process of asking themselves questions and being skeptical of their own negative thoughts,&quot; Braun said in a written statement.</content>
+        <dcterms:category rdf:datatype="&xsd;string">Science</dcterms:category>
+        <dcterms:title rdf:datatype="&xsd;string">This Simple Technique Can Instantly Reverse Negative Thoughts</dcterms:title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://rdfs.org/sioc/ns#Post9 -->
+
+    <owl:NamedIndividual rdf:about="&sioc;Post9">
+        <rdf:type rdf:resource="&sioc;Post"/>
+        <rdfs:label rdf:datatype="&xsd;string">New &apos;Tatooine&apos; Discovery Confirms Circumbinary Planets Aren&apos;t Just Science Fiction</rdfs:label>
+        <dcterms:date rdf:datatype="&xsd;dateTime">2015-08-16</dcterms:date>
+        <dcterms:title rdf:datatype="&xsd;string">New &apos;Tatooine&apos; Discovery Confirms Circumbinary Planets Aren&apos;t Just Science Fiction</dcterms:title>
+        <dcterms:category rdf:datatype="&xsd;string">Science</dcterms:category>
+        <content rdf:datatype="&xsd;string">To the delight of &quot;Star Wars&quot; fans, a team of astronomers has spotted yet another &quot;Tatooine.&quot;
+
+Much like the iconic desert planet from the movies, Kepler-453b is circumbinary, meaning it circles not one, but two separate stars.
+
+Nader Haghighipour, an astronomer at the University of Hawaii and a member of the discovery team, told The Huffington Post that this particular finding suggests that more Tatooine-type planets are out there just waiting to be discovered. 
+
+&quot;For me, it’s personal,&quot; he said. &quot;For 20 years, I’ve been saying these things exist, and now we are discovering them.&quot; 
+
+Due to its erratic obit -- caused by the gravitational pull of two stars -- Kepler-453 is visible to astronomers only 9 percent of the time. Had researches not detected the planet when they did, their next chance to do so would have been 2066.
+
+&quot;It&apos;s amazing how fortunate we were in catching it at the right time,&quot; Stephen Kane, an assistant professor of physics and astronomy at San Francisco State University and member of the team that made the discovery, said in a statement. &quot;It&apos;s a good reminder that there&apos;s always a value in checking again.&quot;
+
+A recent study showed that it&apos;s just as easy for an Earth-like planet to form around a binary star as it is to form around a single star like our sun. While Kepler-453b is located within its host stars&apos; &quot;habitable zone,&quot; the area where life could potentially exist, its size (it is 60 percent larger than Neptune) makes it unlikely it supports life.
+
+Its moons, however, could be a different story. 
+
+According to Haghighipour, the orbit of Kepler-453b will remain stable for tens of millions of years, increasing the possibility of life forming on its moons. 
+
+While the planet takes 240 days to orbit its pair of stars, the stars themselves orbit each other every 27 days. The larger of the two is similar to Earth&apos;s sun, while the smaller star contains only 20 percent as much mass and is far cooler, according to a release.</content>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotations
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://rdfs.org/sioc/spec">
+        <rdfs:label>SIOC Core Ontology Specification</rdfs:label>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+

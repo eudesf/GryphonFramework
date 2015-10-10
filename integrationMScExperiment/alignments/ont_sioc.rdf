@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rdf:RDF xmlns='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#' 
+	 xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#' 
+	 xmlns:xsd='http://www.w3.org/2001/XMLSchema#' 
+	 xmlns:align='http://knowledgeweb.semanticweb.org/heterogeneity/alignment#' 
+	 xmlns:edoal='http://ns.inria.org/edoal/1.0/#'> 
+<Alignment>
+	<xml>yes</xml>
+	<level>2EDOAL</level>
+	<type>**</type>
+	<method>fr.inrialpes.exmo.align.edoal.EDOALAlignment#toEDOAL</method>
+	<onto1>
+		<Ontology rdf:about="http://ebiquity.umbc.edu/ontology/news.owl#">
+			<location></location>
+			<formalism>
+				<Formalism align:name="OWL1.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+			</formalism>
+		</Ontology>
+	</onto1>
+	<onto2>
+		<Ontology rdf:about="http://rdfs.org/sioc/ns#">
+			<location></location>
+			<formalism>
+				<Formalism align:name="OWL1.0" align:uri="http://www.w3.org/2002/07/owl#"/>
+			</formalism>
+		</Ontology>
+	</onto2>
+	<map>
+		<Cell>
+			<entity1>
+				<edoal:Class rdf:about="http://ebiquity.umbc.edu/ontology/news.owl#News"/>
+			</entity1>
+			<entity2>
+				<edoal:Class rdf:about="http://rdfs.org/sioc/ns#Post"/>
+			</entity2>
+			<relation>=</relation>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+		</Cell>
+	</map>
+	<map>
+		<Cell>
+			<entity1>
+				<edoal:Property rdf:about="http://ebiquity.umbc.edu/ontology/news.owl#description"/>
+			</entity1>
+			<entity2>
+				<edoal:Property rdf:about="http://rdfs.org/sioc/ns#content"/>
+			</entity2>
+			<relation>=</relation>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+		</Cell>
+	</map>
+	<map>
+		<Cell>
+			<entity1>
+				<edoal:Property rdf:about="http://ebiquity.umbc.edu/ontology/news.owl#title"/>
+			</entity1>
+			<entity2>
+				<edoal:Property rdf:about="http://purl.org/dc/terms/title"/>
+			</entity2>
+			<relation>=</relation>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+		</Cell>
+	</map>
+	<map>
+		<Cell>
+			<entity1>
+				<edoal:Property rdf:about="http://ebiquity.umbc.edu/ontology/news.owl#publishedOn"/>
+			</entity1>
+			<entity2>
+				<edoal:Property rdf:about="http://purl.org/dc/terms/date"/>
+			</entity2>
+			<relation>=</relation>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+		</Cell>
+	</map>
+	<map>
+		<Cell>
+			<entity1>
+				<edoal:Property rdf:about="http://ebiquity.umbc.edu/ontology/news.owl#category"/>
+			</entity1>
+			<entity2>
+				<edoal:Property rdf:about="http://purl.org/dc/terms/category"/>
+			</entity2>
+			<relation>=</relation>
+			<measure rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</measure>
+		</Cell>
+	</map>
+</Alignment>
+</rdf:RDF>

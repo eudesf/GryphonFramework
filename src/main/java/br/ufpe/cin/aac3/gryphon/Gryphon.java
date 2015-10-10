@@ -40,6 +40,10 @@ public final class Gryphon {
 	public enum ResultFormat {
 		JSON, XML, CSV
 	}
+	
+	public enum DBMS {
+		MySQL, PostgreSQL
+	}
 
 	private Gryphon() { }
 
@@ -123,7 +127,6 @@ public final class Gryphon {
 	private static void mapDatabase(Database db) {
 		try {
 			File scriptFile = new File("libs/d2rq/generate-mapping" + (GryphonUtil.isWindows() ? ".bat" : ""));
-			
 			CommandUtil.executeCommand("%s \"%s\" -o \"%s\" -u \"%s\" -p \"%s\" \"%s\"", 
 					(GryphonUtil.isWindows() ? "" : "bash"), 
 					scriptFile.getAbsolutePath(), 
@@ -132,40 +135,6 @@ public final class Gryphon {
 					db.getPassword(), 
 					db.getJdbcURL());
 			
-			// TODO Need improvement
-//			String mapping = FileUtils.readFileToString(db.getMapTTLFile(), "utf-8");
-//			Files.write(Paths.get(db.getMapTTLFile().toURI()), mapping.getBytes());
-//			String d2rqNS = "http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#";
-//			String rdfNS = "http://localhost:2020/vocab/";
-//			FileWriter fileWriter = new FileWriter(db.getMapRDFFile());
-//			Model ttlModel = FileManager.get().loadModel(db.getMapTTLFile().toURI().toString());
-//			OntModel owlModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
-//			owlModel.createOntology(rdfNS);
-//			
-//			for (ResIterator i = ttlModel.listSubjects(); i.hasNext();) {
-//				Resource r = i.nextResource();
-//				if(r.isResource()){
-//					String type = r.getProperty(RDF.type).getObject().toString();
-//					if(type.endsWith("ClassMap")){
-//						OntClass klass = owlModel.createClass(rdfNS + r.getLocalName());
-//						try {
-//							klass.addLabel(r.getProperty(ttlModel.createProperty(d2rqNS + "classDefinitionLabel")).getObject().toString(), null);
-//						} catch(Exception e){ }
-//					} else if(type.endsWith("PropertyBridge")){
-//						String klass = r.getProperty(ttlModel.createProperty(d2rqNS + "belongsToClassMap")).getResource().getLocalName();
-//						DatatypeProperty property = owlModel.createDatatypeProperty(rdfNS + r.getLocalName());
-//						property.setDomain(ttlModel.createResource(rdfNS + klass));
-//						try {
-//							String label = r.getProperty(ttlModel.createProperty(d2rqNS + "propertyDefinitionLabel")).getObject().toString();
-//							property.addLabel(label, null);
-//						} catch(Exception e){ }
-//					}
-//				}
-//			}
-//			
-//			RDFWriter writer = owlModel.getWriter("RDF/XML-ABBREV");
-//			writer.setProperty("xmlbase", rdfNS);
-//			writer.write(owlModel, fileWriter, rdfNS);
 		} catch (Exception e) {
 			GryphonUtil.logError(e);
 		}
@@ -197,6 +166,7 @@ public final class Gryphon {
 			for(Ontology ontology : localOntologies){
 				final RepositoryConnection repositoryConnection = repository.getConnection();
 				repositoryConnection.add(new File(ontology.getURI()), ontology.getURI().toString(), RDFFormat.RDFXML);
+				ontology.getResultFile().setWritable(true);
 				
 				strQueryLocal = queryRewrite(strQueryGlobal, ontology.getAlignFile());
 				queryLocal = repositoryConnection.prepareTupleQuery(QueryLanguage.SPARQL, strQueryLocal);
@@ -212,6 +182,7 @@ public final class Gryphon {
 		}
 		
 		for(Database database : localDatabases){
+			database.getResultFile().setWritable(true);
 			execDataBaseQuery(strQueryGlobal, database.getMapTTLFile(), database.getResultFile(), resultFormat);
 		}
 	}
@@ -291,7 +262,7 @@ public final class Gryphon {
 		}
 		try {
 			File batFile = new File("libs/d2rq/d2r-query" + (GryphonUtil.isWindows() ? ".bat" : ""));
-			CommandUtil.executeCommand("\"%s\" -f %s -t 9999 \"%s\" \"%s\" > \"%s\"", 
+			CommandUtil.executeCommand("\"%s\" -f %s -t 9999 --verbose \"%s\" \"%s\" > \"%s\"", 
 					batFile.getAbsolutePath(), 
 					strResultFormat, 
 					mapFile.getAbsolutePath(), 

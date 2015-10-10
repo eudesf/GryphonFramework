@@ -1,9 +1,10 @@
 ### Custom ###
 integrationExample/
-mscExperiment/ncbi.rdf
-mscExperiment/uniprot-homocysteine.rdf
+repositories/
+results/
 .log*
 result.*
+catalog-v*.xml
 
 ### Eclipse ###
 *.pydevproject

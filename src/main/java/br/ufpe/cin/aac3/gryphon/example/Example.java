@@ -16,7 +16,7 @@ public final class Example {
 		// 1. Configure
 		GryphonConfig.setWorkingDirectory(new File("integrationExample"));
 		GryphonConfig.setLogEnabled(true);
-		GryphonConfig.setShowLogo(false);
+		GryphonConfig.setShowLogo(true);
 		Gryphon.init();
 		
 		// 2. Set the global ontology and local sources
@@ -34,7 +34,8 @@ public final class Example {
 				+ "LIMIT 100";
 		Gryphon.query(strQuery, ResultFormat.JSON);
 	
-		
+
+		GryphonUtil.logInfo("Finished!");
 		System.exit(0);
 	} 
 	
@@ -44,7 +45,7 @@ public final class Example {
 			Ontology globalOntBibtex = new Ontology("globalBibtex", new URI(GryphonUtil.getCurrentURI() + "examples/ex1/global_bibtex.owl"));
 			Ontology localOnt1 = new Ontology("bibtex", new URI(GryphonUtil.getCurrentURI() + "examples/ex1/bibtex.owl"));
 			Ontology localOnt2 = new Ontology("publication", new URI(GryphonUtil.getCurrentURI() + "examples/ex1/publication.owl"));
-			Database localDB1 = new Database("localhost", 3306, "root", "", "bibtex", Database.DBMS.MySQL);
+			Database localDB1 = new Database("localhost", 3306, "root", "", "bibtex", Gryphon.DBMS.MySQL);
 			
 			Gryphon.setGlobalOntology(globalOntBibtex);
 			Gryphon.addLocalOntology(localOnt1);
