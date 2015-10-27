@@ -2,6 +2,7 @@ package br.ufpe.cin.aac3.gryphon;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -51,7 +52,11 @@ public final class Gryphon {
 	 * Initiates Gryphon Framework
 	 */
 	public static void init(){
-		PropertyConfigurator.configure("log4j.properties");
+		try {
+			PropertyConfigurator.configure(Gryphon.class.getResource("/log4j.properties").openStream());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		if(GryphonConfig.isShowLogo() && GryphonConfig.isLogEnabled()){
 			System.out.println(

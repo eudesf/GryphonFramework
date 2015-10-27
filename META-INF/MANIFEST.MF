@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: gryphon-framework
+Bundle-SymbolicName: gryphon-framework
+Bundle-Version: 1.0.0.qualifier
+Export-Package: br.ufpe.cin.aac3.gryphon,
+ br.ufpe.cin.aac3.gryphon.example,
+ br.ufpe.cin.aac3.gryphon.exception,
+ br.ufpe.cin.aac3.gryphon.model

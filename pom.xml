@@ -4,6 +4,7 @@
 	<groupId>gryphon-framework</groupId>
 	<artifactId>gryphon-framework</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>bundle</packaging>
 
 	<properties>
 		<sesame.version>2.8.4</sesame.version>
@@ -60,6 +61,19 @@
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.felix</groupId>
+				<artifactId>maven-bundle-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<instructions>
+						<Export-Package>
+							br.ufpe.cin.aac3.gryphon.*
+						</Export-Package>
+						<Private-Package>*</Private-Package>
+					</instructions>
 				</configuration>
 			</plugin>
 		</plugins>
