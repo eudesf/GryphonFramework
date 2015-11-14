@@ -12,11 +12,11 @@ import br.ufpe.cin.aac3.gryphon.model.Database;
 import br.ufpe.cin.aac3.gryphon.model.Ontology;
 
 public final class MScExperiment {
-	public static void main2(String[] args) {
+	public static void main(String[] args) {
 		System.out.println(getQueryGen1().replaceAll("\\s{1,}", " "));
 	}
 	
-	public static void main(String[] args) {
+	public static void main2(String[] args) {
 		// 1. Configure
 		GryphonConfig.setWorkingDirectory(new File("integrationMScExperiment"));
 		GryphonConfig.setLogEnabled(true);

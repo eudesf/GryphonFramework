@@ -3,12 +3,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Gryphon-framework
 Bundle-SymbolicName: gryphon-framework;singleton:=true
 Bundle-Version: 0.0.1
-Bundle-Activator: gryphon_framework.Activator
 Export-Package: br.ufpe.cin.aac3.gryphon;uses:="br.ufpe.cin.aac3.gryphon.model",
  br.ufpe.cin.aac3.gryphon.example,
  br.ufpe.cin.aac3.gryphon.exception,
- br.ufpe.cin.aac3.gryphon.model;uses:="br.ufpe.cin.aac3.gryphon",
- org.openrdf.sail.config
+ br.ufpe.cin.aac3.gryphon.model;uses:="br.ufpe.cin.aac3.gryphon"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Import-Package: org.osgi.framework;version="1.3.0"
 Bundle-ActivationPolicy: lazy
