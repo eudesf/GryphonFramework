@@ -12,11 +12,11 @@ import br.ufpe.cin.aac3.gryphon.model.Database;
 import br.ufpe.cin.aac3.gryphon.model.Ontology;
 
 public final class MScExperiment {
-	public static void main(String[] args) {
+	public static void main2(String[] args) {
 		System.out.println(getQueryGen1().replaceAll("\\s{1,}", " "));
 	}
 	
-	public static void main2(String[] args) {
+	public static void main(String[] args) {
 		// 1. Configure
 		GryphonConfig.setWorkingDirectory(new File("integrationMScExperiment"));
 		GryphonConfig.setLogEnabled(true);
@@ -43,7 +43,8 @@ public final class MScExperiment {
 			// 4. Query Using SPARQL
 			long startTime = System.currentTimeMillis();
 			
-			String query = getQueryGen1();
+			// String query = getGeneratedTestQuery();
+			String query = getQuery3();
 			Gryphon.query(query, ResultFormat.JSON);
 			
 			long endTime = System.currentTimeMillis();
@@ -56,6 +57,16 @@ public final class MScExperiment {
 		System.exit(0);
 	} 
 
+	private static String getGeneratedTestQuery() {
+		return "SELECT  DISTINCT ?x WHERE {?x a <http://purl.org/biotop/btl2.owl#Organism> . " 
+				+ "?x <http://purl.org/biotop/btl2.owl#includes> ?s0 . "
+				+ "?s0 a <http://purl.org/biotop/btl2.owl#MonoMolecularEntity> . "
+				+ "?x a <http://purl.org/biotop/btl2.owl#Organism> . "
+				+ "?x <http://purl.org/biotop/btl2.owl#includes> ?s1 . "
+				+ "?s1 a <http://purl.org/biotop/btl2.owl#MonoMolecularEntity> . "
+				+ "}";
+	}
+	
 	private static String getTestQuery(){
 		return ""
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "

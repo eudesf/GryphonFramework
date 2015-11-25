@@ -33,6 +33,7 @@ public final class Gryphon {
 	private static File alignFolder;
 	private static File mapFolder;
 	private static File resultFolder;
+	private static File libsFolder;
 	
 	private static Ontology globalOntology;
 	private static List<Ontology> localOntologies;
@@ -75,6 +76,11 @@ public final class Gryphon {
 		alignFolder = new File(GryphonConfig.getWorkingDirectory().getAbsolutePath(), "alignments");
 		mapFolder = new File(GryphonConfig.getWorkingDirectory().getAbsolutePath(), "mappings");
 		resultFolder = new File(GryphonConfig.getWorkingDirectory().getAbsolutePath(), "results");
+		libsFolder = new File(GryphonConfig.getWorkingDirectory().getAbsolutePath(), "../libs");
+
+		if (!libsFolder.exists()) {
+			throw new RuntimeException("Gryphon libs folder not found in working directory");
+		}
 		
 		alignFolder.mkdirs();
 		mapFolder.mkdirs();
@@ -114,7 +120,7 @@ public final class Gryphon {
 	 */
 	private static void alignOntology(URI localOntologyURI, File alignFile) {
 		try {
-			File jarFile = new File("libs/aml/AgreementMakerLight.jar");
+			File jarFile = new File(libsFolder, "aml/AgreementMakerLight.jar");
 			String cmd = String.format("cd \"%s\" && java -jar \"%s\" -s \"%s\" -t \"%s\" -o \"%s\" -m", jarFile.getParentFile().getAbsolutePath(), jarFile.getAbsolutePath(), new File(globalOntology.getURI()).getAbsolutePath(), new File(localOntologyURI).getAbsolutePath(), alignFile.getAbsolutePath());
 			if(globalOntology.getLocalImports() != null){
 				cmd += " -l " + globalOntology.getLocalImports().getAbsolutePath();
@@ -131,7 +137,7 @@ public final class Gryphon {
 	 */
 	private static void mapDatabase(Database db) {
 		try {
-			File scriptFile = new File("libs/d2rq/generate-mapping" + (GryphonUtil.isWindows() ? ".bat" : ""));
+			File scriptFile = new File(libsFolder, "d2rq/generate-mapping" + (GryphonUtil.isWindows() ? ".bat" : ""));
 			CommandUtil.executeCommand("%s \"%s\" -o \"%s\" -u \"%s\" -p \"%s\" \"%s\"", 
 					(GryphonUtil.isWindows() ? "" : "bash"), 
 					scriptFile.getAbsolutePath(), 
@@ -200,7 +206,7 @@ public final class Gryphon {
 	 */
 	private static String queryRewrite(String query, File alignFile) {
 		try {
-			File jarFile = new File("libs/mediation/mediation.jar");
+			File jarFile = new File(libsFolder, "mediation/mediation.jar");
 			
 			return CommandUtil.executeCommand("cd \"%s\" && java -jar \"%s\" \"%s\" \"%s\"", 
 					jarFile.getParentFile().getAbsolutePath(), 
@@ -266,7 +272,7 @@ public final class Gryphon {
 				strResultFormat = "json";
 		}
 		try {
-			File batFile = new File("libs/d2rq/d2r-query" + (GryphonUtil.isWindows() ? ".bat" : ""));
+			File batFile = new File(libsFolder, "d2rq/d2r-query" + (GryphonUtil.isWindows() ? ".bat" : ""));
 			CommandUtil.executeCommand("\"%s\" -f %s -t 9999 --verbose \"%s\" \"%s\" > \"%s\"", 
 					batFile.getAbsolutePath(), 
 					strResultFormat, 
@@ -289,6 +295,10 @@ public final class Gryphon {
 	
 	public static File getResultFolder() {
 		return resultFolder;
+	}
+	
+	public static File getLibsFolder() {
+		return libsFolder;
 	}
 
 	public static Ontology getGlobalOntology() {
