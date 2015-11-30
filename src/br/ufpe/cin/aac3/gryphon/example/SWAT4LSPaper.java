@@ -33,7 +33,7 @@ public final class SWAT4LSPaper {
 			// 4. Query Using SPARQL
 			long startTime = System.currentTimeMillis();
 			
-			String query = getQuery1();
+			String query = getQuery2();
 			Gryphon.query(query, ResultFormat.JSON);
 			
 			long endTime = System.currentTimeMillis();
@@ -45,6 +45,17 @@ public final class SWAT4LSPaper {
 		System.exit(0);
 	} 
 
+	// converted test (organism and includes some homocysteine)
+	private static String getConvertedTest1() {
+		return "SELECT  DISTINCT ?x WHERE {?x a <http://purl.org/biotop/btl2.owl#Organism> ."
+			+ " ?x <http://purl.org/biotop/btl2.owl#includes> ?s0 ."
+			+ " ?s0 a <http://purl.obolibrary.org/obo/CHEBI_17230> ."
+			+ " ?x a <http://purl.org/biotop/btl2.owl#Organism> ."
+			+ " ?x <http://purl.org/biotop/btl2.owl#includes> ?s1 ."
+			+ " ?s1 a <http://purl.obolibrary.org/obo/CHEBI_17230> ."
+			+ " }";
+	}
+	
 	private static String getTestQuery(){
 		return ""
 				+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
