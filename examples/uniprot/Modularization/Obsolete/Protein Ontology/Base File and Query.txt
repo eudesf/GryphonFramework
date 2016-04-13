@@ -1,0 +1,13 @@
+Betaine--homocysteine S-methyltransferase 1 (EC 2.1.1.5)
+
+Cystathionine beta-synthase (EC 4.2.1.22)
+
+Cystathionine gamma-lyase
+
+Methionine synthase
+
+Methylenetetrahydrofolate reductase (EC 1.5.1.20)
+
+
+QUERY: 
+'methionine synthase' and 'methylenetetrahydrofolate reductase' and 'cystathionine gamma-lyase' and 'cystathionine beta-synthase' and 'betaine--homocysteine S-methyltransferase 1'

@@ -1,0 +1,326 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY obo "http://purl.obolibrary.org/obo/" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY skos "http://www.w3.org/2004/02/skos/core#" >
+    <!ENTITY metadata "http://data.bioontology.org/metadata/" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY oboInOwl "http://www.geneontology.org/formats/oboInOwl#" >
+]>
+
+
+<rdf:RDF xmlns="file:///C:/ontology/STAR_2015_9_19_1445283932980_module.owl#"
+     xml:base="file:///C:/ontology/STAR_2015_9_19_1445283932980_module.owl"
+     xmlns:metadata="http://data.bioontology.org/metadata/"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:obo="http://purl.obolibrary.org/obo/">
+    <owl:Ontology rdf:about="&obo;PR">
+        <rdfs:comment>Generated with modularization tool.
+
+Available from: https://github.com/gqjiang/ontologymodularity</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://data.bioontology.org/metadata/treeView -->
+
+    <owl:AnnotationProperty rdf:about="&metadata;treeView"/>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/IAO_0000115 -->
+
+    <owl:AnnotationProperty rdf:about="&obo;IAO_0000115"/>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasDbXref -->
+
+    <owl:AnnotationProperty rdf:about="&oboInOwl;hasDbXref"/>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasExactSynonym -->
+
+    <owl:AnnotationProperty rdf:about="&oboInOwl;hasExactSynonym"/>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasNarrowSynonym -->
+
+    <owl:AnnotationProperty rdf:about="&oboInOwl;hasNarrowSynonym"/>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasOBONamespace -->
+
+    <owl:AnnotationProperty rdf:about="&oboInOwl;hasOBONamespace"/>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#hasSynonymType -->
+
+    <owl:AnnotationProperty rdf:about="&oboInOwl;hasSynonymType"/>
+    
+
+
+    <!-- http://www.geneontology.org/formats/oboInOwl#id -->
+
+    <owl:AnnotationProperty rdf:about="&oboInOwl;id"/>
+    
+
+
+    <!-- http://www.w3.org/2004/02/skos/core#notation -->
+
+    <owl:AnnotationProperty rdf:about="&skos;notation"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/CHEBI_23367 -->
+
+    <owl:Class rdf:about="&obo;CHEBI_23367">
+        <rdfs:label rdf:datatype="&xsd;string">molecular entity</rdfs:label>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity.</obo:IAO_0000115>
+        <oboInOwl:hasOBONamespace rdf:datatype="&xsd;string">CHEBI</oboInOwl:hasOBONamespace>
+        <skos:notation rdf:datatype="&xsd;string">CHEBI:23367</skos:notation>
+        <oboInOwl:id rdf:datatype="&xsd;string">CHEBI:23367</oboInOwl:id>
+        <metadata:treeView rdf:resource="&obo;BFO_0000030"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedTarget rdf:datatype="&xsd;string">Any constitutionally or isotopically distinct atom, molecule, ion, ion pair, radical, radical ion, complex, conformer etc., identifiable as a separately distinguishable entity.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref rdf:datatype="&xsd;string">fake:2</oboInOwl:hasDbXref>
+        <owl:annotatedSource rdf:resource="&obo;CHEBI_23367"/>
+        <owl:annotatedProperty rdf:resource="&obo;IAO_0000115"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/PR_000000001 -->
+
+    <owl:Class rdf:about="&obo;PR_000000001">
+        <rdfs:label rdf:datatype="&xsd;string">protein</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;PR_000018263"/>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">An amino acid chain that is produced de novo by ribosome-mediated translation of a genetically-encoded mRNA.</obo:IAO_0000115>
+        <oboInOwl:id rdf:datatype="&xsd;string">PR:000000001</oboInOwl:id>
+        <skos:notation rdf:datatype="&xsd;string">PR:000000001</skos:notation>
+        <rdfs:comment rdf:datatype="&xsd;string">Proteins descended from a common ancestor can be classified into families and superfamilies composed of products of evolutionarily-related genes. The domain architecture of a protein is described by the order of its constituent domains. Proteins with the same domains in the same order are defined as homeomorphic [PRO:WCB].</rdfs:comment>
+        <oboInOwl:hasOBONamespace rdf:datatype="&xsd;string">protein</oboInOwl:hasOBONamespace>
+        <metadata:treeView rdf:resource="&obo;PR_000018263"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedTarget rdf:datatype="&xsd;string">An amino acid chain that is produced de novo by ribosome-mediated translation of a genetically-encoded mRNA.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref rdf:datatype="&xsd;string">PRO:DAN</oboInOwl:hasDbXref>
+        <oboInOwl:hasDbXref rdf:datatype="&xsd;string">PRO:WCB</oboInOwl:hasDbXref>
+        <owl:annotatedProperty rdf:resource="&obo;IAO_0000115"/>
+        <owl:annotatedSource rdf:resource="&obo;PR_000000001"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/PR_000004742 -->
+
+    <owl:Class rdf:about="&obo;PR_000004742">
+        <rdfs:label rdf:datatype="&xsd;string">betaine--homocysteine S-methyltransferase 1</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;PR_000000001"/>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">A protein that is a translation product of the human BHMT gene or a 1:1 ortholog thereof.</obo:IAO_0000115>
+        <oboInOwl:hasExactSynonym rdf:datatype="&xsd;string">BHMT</oboInOwl:hasExactSynonym>
+        <rdfs:comment rdf:datatype="&xsd;string">Category=gene.</rdfs:comment>
+        <oboInOwl:id rdf:datatype="&xsd;string">PR:000004742</oboInOwl:id>
+        <skos:notation rdf:datatype="&xsd;string">PR:000004742</skos:notation>
+        <oboInOwl:hasOBONamespace rdf:datatype="&xsd;string">protein</oboInOwl:hasOBONamespace>
+        <metadata:treeView rdf:resource="&obo;PR_000000001"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedTarget rdf:datatype="&xsd;string">A protein that is a translation product of the human BHMT gene or a 1:1 ortholog thereof.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref rdf:datatype="&xsd;string">PRO:DNx</oboInOwl:hasDbXref>
+        <owl:annotatedProperty rdf:resource="&obo;IAO_0000115"/>
+        <owl:annotatedSource rdf:resource="&obo;PR_000004742"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedTarget rdf:datatype="&xsd;string">BHMT</owl:annotatedTarget>
+        <oboInOwl:hasDbXref rdf:datatype="&xsd;string">PRO:DNx</oboInOwl:hasDbXref>
+        <owl:annotatedSource rdf:resource="&obo;PR_000004742"/>
+        <oboInOwl:hasSynonymType rdf:resource="&obo;pr#PRO-short-label"/>
+        <owl:annotatedProperty rdf:resource="&oboInOwl;hasExactSynonym"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/PR_000005081 -->
+
+    <owl:Class rdf:about="&obo;PR_000005081">
+        <rdfs:label rdf:datatype="&xsd;string">cystathionine beta-synthase</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;PR_000000001"/>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">A protein that is a translation product of the human CBS gene or a 1:1 ortholog thereof.</obo:IAO_0000115>
+        <oboInOwl:hasExactSynonym rdf:datatype="&xsd;string">CBS</oboInOwl:hasExactSynonym>
+        <rdfs:comment rdf:datatype="&xsd;string">Category=gene.</rdfs:comment>
+        <skos:notation rdf:datatype="&xsd;string">PR:000005081</skos:notation>
+        <oboInOwl:id rdf:datatype="&xsd;string">PR:000005081</oboInOwl:id>
+        <oboInOwl:hasExactSynonym rdf:datatype="&xsd;string">beta-thionase</oboInOwl:hasExactSynonym>
+        <oboInOwl:hasOBONamespace rdf:datatype="&xsd;string">protein</oboInOwl:hasOBONamespace>
+        <oboInOwl:hasExactSynonym rdf:datatype="&xsd;string">serine sulfhydrase</oboInOwl:hasExactSynonym>
+        <metadata:treeView rdf:resource="&obo;PR_000000001"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedTarget rdf:datatype="&xsd;string">A protein that is a translation product of the human CBS gene or a 1:1 ortholog thereof.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref rdf:datatype="&xsd;string">PRO:DNx</oboInOwl:hasDbXref>
+        <owl:annotatedProperty rdf:resource="&obo;IAO_0000115"/>
+        <owl:annotatedSource rdf:resource="&obo;PR_000005081"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedTarget rdf:datatype="&xsd;string">CBS</owl:annotatedTarget>
+        <oboInOwl:hasDbXref rdf:datatype="&xsd;string">PRO:DNx</oboInOwl:hasDbXref>
+        <owl:annotatedSource rdf:resource="&obo;PR_000005081"/>
+        <oboInOwl:hasSynonymType rdf:resource="&obo;pr#PRO-short-label"/>
+        <owl:annotatedProperty rdf:resource="&oboInOwl;hasExactSynonym"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/PR_000006004 -->
+
+    <owl:Class rdf:about="&obo;PR_000006004">
+        <rdfs:label rdf:datatype="&xsd;string">cystathionine gamma-lyase</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;PR_000000001"/>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">A protein that is a translation product of the human CTH gene or a 1:1 ortholog thereof.</obo:IAO_0000115>
+        <oboInOwl:hasExactSynonym rdf:datatype="&xsd;string">CTH</oboInOwl:hasExactSynonym>
+        <rdfs:comment rdf:datatype="&xsd;string">Category=gene.</rdfs:comment>
+        <skos:notation rdf:datatype="&xsd;string">PR:000006004</skos:notation>
+        <oboInOwl:id rdf:datatype="&xsd;string">PR:000006004</oboInOwl:id>
+        <oboInOwl:hasExactSynonym rdf:datatype="&xsd;string">gamma-cystathionase</oboInOwl:hasExactSynonym>
+        <oboInOwl:hasOBONamespace rdf:datatype="&xsd;string">protein</oboInOwl:hasOBONamespace>
+        <metadata:treeView rdf:resource="&obo;PR_000000001"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedTarget rdf:datatype="&xsd;string">A protein that is a translation product of the human CTH gene or a 1:1 ortholog thereof.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref rdf:datatype="&xsd;string">PRO:DNx</oboInOwl:hasDbXref>
+        <owl:annotatedProperty rdf:resource="&obo;IAO_0000115"/>
+        <owl:annotatedSource rdf:resource="&obo;PR_000006004"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedTarget rdf:datatype="&xsd;string">CTH</owl:annotatedTarget>
+        <oboInOwl:hasDbXref rdf:datatype="&xsd;string">PRO:DNx</oboInOwl:hasDbXref>
+        <owl:annotatedSource rdf:resource="&obo;PR_000006004"/>
+        <oboInOwl:hasSynonymType rdf:resource="&obo;pr#PRO-short-label"/>
+        <owl:annotatedProperty rdf:resource="&oboInOwl;hasExactSynonym"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/PR_000010725 -->
+
+    <owl:Class rdf:about="&obo;PR_000010725">
+        <rdfs:label rdf:datatype="&xsd;string">methylenetetrahydrofolate reductase</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;PR_000000001"/>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">A protein that is a translation product of the human MTHFR gene or a 1:1 ortholog thereof.</obo:IAO_0000115>
+        <rdfs:comment rdf:datatype="&xsd;string">Category=gene.</rdfs:comment>
+        <oboInOwl:hasExactSynonym rdf:datatype="&xsd;string">MTHFR</oboInOwl:hasExactSynonym>
+        <skos:notation rdf:datatype="&xsd;string">PR:000010725</skos:notation>
+        <oboInOwl:id rdf:datatype="&xsd;string">PR:000010725</oboInOwl:id>
+        <oboInOwl:hasOBONamespace rdf:datatype="&xsd;string">protein</oboInOwl:hasOBONamespace>
+        <metadata:treeView rdf:resource="&obo;PR_000000001"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedTarget rdf:datatype="&xsd;string">MTHFR</owl:annotatedTarget>
+        <oboInOwl:hasDbXref rdf:datatype="&xsd;string">PRO:DNx</oboInOwl:hasDbXref>
+        <owl:annotatedSource rdf:resource="&obo;PR_000010725"/>
+        <oboInOwl:hasSynonymType rdf:resource="&obo;pr#PRO-short-label"/>
+        <owl:annotatedProperty rdf:resource="&oboInOwl;hasExactSynonym"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedTarget rdf:datatype="&xsd;string">A protein that is a translation product of the human MTHFR gene or a 1:1 ortholog thereof.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref rdf:datatype="&xsd;string">PRO:DNx</oboInOwl:hasDbXref>
+        <owl:annotatedProperty rdf:resource="&obo;IAO_0000115"/>
+        <owl:annotatedSource rdf:resource="&obo;PR_000010725"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/PR_000010747 -->
+
+    <owl:Class rdf:about="&obo;PR_000010747">
+        <rdfs:label rdf:datatype="&xsd;string">methionine synthase</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;PR_000000001"/>
+        <oboInOwl:hasExactSynonym rdf:datatype="&xsd;string">5-methyltetrahydrofolate--homocysteine methyltransferase</oboInOwl:hasExactSynonym>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">A protein that is a translation product of the human MTR gene or a 1:1 ortholog thereof.</obo:IAO_0000115>
+        <rdfs:comment rdf:datatype="&xsd;string">Category=gene.</rdfs:comment>
+        <oboInOwl:hasExactSynonym rdf:datatype="&xsd;string">MS</oboInOwl:hasExactSynonym>
+        <oboInOwl:hasExactSynonym rdf:datatype="&xsd;string">MTR</oboInOwl:hasExactSynonym>
+        <skos:notation rdf:datatype="&xsd;string">PR:000010747</skos:notation>
+        <oboInOwl:id rdf:datatype="&xsd;string">PR:000010747</oboInOwl:id>
+        <oboInOwl:hasOBONamespace rdf:datatype="&xsd;string">protein</oboInOwl:hasOBONamespace>
+        <oboInOwl:hasExactSynonym rdf:datatype="&xsd;string">vitamin-B12 dependent methionine synthase</oboInOwl:hasExactSynonym>
+        <metadata:treeView rdf:resource="&obo;PR_000000001"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedTarget rdf:datatype="&xsd;string">MTR</owl:annotatedTarget>
+        <oboInOwl:hasDbXref rdf:datatype="&xsd;string">PRO:DNx</oboInOwl:hasDbXref>
+        <owl:annotatedSource rdf:resource="&obo;PR_000010747"/>
+        <oboInOwl:hasSynonymType rdf:resource="&obo;pr#PRO-short-label"/>
+        <owl:annotatedProperty rdf:resource="&oboInOwl;hasExactSynonym"/>
+    </owl:Axiom>
+    <owl:Axiom>
+        <owl:annotatedTarget rdf:datatype="&xsd;string">A protein that is a translation product of the human MTR gene or a 1:1 ortholog thereof.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref rdf:datatype="&xsd;string">PRO:DNx</oboInOwl:hasDbXref>
+        <owl:annotatedProperty rdf:resource="&obo;IAO_0000115"/>
+        <owl:annotatedSource rdf:resource="&obo;PR_000010747"/>
+    </owl:Axiom>
+    
+
+
+    <!-- http://purl.obolibrary.org/obo/PR_000018263 -->
+
+    <owl:Class rdf:about="&obo;PR_000018263">
+        <rdfs:label rdf:datatype="&xsd;string">amino acid chain</rdfs:label>
+        <rdfs:subClassOf rdf:resource="&obo;CHEBI_23367"/>
+        <obo:IAO_0000115 rdf:datatype="&xsd;string">A molecular entity that is a polymer of amino acids linked by peptide bonds.</obo:IAO_0000115>
+        <oboInOwl:id rdf:datatype="&xsd;string">PR:000018263</oboInOwl:id>
+        <skos:notation rdf:datatype="&xsd;string">PR:000018263</skos:notation>
+        <oboInOwl:hasNarrowSynonym rdf:datatype="&xsd;string">peptide</oboInOwl:hasNarrowSynonym>
+        <oboInOwl:hasNarrowSynonym rdf:datatype="&xsd;string">polypeptide</oboInOwl:hasNarrowSynonym>
+        <oboInOwl:hasOBONamespace rdf:datatype="&xsd;string">protein</oboInOwl:hasOBONamespace>
+        <metadata:treeView rdf:resource="&obo;CHEBI_23367"/>
+    </owl:Class>
+    <owl:Axiom>
+        <owl:annotatedTarget rdf:datatype="&xsd;string">A molecular entity that is a polymer of amino acids linked by peptide bonds.</owl:annotatedTarget>
+        <oboInOwl:hasDbXref rdf:datatype="&xsd;string">PRO:DAN</oboInOwl:hasDbXref>
+        <owl:annotatedProperty rdf:resource="&obo;IAO_0000115"/>
+        <owl:annotatedSource rdf:resource="&obo;PR_000018263"/>
+    </owl:Axiom>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.1) http://owlapi.sourceforge.net -->
+
