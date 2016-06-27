@@ -27,18 +27,27 @@ public final class Example {
 		loadUniprotExample();
 		
 		// 3. Aligns ontologies and maps databases
-		Gryphon.alignAndMap();
+//		Gryphon.alignAndMap();
 
 		// 4. Query Using SPARQL
 //		String strQuery = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
 //				+ "SELECT DISTINCT ?x ?y "
 //				+ "WHERE { ?x a ?y } "
 //				+ "LIMIT 100";
-		Gryphon.query(loadUniprotQuery1(), ResultFormat.JSON);
+		//Gryphon.query(loadUniprotQuery1(), ResultFormat.JSON);
+		Gryphon.query(loadUniprotTest2(), ResultFormat.JSON);
 	
 		GryphonUtil.logInfo("Finished!");
 		System.exit(0);
 	} 
+	
+	private static String loadUniprotTest() {
+		return "SELECT  DISTINCT ?x WHERE {?x a <http://purl.obolibrary.org/obo/GO_0008150> . }";
+	}
+	
+	private static String loadUniprotTest2() {
+		return "SELECT  DISTINCT ?x WHERE {?x a <http://purl.org/biotop/btl2.owl#Organism> . }";
+	}
 	
 	private static String loadUniprotQuery1() {
 		return "SELECT  DISTINCT ?x WHERE {?x a <http://purl.obolibrary.org/obo/GO_0008150> . "
@@ -58,13 +67,13 @@ public final class Example {
 	}
 	
 	private static void loadUniprotExample() {
-		Gryphon.setGlobalOntology(new Ontology("integrativo-modified", getUniprotURI("integrativo-gryphon-standalone.owl")));
-		Gryphon.addLocalOntology(new Ontology("chebi", getUniprotURI("chebi_module.owl")));
-		Gryphon.addLocalOntology(new Ontology("go", getUniprotURI("go_module-modified.owl")));
-		Gryphon.addLocalOntology(new Ontology("ncbitaxon", getUniprotURI("ncbitaxon.owl")));
-		Gryphon.addLocalOntology(new Ontology("pr", getUniprotURI("pr_module.owl")));
-		Gryphon.addLocalOntology(new Ontology("chebi", getUniprotURI("SNOMED_module.owl")));
-		Gryphon.addLocalDatabase(new Database("localhost", 3306, "root", "admin123", "uniprot", Gryphon.DBMS.MySQL));
+		Gryphon.setGlobalOntology(new Ontology("integrativo", getUniprotURI("integrativo.owl")));
+//		Gryphon.addLocalOntology(new Ontology("chebi", getUniprotURI("chebi_module.owl")));
+//		Gryphon.addLocalOntology(new Ontology("go", getUniprotURI("go_module.owl")));
+//		Gryphon.addLocalOntology(new Ontology("ncbitaxon", getUniprotURI("ncbitaxon.owl")));
+//		Gryphon.addLocalOntology(new Ontology("pr", getUniprotURI("pr_module.owl")));
+//		Gryphon.addLocalOntology(new Ontology("chebi", getUniprotURI("SNOMED_module.owl")));
+		Gryphon.addLocalDatabase(new Database("localhost", 3306, "root", "", "uniprot", Gryphon.DBMS.MySQL));
 	}
 	
 	// 2 Ontologies, 1 Database
