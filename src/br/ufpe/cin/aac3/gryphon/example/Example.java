@@ -35,16 +35,16 @@ public final class Example {
 //				+ "WHERE { ?x a ?y } "
 //				+ "LIMIT 100";
 		//Gryphon.query(loadUniprotQuery1(), ResultFormat.JSON);
-		Gryphon.query(BO_isIncludedIn_CO_hasRealization_P_WithLabels(), ResultFormat.JSON);
+		Gryphon.query(loadBiologicalProcessTest(), ResultFormat.JSON);
 	
 		GryphonUtil.logInfo("Finished!");
 		System.exit(0);
 	} 
 
-	private static String BO_isIncludedIn_CO_hasRealization_P_WithLabels() {
+	private static String BO_isIncludedIn_CO_hasParticipant_P_WithLabels() {
 		return "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
 			"SELECT DISTINCT ?labelx ?labels2 ?labels3 WHERE {?x a <http://purl.obolibrary.org/obo/GO_0008150> .\n" +
-			"?x <http://purl.org/biotop/btl2.owl#hasRealization> ?s2 .\n" +
+			"?x <http://purl.org/biotop/btl2.owl#hasParticipant> ?s2 .\n" +
 			"?s2 a <http://purl.obolibrary.org/obo/PR_000000001> .\n" +
 			"?x <http://purl.org/biotop/btl2.owl#isIncludedIn> ?s3 .\n" +
 			"?s3 a <http://purl.bioontology.org/ontology/NCBITAXON/131567> .\n" +
@@ -55,13 +55,16 @@ public final class Example {
 	}
 	
 	private static String BO_isIncludedIn_CO_WithLabels() {
-		return "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
-			"SELECT DISTINCT ?labelx ?labels2 WHERE {?x a <http://purl.obolibrary.org/obo/GO_0008150> .\n" +
-			"?x <http://purl.org/biotop/btl2.owl#isIncludedIn> ?s1 .\n" +
-			"?s1 a <http://purl.bioontology.org/ontology/NCBITAXON/131567> .\n" +
-			"?x rdfs:label ?labelx .\n" +
-			"?s1 rdfs:label ?labels1 .\n" +
-			"} LIMIT 30";
+		return "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n"
+				+ "SELECT DISTINCT ?labelx ?labels1 WHERE {?x a <http://purl.obolibrary.org/obo/GO_0008150> .\n"
+				+ "?x <http://purl.org/biotop/btl2.owl#isIncludedIn> ?s1 .\n"
+				+ "?s1 a <http://purl.bioontology.org/ontology/NCBITAXON/131567> .\n"
+				+ "?x rdfs:label ?labelx .\n" + "?s1 rdfs:label ?labels1 .\n"
+				+ "} LIMIT 30";
+	}
+	
+	private static String loadProteinTest() {
+		return "SELECT  DISTINCT ?x WHERE {?x a <http://purl.obolibrary.org/obo/PR_000000001> . } LIMIT 30";
 	}
 	
 	private static String loadBiologicalProcessTest() {
