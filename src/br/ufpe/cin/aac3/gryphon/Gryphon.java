@@ -175,7 +175,7 @@ public final class Gryphon {
 		try {
 			Repository repository = repositoryManager.getRepository(REPOSITORY_ID);
 			for(Ontology ontology : localOntologies){
-				final RepositoryConnection repositoryConnection = repository.getConnection();
+						final RepositoryConnection repositoryConnection = repository.getConnection();
 				repositoryConnection.add(new File(ontology.getURI()), ontology.getURI().toString(), RDFFormat.RDFXML);
 				ontology.getResultFile().setWritable(true);
 				

@@ -47,12 +47,20 @@ public class CommandUtil {
 	
 	public static String readCmdResponse(Process process) {
 		try {
+			StreamLineReader readerOut = new StreamLineReader(process.getInputStream(), "out");
+			StreamLineReader readerErr = new StreamLineReader(process.getErrorStream(), "err");
+			Thread thrOut = new Thread(readerOut);
+			Thread thrErr = new Thread(readerErr);
+			
+			thrOut.start();
+			thrErr.start();
+			
 			process.waitFor();
-			GryphonUtil.logInfo("Command finished.");
-			if (process.getErrorStream().available() > 0) {
-				System.err.println("Command ERROR output:\n" + readStreamText(process.getErrorStream()));
-			}
-			return readStreamText(process.getInputStream());
+			
+			GryphonUtil.logInfo("Command finished. Exit Code: " + process.exitValue());
+			
+			return readerOut.getText();
+			
 		} catch (Exception e) {
 			throw new CommandExecutionException("Exception getting command result.", e);
 		}

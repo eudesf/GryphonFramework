@@ -23,7 +23,7 @@ public class Example {
 		//loadExample2();
 		
 		// 2. Align (and Map) the Sources
-		Gryphon.align();
+		// Gryphon.align();
 
 		// 3. Query Using SPARQL
 		String strQuery = 

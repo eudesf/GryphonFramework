@@ -31,11 +31,11 @@
 			<version>${sesame.version}</version>
 			<scope>provided</scope>
 		</dependency>
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.openrdf.sesame</groupId> -->
-<!-- 			<artifactId>sesame-repository-sail</artifactId> -->
-<!-- 			<version>${sesame.version}</version> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-repository-sail</artifactId>
+			<version>${sesame.version}</version>
+		</dependency>
 <!-- 		<dependency> -->
 <!-- 			<groupId>org.openrdf.sesame</groupId> -->
 <!-- 			<artifactId>sesame-sail-memory</artifactId> -->
